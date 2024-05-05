@@ -1,0 +1,224 @@
+{
+  "active": true,
+  "connections": {
+    "Discord": {
+      "main": [
+        [
+          {
+            "node": "Set last update date for the next run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set last update date if never done": {
+      "main": [
+        [
+          {
+            "node": "Get all posts from Elanis on Mastodon",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every X minutes": {
+      "main": [
+        [
+          {
+            "node": "Set last update date if never done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all posts from Elanis on Mastodon": {
+      "main": [
+        [
+          {
+            "node": "Filter out replies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter out replies": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-26T19:03:42.220Z",
+  "id": "ejXq31uGCMn4jcTw",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My Mastodon posts to social-networks (Discord)",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "={{ $json.url }}",
+        "options": {}
+      },
+      "id": "e9ab0229-9d3d-4955-8a47-c474ea28292c",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        160,
+        460
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "9CAghVgMOF7xXWoy",
+          "name": "Discord Webhook - social-networks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = 112325182881404092;\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
+      },
+      "id": "28dcc829-f944-4c54-992c-70974b910779",
+      "name": "Set last update date if never done",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "686c9e1a-cdf0-4ec7-9178-553673973308",
+      "name": "Every X minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastId = Math.max(...$('Get all posts from Elanis on Mastodon').all().map(x => x.json.id));\n\nreturn [{lastId: nodeStaticData.lastId }];"
+      },
+      "id": "0ba303c0-a9de-4df3-a721-58a2c8436946",
+      "name": "Set last update date for the next run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://mastodon.gamedev.place/api/v1/accounts/109308194245709401/statuses",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "since_id",
+              "value": "={{ $json.lastId }}"
+            },
+            {
+              "name": "exclude_replies",
+              "value": "true"
+            },
+            {
+              "name": "exclude_reblogs",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1addd26e-eea7-4e74-a3a9-14b1556e74c5",
+      "name": "Get all posts from Elanis on Mastodon",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        520
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "tCDU7paqL3TCkBRE",
+          "name": "mastodon.gamedev.place - Elanis"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "3fda5c68-06c6-4763-9459-59260a6e5587",
+              "leftValue": "={{ $json.in_reply_to_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "1321678b-e2d8-4c9a-922f-0c5006bcd878",
+      "name": "Filter out replies",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Every X minutes": {
+      "recurrencyRules": []
+    },
+    "global": {
+      "lastExecution": 1714156414002,
+      "lastId": 112366469073169500
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-05-01T15:16:20.000Z",
+  "versionId": "16a1e5a5-12bd-441e-9cc7-b3f885cfbfa3"
+}
