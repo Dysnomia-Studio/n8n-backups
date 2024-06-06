@@ -55,6 +55,28 @@
           }
         ]
       ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set last update date if never done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set last update date for the next run": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-04-26T19:03:42.220Z",
@@ -103,8 +125,8 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes",
-              "minutesInterval": 10
+              "field": "cronExpression",
+              "expression": "15,45 * * * *"
             }
           ]
         }
@@ -202,6 +224,31 @@
         -80,
         520
       ]
+    },
+    {
+      "parameters": {},
+      "id": "e78cc007-19f4-4879-ab39-33907d2ea883",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "RMUJd9Eo4VshlOfQ",
+        "options": {}
+      },
+      "id": "8bf61ecf-9d77-4f81-a041-7355130799f1",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        600,
+        460
+      ]
     }
   ],
   "pinData": {},
@@ -219,6 +266,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-05-11T10:26:20.000Z",
-  "versionId": "16a1e5a5-12bd-441e-9cc7-b3f885cfbfa3"
+  "updatedAt": "2024-06-06T11:12:06.000Z",
+  "versionId": "5777ef79-a4c7-4941-8639-8b392df33120"
 }
