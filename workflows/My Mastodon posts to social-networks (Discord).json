@@ -109,7 +109,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = 112325182881404092;\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = 112580479908567023;\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
       },
       "id": "28dcc829-f944-4c54-992c-70974b910779",
       "name": "Set last update date if never done",
@@ -248,7 +248,8 @@
       "position": [
         600,
         460
-      ]
+      ],
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -261,11 +262,11 @@
     },
     "global": {
       "lastExecution": 1714156414002,
-      "lastId": 112421947409095260
+      "lastId": 112580480225353870
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-06-06T11:12:06.000Z",
-  "versionId": "5777ef79-a4c7-4941-8639-8b392df33120"
+  "updatedAt": "2024-06-08T10:34:07.000Z",
+  "versionId": "101372ad-ec0f-4892-8251-1832da45d83d"
 }
