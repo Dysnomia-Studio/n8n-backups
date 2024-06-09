@@ -150,8 +150,7 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes",
-              "minutesInterval": 10
+              "field": "hours"
             }
           ]
         }
@@ -275,6 +274,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-06-08T10:31:18.000Z",
-  "versionId": "7a1c2a2b-91b8-4a5d-8f54-31eed72f14fd"
+  "updatedAt": "2024-06-09T12:57:41.000Z",
+  "versionId": "22aaf94b-2dc2-4b05-a3df-52c591fd4bf8"
 }
