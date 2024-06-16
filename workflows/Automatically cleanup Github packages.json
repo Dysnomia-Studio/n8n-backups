@@ -1,0 +1,218 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set variable containing organizations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set variable containing organizations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set variable containing organizations": {
+      "main": [
+        [
+          {
+            "node": "Github - Get packages list in orgs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github - Get packages list in orgs": {
+      "main": [
+        [
+          {
+            "node": "Github - Get package versions list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github - Get package versions list": {
+      "main": [
+        [
+          {
+            "node": "Filter out recent versions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter out recent versions": {
+      "main": [
+        [
+          {
+            "node": "Github - Delete outdated package versions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-16T19:22:04.166Z",
+  "id": "urMO4iynHDZK7kQx",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Automatically cleanup Github packages",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a8ea4831-9c4a-47d9-9774-31d4f826c368",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "id": "3dceceb4-4cb4-49e1-a808-3157177fff08",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { id: 'Dysnomia-Studio' },\n  { id: 'L-U-M-E-N' },\n];"
+      },
+      "id": "09f165ca-ffbb-41b2-a6f3-f0ae40b24bea",
+      "name": "Set variable containing organizations",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.github.com/orgs/{{ $json.id }}/packages?package_type=container&per_page=100",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "id": "eeaace76-4cb7-4175-ad8f-92e4c62e2411",
+      "name": "Github - Get packages list in orgs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        360
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "QvhoF62wZEZDN6Y4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.github.com/orgs/{{ $json.owner.login }}/packages/{{ $json.package_type }}/{{ $json.name }}/versions?per_page=100",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "id": "5a85c4ce-1703-49f2-b764-a8bc96cdb1a6",
+      "name": "Github - Get package versions list",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        360
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "QvhoF62wZEZDN6Y4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const packageVersions = await $input.all();\n\npackageVersions.sort((a, b) => (new Date(b.updated_at)).getTime() - (new Date(a.updated_at)).getTime());\n\nconst counter = {};\nconst ret = [];\nfor(let i = 0; i < packageVersions.length; i++) {\n  const json = packageVersions[i].json;\n  if(!counter[json.package_html_url]) {\n    counter[json.package_html_url] = 0;\n  }\n\n  if(counter[json.package_html_url] >= 5) { \n    ret.push(packageVersions[i]);\n    continue;\n  }\n\n  counter[json.package_html_url]++;\n}\n\nreturn ret;\nreturn [{ toDelete: ret, metaData: counter }];"
+      },
+      "id": "4517b224-e95d-4dbf-bc0b-f302c922467d",
+      "name": "Filter out recent versions",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "options": {}
+      },
+      "id": "bf6dc0b1-d130-4d27-93cf-5d03dd886d1c",
+      "name": "Github - Delete outdated package versions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        360
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "QvhoF62wZEZDN6Y4",
+          "name": "GitHub account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-06-16T20:48:59.000Z",
+  "versionId": "9dc11b88-3332-4186-b2ca-e1fbe4e35186"
+}
