@@ -109,7 +109,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = '112603413649797095';\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = '112768531715564735';\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
       },
       "id": "28dcc829-f944-4c54-992c-70974b910779",
       "name": "Set last update date if never done",
@@ -142,7 +142,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nvar list = $('Get all posts from Elanis on Mastodon').all().map(x => x.json.id);\n\nnodeStaticData.lastId = list[list.length - 1];\n\nreturn [{lastId: nodeStaticData.lastId }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nvar list = $('Get all posts from Elanis on Mastodon').all();\nlist.sort((a, b) => {\n  new Date(b.json.createdOn).getTime() - new Date(b.json.createdOn).getTime()\n});\n\nnodeStaticData.lastId = list[list.length - 1].json.id;\n\nreturn [{lastId: nodeStaticData.lastId }];"
       },
       "id": "0ba303c0-a9de-4df3-a721-58a2c8436946",
       "name": "Set last update date for the next run",
@@ -262,11 +262,11 @@
     },
     "global": {
       "lastExecution": 1714156414002,
-      "lastId": "112711851372742541"
+      "lastId": "112768531715564735"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-01T15:15:01.000Z",
-  "versionId": "f0c69bb8-ece9-4fb2-ac4e-ec6895ebbe50"
+  "updatedAt": "2024-07-11T18:37:50.000Z",
+  "versionId": "6e09c07e-5429-49bb-bbcc-545181abb5ae"
 }
