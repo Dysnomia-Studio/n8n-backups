@@ -1,0 +1,566 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get directories list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get directories list": {
+      "main": [
+        [
+          {
+            "node": "Extract directory list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get metadata download link": {
+      "main": [
+        [
+          {
+            "node": "Get metadatas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get video download link": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Parse metadata1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get metadatas": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract directory list": {
+      "main": [
+        [
+          {
+            "node": "Get video download link",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get metadata download link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post on TikTok": {
+      "main": [
+        [
+          {
+            "node": "Share Tiktok on Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post on instagram": {
+      "main": [
+        [
+          {
+            "node": "Share reel on Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse metadata1": {
+      "main": [
+        [
+          {
+            "node": "Filter on date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter on date": {
+      "main": [
+        [
+          {
+            "node": "Post on instagram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post on TikTok",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube": {
+      "main": [
+        [
+          {
+            "node": "Share short on Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "YouTube",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-12T15:23:13.769Z",
+  "id": "SfnufjT2mormpeyV",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Auto short/reels/tiktok post",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "id": "78418b5d-9718-49ec-8cd6-c7124c3fdbe3",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://cloud.dysnomia.studio/api/v2.1/via-repo-token/dir/?p=/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "p",
+              "value": "/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b65b4bb1-2f1d-45ef-b817-decd96d54da3",
+      "name": "Get directories list",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        360
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KodqxzZ2skrtWGs1",
+          "name": "Seafile account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://cloud.dysnomia.studio/api/v2.1/via-repo-token/file/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "path",
+              "value": "={{ $json.name }}/video.mp4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a9842883-7892-492c-8005-9a3625820f28",
+      "name": "Get file Info",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        80
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KodqxzZ2skrtWGs1",
+          "name": "Seafile account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://cloud.dysnomia.studio/api/v2.1/via-repo-token/download-link/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "path",
+              "value": "={{ $json.name }}/video.mp4"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "link"
+            }
+          }
+        }
+      },
+      "id": "6b614399-0dd7-4a5c-a6eb-51b1f8c74b48",
+      "name": "Get video download link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        260
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KodqxzZ2skrtWGs1",
+          "name": "Seafile account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://cloud.dysnomia.studio/api/v2.1/via-repo-token/download-link/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "path",
+              "value": "={{ $json.name }}/metadata.json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "link"
+            }
+          }
+        }
+      },
+      "id": "056bff93-12b9-40db-bd9c-f25e9b85f3a6",
+      "name": "Get metadata download link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        460
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KodqxzZ2skrtWGs1",
+          "name": "Seafile account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "aeef001d-6e7c-48c7-9637-fd0b97e8a68c",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1000,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.link }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "f6466f1f-9199-4085-82ad-d25df5f34e28",
+      "name": "Get metadatas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.dirent_list"
+      },
+      "id": "857ab000-b5de-4c4a-8a5f-67632c5e25d1",
+      "name": "Extract directory list",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://open.tiktokapis.com/v2/post/publish/video/init/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"post_info\": {\n    \t\"privacy_level\": \"{{ $json.privacy_level }}\",\n    \t\"title\": \"{{ $json.title }}\",\n    \t\"disable_duet\": {{ $json.disable_duet }},\n    \t\"disable_stitch\": {{ $json.disable_stitch }},\n    \t\"disable_comment\": {{ $json.disable_comment }},\n    \t\"video_cover_timestamp_ms\": {{ $json.video_cover_timestamp_ms }},\n    \t\"brand_content_toggle\": {{ $json.brand_content_toggle }},\n    \t\"brand_organic_toggle\": {{ $json.brand_organic_toggle }},\n    \t\"is_aigc\": {{ $json.is_aigc }}\n    },\n    \"source_info\": {\n        \"video_url\": \"{{ $('Get video download link').itemMatching($itemIndex).json.link }}\",\n    \t\"source\": \"{{ $json.source }}\"\n    }\n}",
+        "options": {}
+      },
+      "id": "b0534583-f262-4ccc-8935-3bc21e3ceb50",
+      "name": "Post on TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        160
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Wk56b9w0GdLzbzwM",
+          "name": "Tiktok authentication"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5cff99ac-1271-4903-8e77-25eadf53e1ec",
+      "name": "Post on instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        340
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "options": {}
+      },
+      "id": "1f80b77b-22ef-4946-b554-c64a4076c4ea",
+      "name": "Share reel on Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        340
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "9CAghVgMOF7xXWoy",
+          "name": "Discord Webhook - social-networks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "options": {}
+      },
+      "id": "37eb4fad-a1f1-494f-996d-ba79e33621f0",
+      "name": "Share short on Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        520
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "9CAghVgMOF7xXWoy",
+          "name": "Discord Webhook - social-networks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "options": {}
+      },
+      "id": "d140d19d-d033-4b6f-9cac-29a32a2396e9",
+      "name": "Share Tiktok on Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        160
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "9CAghVgMOF7xXWoy",
+          "name": "Discord Webhook - social-networks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = JSON.parse($json.data);\n\nlet currDate = new Date();\ncurrDate = `${currDate.getFullYear()}-${(currDate.getMonth() + 1).toString().padStart(2, '0')}-${(currDate.getDate()).toString().padStart(2, '0')}`;\n\ndata.shouldPost = data.date === currDate;\ndata.videoUrl = $json.link;\n\nreturn data;"
+      },
+      "id": "258380e8-cc4b-419e-887e-1ded05c6ac19",
+      "name": "Parse metadata1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "id": "bac2cc7b-d0f0-4026-b3cc-8b6d2217f465",
+      "name": "Filter on date",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "upload",
+        "title": "={{ $json.title }}",
+        "regionCode": "FR",
+        "categoryId": "20",
+        "options": {}
+      },
+      "id": "61461f1f-bce3-4996-a663-b6b7557c7d12",
+      "name": "YouTube",
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        520
+      ],
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "bYly4dT51CPdXsDY",
+          "name": "YouTube account: Dysnomia"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.videoUrl }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "91ba3887-dae6-48eb-8618-930e5113ca2c",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-07-12T18:21:43.000Z",
+  "versionId": "77221076-acc9-46ae-80f2-327f1be699d4"
+}
