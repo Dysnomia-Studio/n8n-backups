@@ -222,7 +222,8 @@
   },
   "staticData": {
     "node:Every X minutes": {
-      "recurrencyRules": []
+      "recurrencyRules": [],
+      "recurrenceRules": []
     },
     "global": {
       "lastExecution": 1714156414002,
