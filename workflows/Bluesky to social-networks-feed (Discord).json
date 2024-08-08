@@ -1,0 +1,293 @@
+{
+  "active": true,
+  "connections": {
+    "Discord": {
+      "main": [
+        [
+          {
+            "node": "Set last update date for the next run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set last update date if never done": {
+      "main": [
+        [
+          {
+            "node": "Set items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter to get recent posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every X minutes": {
+      "main": [
+        [
+          {
+            "node": "Set last update date if never done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter to get recent posts": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set items": {
+      "main": [
+        [
+          {
+            "node": "Get all posts for X on Bluesky",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all posts for X on Bluesky": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-28T16:48:47.306Z",
+  "id": "FQMEAi2jzfT2cMzk",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Bluesky to social-networks-feed (Discord)",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "={{ $json.uri }}",
+        "options": {}
+      },
+      "id": "ff03a047-51e7-4094-b3b5-f9b6d7284929",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        580,
+        420
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "Z1uIAkjzjVDwhU8n",
+          "name": "Discord Webhook - social-networks-feed"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "id": "534c5510-8850-4d88-9083-0f94716dbb85",
+      "name": "Set last update date if never done",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "posts",
+        "options": {}
+      },
+      "id": "4c170606-7c63-42a5-ae42-cf785ea6b1b4",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        0,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "id": "74172d04-20de-4035-a7a7-eb36a1927700",
+      "name": "Every X minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "07f23053-a317-4e1d-b88d-96df9449d146",
+              "leftValue": "={{ new Date($json.record.createdAt).getTime() }}",
+              "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "341cf19c-2131-418e-bab1-dad58d5dae9f",
+      "name": "Filter to get recent posts",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        180,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "id": "d96b854e-9499-4af6-9103-44a14646d71d",
+      "name": "Set last update date for the next run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
+      },
+      "id": "0618f1e3-0222-44bb-90ad-7e7b60e50133",
+      "name": "Set items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/elanis.bsky.social/post/' + parts[parts.length - 1] };"
+      },
+      "id": "adb7d2ee-fb99-40c0-a11e-4414361c7c7c",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.value }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "37077ddf-b86b-4bfd-b46b-85c7a35059b9",
+      "name": "Get all posts for X on Bluesky",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -180,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Every X minutes": {
+      "recurrencyRules": [],
+      "recurrenceRules": []
+    },
+    "global": {
+      "lastExecution": 1720713603909
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2024-08-08T19:41:09.423Z",
+      "updatedAt": "2024-08-08T19:41:09.423Z",
+      "id": "Z6eTqcJ0heLsAhux",
+      "name": "to-discord-private"
+    },
+    {
+      "createdAt": "2024-08-08T19:42:06.238Z",
+      "updatedAt": "2024-08-08T19:42:06.238Z",
+      "id": "mRsLnOG6awlirS7k",
+      "name": "from-bluesky"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-08T19:43:21.000Z",
+  "versionId": "1fcb4569-a4c4-4018-a170-f52bad7d814e"
+}
