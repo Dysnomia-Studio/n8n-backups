@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Discord": {
       "main": [
@@ -34,7 +34,51 @@
         ]
       ]
     },
-    "Filter to get recent posts": {
+    "Set items": {
+      "main": [
+        [
+          {
+            "node": "Twitch - Get category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitch - Get category": {
+      "main": [
+        [
+          {
+            "node": "Twitch - Get streams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitch - Get streams": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter to get recent streams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter to get recent streams": {
       "main": [
         [
           {
@@ -44,32 +88,10 @@
           }
         ]
       ]
-    },
-    "Set items": {
-      "main": [
-        [
-          {
-            "node": "YouTube",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "YouTube": {
-      "main": [
-        [
-          {
-            "node": "Filter to get recent posts",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
-  "createdAt": "2024-08-08T20:04:59.990Z",
-  "id": "HjYun1vlGPn7ICUS",
+  "createdAt": "2024-08-08T20:18:19.121Z",
+  "id": "RQEVky7iqN7jdC4v",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -78,15 +100,15 @@
     {
       "parameters": {
         "authentication": "webhook",
-        "content": "=https://youtu.be/{{ $json.id.videoId }}",
+        "content": "=Stream on {{ $('Twitch - Get category').item.json.data[0].name }}: https://twitch.tv/{{ $json.user_login }}",
         "options": {}
       },
-      "id": "10867ce3-ea48-4537-b90e-f69a2792c1b3",
+      "id": "94c532f8-21a1-4589-91ec-92179f174d48",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        340,
+        600,
         420
       ],
       "credentials": {
@@ -100,12 +122,12 @@
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "efca2361-ae08-4ed7-9651-8fa98543904b",
+      "id": "7900ff56-071c-4f49-ad2b-7cd5174999e4",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
+        -660,
         520
       ]
     },
@@ -114,17 +136,120 @@
         "rule": {
           "interval": [
             {
-              "field": "hours"
+              "field": "minutes",
+              "minutesInterval": 30
             }
           ]
         }
       },
-      "id": "570542d4-d6c8-48d9-a9fa-4edd20a14766",
+      "id": "689b8daf-2f65-46b6-be66-9e3c8e2547c4",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
+        -860,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "id": "721e313f-e56b-499b-9cdd-56983b9d72dd",
+      "name": "Set last update date for the next run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" }\n]"
+      },
+      "id": "422bf250-3350-4f7a-8070-eda3057ad956",
+      "name": "Set items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.twitch.tv/helix/games?name={{ $json.value }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Client-Id",
+              "value": "=evxh57y190gjm15ip8up7otgggu57w"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0bb6472a-6d86-44f1-9009-b2a0f24ab348",
+      "name": "Twitch - Get category",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -280,
+        520
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YfvL3LFZzXDSBt1E",
+          "name": "Twitch"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.twitch.tv/helix/streams?game_id={{ $json.data[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Client-Id",
+              "value": "=evxh57y190gjm15ip8up7otgggu57w"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6c0e1d05-da53-4170-b15f-318c61d15549",
+      "name": "Twitch - Get streams",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        520
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "YfvL3LFZzXDSBt1E",
+          "name": "Twitch"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "aac607e8-85f7-4450-ac3c-e1a1e96810c7",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        100,
         520
       ]
     },
@@ -139,21 +264,11 @@
           "conditions": [
             {
               "id": "07f23053-a317-4e1d-b88d-96df9449d146",
-              "leftValue": "={{ new Date($json.snippet.publishedAt).getTime() }}",
+              "leftValue": "={{ new Date($json.started_at).getTime() }}",
               "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
               "operator": {
                 "type": "number",
                 "operation": "gt"
-              }
-            },
-            {
-              "id": "a6eeb994-e040-4da7-b735-e713b1755d9a",
-              "leftValue": "={{ $json.id.kind }}",
-              "rightValue": "youtube#video",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
               }
             }
           ],
@@ -161,63 +276,14 @@
         },
         "options": {}
       },
-      "id": "f7b77bf8-cbad-4389-9489-a21ca771b227",
-      "name": "Filter to get recent posts",
+      "id": "75160c8e-4fb3-435f-a323-6fc602fbbbd8",
+      "name": "Filter to get recent streams",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        80,
+        300,
         520
       ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
-      },
-      "id": "40bd0b7c-f127-4bb6-9aef-7f307d6f9160",
-      "name": "Set last update date for the next run",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        580,
-        420
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
-      },
-      "id": "b12f7372-5bf7-4b9a-9481-65397627abf7",
-      "name": "Set items",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -360,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "resource": "video",
-        "filters": {
-          "q": "={{ $json.value }}"
-        },
-        "options": {}
-      },
-      "id": "1b99f5d3-837b-41cb-98a9-c543c22d8753",
-      "name": "YouTube",
-      "type": "n8n-nodes-base.youTube",
-      "typeVersion": 1,
-      "position": [
-        -140,
-        520
-      ],
-      "credentials": {
-        "youTubeOAuth2Api": {
-          "id": "bYly4dT51CPdXsDY",
-          "name": "YouTube account: Dysnomia"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -248,6 +314,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T20:04:59.990Z",
-  "versionId": "832a9460-dbd3-4692-a449-1e422c02c226"
+  "updatedAt": "2024-08-08T21:01:56.000Z",
+  "versionId": "c8c5a1bb-0db7-4c26-b85d-5650c332bcde"
 }
