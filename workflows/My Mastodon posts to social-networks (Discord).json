@@ -266,8 +266,21 @@
       "lastId": "112818000806157713"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-08-08T19:41:00.747Z",
+      "updatedAt": "2024-08-08T19:41:00.747Z",
+      "id": "g77AZGy5w2mBzys7",
+      "name": "from-mastodon"
+    },
+    {
+      "createdAt": "2024-08-08T19:42:22.453Z",
+      "updatedAt": "2024-08-08T19:42:22.453Z",
+      "id": "qbuqg5wDpcoWouyi",
+      "name": "to-discord-public"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-07-11T18:37:50.000Z",
-  "versionId": "6e09c07e-5429-49bb-bbcc-545181abb5ae"
+  "updatedAt": "2024-08-08T19:43:03.000Z",
+  "versionId": "0c6d2972-0d63-4ed8-a92f-baf5725e2609"
 }
