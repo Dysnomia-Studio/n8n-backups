@@ -139,7 +139,7 @@
       "credentials": {
         "githubApi": {
           "id": "QvhoF62wZEZDN6Y4",
-          "name": "GitHub account"
+          "name": "GitHub - Package cleanup"
         }
       }
     },
@@ -161,7 +161,7 @@
       "credentials": {
         "githubApi": {
           "id": "QvhoF62wZEZDN6Y4",
-          "name": "GitHub account"
+          "name": "GitHub - Package cleanup"
         }
       }
     },
@@ -197,7 +197,7 @@
       "credentials": {
         "githubApi": {
           "id": "QvhoF62wZEZDN6Y4",
-          "name": "GitHub account"
+          "name": "GitHub - Package cleanup"
         }
       }
     }
@@ -212,8 +212,15 @@
       "recurrenceRules": []
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-08-08T19:45:07.485Z",
+      "updatedAt": "2024-08-08T19:45:07.485Z",
+      "id": "Z00pmqqJ4dyoxwVY",
+      "name": "to-github"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-06-16T20:48:59.000Z",
-  "versionId": "9dc11b88-3332-4186-b2ca-e1fbe4e35186"
+  "updatedAt": "2024-08-08T19:45:20.000Z",
+  "versionId": "d1c82a2f-3b4f-4082-83b0-df634d66b237"
 }
