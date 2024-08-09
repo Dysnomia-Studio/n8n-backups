@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Set items",
+            "node": "Set games list",
             "type": "main",
             "index": 0
           }
@@ -34,7 +34,62 @@
         ]
       ]
     },
-    "Filter to get recent posts": {
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter on activity name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep only videos": {
+      "main": [
+        [
+          {
+            "node": "Group ids to reduce http requests amount",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set games list": {
+      "main": [
+        [
+          {
+            "node": "YouTube - Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube - Search": {
+      "main": [
+        [
+          {
+            "node": "Keep only videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get activity": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter on activity name": {
       "main": [
         [
           {
@@ -45,22 +100,11 @@
         ]
       ]
     },
-    "Set items": {
+    "Group ids to reduce http requests amount": {
       "main": [
         [
           {
-            "node": "YouTube",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "YouTube": {
-      "main": [
-        [
-          {
-            "node": "Filter to get recent posts",
+            "node": "Get activity",
             "type": "main",
             "index": 0
           }
@@ -86,8 +130,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        340,
-        420
+        -860,
+        700
       ],
       "credentials": {
         "discordWebhookApi": {
@@ -105,8 +149,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
-        520
+        -660,
+        240
       ]
     },
     {
@@ -114,7 +158,8 @@
         "rule": {
           "interval": [
             {
-              "field": "hours"
+              "field": "hours",
+              "hoursInterval": 2
             }
           ]
         }
@@ -124,8 +169,35 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        520
+        -860,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "id": "0767dcd1-8c37-4e8e-836a-5b7cf50929ed",
+      "name": "Set last update date for the next run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "items",
+        "options": {}
+      },
+      "id": "912e37dd-2c6f-431c-8c2e-499f2418263b",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        480
       ]
     },
     {
@@ -138,16 +210,7 @@
           },
           "conditions": [
             {
-              "id": "07f23053-a317-4e1d-b88d-96df9449d146",
-              "leftValue": "={{ new Date($json.snippet.publishedAt).getTime() }}",
-              "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
-              "operator": {
-                "type": "number",
-                "operation": "gt"
-              }
-            },
-            {
-              "id": "a6eeb994-e040-4da7-b735-e713b1755d9a",
+              "id": "2a8c3e04-83b6-47ff-a392-0e1e33ee4fe2",
               "leftValue": "={{ $json.id.kind }}",
               "rightValue": "youtube#video",
               "operator": {
@@ -161,26 +224,13 @@
         },
         "options": {}
       },
-      "id": "82e4db97-b2a0-4494-b96a-9041568677f2",
-      "name": "Filter to get recent posts",
-      "type": "n8n-nodes-base.if",
+      "id": "4c907cb5-a1ec-462e-b4c2-5a318571c0a3",
+      "name": "Keep only videos",
+      "type": "n8n-nodes-base.filter",
       "typeVersion": 2,
       "position": [
-        80,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
-      },
-      "id": "0767dcd1-8c37-4e8e-836a-5b7cf50929ed",
-      "name": "Set last update date for the next run",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        580,
-        420
+        -660,
+        480
       ]
     },
     {
@@ -188,30 +238,32 @@
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
       },
       "id": "cac46621-c5e3-4d82-8f83-63db0fcf8806",
-      "name": "Set items",
+      "name": "Set games list",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -360,
-        520
+        -440,
+        240
       ]
     },
     {
       "parameters": {
         "resource": "video",
+        "limit": 50,
         "filters": {
           "publishedAfter": "={{ new Date($('Set last update date if never done').item.json.lastExecution - 1000).toISOString() }}",
-          "q": "=\"{{ $json.value }}\""
+          "q": "=\"{{ $json.value }}\"",
+          "videoCategoryId": "20"
         },
         "options": {}
       },
       "id": "6bfb93a3-fb30-49de-81ec-75be917c5f55",
-      "name": "YouTube",
+      "name": "YouTube - Search",
       "type": "n8n-nodes-base.youTube",
       "typeVersion": 1,
       "position": [
-        -140,
-        520
+        -860,
+        480
       ],
       "credentials": {
         "youTubeOAuth2Api": {
@@ -219,6 +271,68 @@
           "name": "YouTube account: Dysnomia"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "=https://yt.lemnoslife.com/videos?part=activity&id={{ $json.ids }}",
+        "options": {}
+      },
+      "id": "ab3207e9-4431-4771-9848-6a97da2d9879",
+      "name": "Get activity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        480
+      ],
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a6eeb994-e040-4da7-b735-e713b1755d9a",
+              "leftValue": "={{ $('Set games list').all().map(x => x.json.value) }}",
+              "rightValue": "={{ $json.activity.name }}",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "82e4db97-b2a0-4494-b96a-9041568677f2",
+      "name": "Filter on activity name",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        200,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let cache = [];\nconst queries = [];\nfor (const item of $input.all()) {\n  if(cache.length === 50) {\n    queries.push({\n      ids: cache.join(',')\n    });\n    cache = [];\n  }\n\n  if(item?.json?.id?.videoId) {\n    cache.push(item.json.id.videoId);\n  }\n}\n\nqueries.push({\n  ids: cache.join(',')\n});\n\nreturn queries;"
+      },
+      "id": "020ba742-8a15-4f69-9a61-3c4e360e22ac",
+      "name": "Group ids to reduce http requests amount",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        480
+      ],
+      "executeOnce": true
     }
   ],
   "pinData": {},
@@ -228,10 +342,12 @@
   "staticData": {
     "node:Every X minutes": {
       "recurrencyRules": [],
-      "recurrenceRules": []
+      "recurrenceRules": [
+        12
+      ]
     },
     "global": {
-      "lastExecution": 1723154444221
+      "lastExecution": 1723183245753
     }
   },
   "tags": [
@@ -249,6 +365,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T20:12:09.000Z",
-  "versionId": "2bc9e4bb-17ec-4be5-8a04-2cefbf066d9c"
+  "updatedAt": "2024-08-09T08:10:25.000Z",
+  "versionId": "0690000f-3ce4-4433-9c67-56d86c8642b9"
 }
