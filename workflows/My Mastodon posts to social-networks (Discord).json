@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Discord": {
       "main": [
@@ -109,7 +109,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = '112768531715564735';\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = '112976858020753457';\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
       },
       "id": "28dcc829-f944-4c54-992c-70974b910779",
       "name": "Set last update date if never done",
@@ -263,7 +263,7 @@
     },
     "global": {
       "lastExecution": 1714156414002,
-      "lastId": "112976857354706562"
+      "lastId": "112976858025196867"
     }
   },
   "tags": [
@@ -281,6 +281,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T19:43:03.000Z",
-  "versionId": "0c6d2972-0d63-4ed8-a92f-baf5725e2609"
+  "updatedAt": "2024-08-24T11:55:18.000Z",
+  "versionId": "4c1816d0-a141-4c47-b8bb-271d4c8b60f6"
 }
