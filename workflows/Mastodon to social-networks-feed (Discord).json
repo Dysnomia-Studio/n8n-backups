@@ -200,7 +200,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
+        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
       },
       "id": "b97bc5ea-a07b-4317-9ee7-ae052be2725a",
       "name": "Set items",
@@ -275,6 +275,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T19:42:52.000Z",
-  "versionId": "17fcf6c5-0cda-46e5-89c8-63aa5498981f"
+  "updatedAt": "2024-10-10T08:04:05.000Z",
+  "versionId": "13eff586-c92c-4b9a-bcba-cf556965bc94"
 }
