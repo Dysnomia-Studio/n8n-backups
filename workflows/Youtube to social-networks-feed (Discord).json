@@ -235,7 +235,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
+        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" },\n]"
       },
       "id": "cac46621-c5e3-4d82-8f83-63db0fcf8806",
       "name": "Set games list",
@@ -293,7 +293,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -365,6 +366,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-09T08:10:25.000Z",
-  "versionId": "0690000f-3ce4-4433-9c67-56d86c8642b9"
+  "updatedAt": "2024-10-10T08:03:38.000Z",
+  "versionId": "ea241c4c-d22e-478f-a41e-f574ceed52f0"
 }
