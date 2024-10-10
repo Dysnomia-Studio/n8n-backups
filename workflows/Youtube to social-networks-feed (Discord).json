@@ -344,7 +344,7 @@
     "node:Every X minutes": {
       "recurrencyRules": [],
       "recurrenceRules": [
-        12
+        0
       ]
     },
     "global": {
