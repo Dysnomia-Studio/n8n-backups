@@ -109,7 +109,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2024-11-05').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2024-11-02').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
       },
       "id": "6b68b556-cd2b-401d-a791-5146c8fffeee",
       "name": "Set last update date if never done",
@@ -243,6 +243,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T16:49:31.000Z",
-  "versionId": "09af268d-5f25-417b-854a-5100ccf49011"
+  "updatedAt": "2024-11-02T22:33:17.000Z",
+  "versionId": "f0adb334-b763-4688-b05c-c0ff5b5ab9b2"
 }
