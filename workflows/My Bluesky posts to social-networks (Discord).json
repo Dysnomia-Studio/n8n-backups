@@ -79,8 +79,8 @@
       ]
     }
   },
-  "createdAt": "2024-04-26T20:08:24.886Z",
-  "id": "RMUJd9Eo4VshlOfQ",
+  "createdAt": "2024-11-02T16:47:32.512Z",
+  "id": "4wWeWInG4piKzegw",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -92,32 +92,32 @@
         "content": "={{ $json.uri }}",
         "options": {}
       },
-      "id": "bf5795de-b3f4-4b95-9f9c-619a3d56489f",
+      "id": "e1a682a2-7e99-47d8-a376-d45d5a6fdd83",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        180,
-        520
+        1380,
+        620
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "9CAghVgMOF7xXWoy",
-          "name": "Discord Webhook - social-networks"
+          "id": "F2jlVVALmGznxWXk",
+          "name": "social-feed"
         }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2024-06-09').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2024-11-05').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
       },
-      "id": "8b4442ca-964d-4b71-832a-4852e7f49873",
+      "id": "6b68b556-cd2b-401d-a791-5146c8fffeee",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
-        520
+        660,
+        620
       ]
     },
     {
@@ -131,26 +131,26 @@
           ]
         }
       },
-      "id": "a89bc24a-e417-4b39-93e5-2fa823100f86",
+      "id": "e3b8948b-e827-4bed-92dc-9c49a344bd2f",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        520
+        460,
+        620
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastUpdate = $now - 10000;\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
       },
-      "id": "2213f2f1-273e-4c15-93c8-502589cb5c3b",
+      "id": "efd26801-4f72-4f9b-86c2-26277b9308aa",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        440,
-        520
+        1640,
+        620
       ]
     },
     {
@@ -167,26 +167,26 @@
         },
         "options": {}
       },
-      "id": "f55ef60e-2653-438d-a7f9-92a6048c8645",
+      "id": "850e63ee-83ba-4854-b285-d68b704b6509",
       "name": "Get all posts from Elanis on Bluesky",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -300,
-        520
+        900,
+        620
       ]
     },
     {
       "parameters": {
         "jsCode": "const nodeStaticData = $getWorkflowStaticData('global');\nlet res = [];\n\nfor(const item of $input.all()[0].json.feed) {\n  if(!(item.post.record.reply && item.post.record.reply.parent) && new Date(item.post.record.createdAt).getTime() > nodeStaticData.lastUpdate) {\n    const parts = item.post.uri.split('/');\n    res.push({ rec: item.post.record.reply, date: new Date(item.post.record.createdAt).getTime(), uri: 'https://bsky.app/profile/elanis.bsky.social/post/' + parts[parts.length - 1] });\n  }\n}\n\nreturn res;"
       },
-      "id": "3a45f6eb-1e0c-4c69-8c55-e6133f1f0559",
+      "id": "cc1b0d58-e81f-4423-a467-504208f7a9a8",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -80,
-        520
+        1120,
+        620
       ]
     },
     {
@@ -194,25 +194,25 @@
         "workflowId": "ejXq31uGCMn4jcTw",
         "options": {}
       },
-      "id": "7eadfb96-c6ee-49ad-b764-2fbe1d7c95ee",
+      "id": "d43b2c7a-0ec5-47b8-b3f4-bb2937db075a",
       "name": "Execute Workflow",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        660,
-        520
+        1860,
+        620
       ],
       "disabled": true
     },
     {
       "parameters": {},
-      "id": "b3057596-b6d3-416e-af14-8ce25961af26",
+      "id": "632d738a-0b96-4a1d-9488-e1efdb758301",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        -740,
-        360
+        460,
+        460
       ]
     }
   ],
@@ -222,30 +222,27 @@
   },
   "staticData": {
     "node:Every X minutes": {
-      "recurrencyRules": [],
       "recurrenceRules": []
     },
     "global": {
-      "lastExecution": 1714156414002,
-      "lastId": 112325182881404100,
-      "lastUpdate": 1730363391451
+      "lastUpdate": 1730764800000
     }
   },
   "tags": [
     {
-      "createdAt": "2024-08-08T19:42:06.238Z",
-      "updatedAt": "2024-08-08T19:42:06.238Z",
-      "id": "mRsLnOG6awlirS7k",
-      "name": "from-bluesky"
+      "createdAt": "2024-11-02T16:49:15.645Z",
+      "updatedAt": "2024-11-02T16:49:15.645Z",
+      "id": "CyfgQn7wBVAWBlz9",
+      "name": "to-discord-public"
     },
     {
-      "createdAt": "2024-08-08T19:42:22.453Z",
-      "updatedAt": "2024-08-08T19:42:22.453Z",
-      "id": "qbuqg5wDpcoWouyi",
-      "name": "to-discord-public"
+      "createdAt": "2024-11-02T16:37:04.127Z",
+      "updatedAt": "2024-11-02T16:37:04.127Z",
+      "id": "zIqn6nUjzzCSAYTZ",
+      "name": "from-bluesky"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T19:42:40.000Z",
-  "versionId": "38701cab-669b-4456-a5c0-b04804642ee5"
+  "updatedAt": "2024-11-02T16:49:31.000Z",
+  "versionId": "09af268d-5f25-417b-854a-5100ccf49011"
 }
