@@ -175,8 +175,8 @@
       ]
     }
   },
-  "createdAt": "2024-05-05T09:51:21.966Z",
-  "id": "9uPLxgKC0PXAR3dl",
+  "createdAt": "2024-11-02T16:01:15.559Z",
+  "id": "RjBy0dEVlnXV5J6k",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -184,7 +184,7 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "17227047-cf7a-4787-be4f-77aa802af36a",
+      "id": "6ebe5ded-1fbd-47ef-aff1-d42507017165",
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
@@ -195,7 +195,6 @@
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
         "resource": "file",
         "operation": "get",
         "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
@@ -204,7 +203,7 @@
         "asBinaryProperty": false,
         "additionalParameters": {}
       },
-      "id": "57eb26ee-e5d2-4ca4-ba46-7d1accd8761c",
+      "id": "ba355b0c-4d07-4096-817f-e47133518735",
       "name": "GitHub",
       "type": "n8n-nodes-base.github",
       "position": [
@@ -214,9 +213,9 @@
       "typeVersion": 1,
       "alwaysOutputData": true,
       "credentials": {
-        "githubOAuth2Api": {
-          "id": "WxZJVGMwvjA3E4Pm",
-          "name": "GitHub - dysnomia-n8n-backup"
+        "githubApi": {
+          "id": "I4WxqKbPS67LQq6h",
+          "name": "GitHub account"
         }
       },
       "continueOnFail": true
@@ -241,7 +240,7 @@
           ]
         }
       },
-      "id": "6285dad9-6f08-43f1-a350-d90718c44965",
+      "id": "29e6f144-0506-422d-bc04-c474439dc304",
       "name": "github_status",
       "type": "n8n-nodes-base.switch",
       "position": [
@@ -252,7 +251,7 @@
     },
     {
       "parameters": {},
-      "id": "c51cada3-71ac-4150-bdaf-90c3de6b0eed",
+      "id": "50603f04-f589-4baa-9a57-d7190eb7db3b",
       "name": "same",
       "type": "n8n-nodes-base.noOp",
       "position": [
@@ -263,7 +262,7 @@
     },
     {
       "parameters": {},
-      "id": "25652768-8f9d-4142-8d25-99549408152b",
+      "id": "1bacdc4c-7fb3-4f2a-bdc7-9df448483db4",
       "name": "different",
       "type": "n8n-nodes-base.noOp",
       "position": [
@@ -274,7 +273,7 @@
     },
     {
       "parameters": {},
-      "id": "9ed4f5d1-7296-410a-b483-dd8218e54804",
+      "id": "18a8776e-05e7-472e-ba2d-627d56a4c456",
       "name": "new",
       "type": "n8n-nodes-base.noOp",
       "position": [
@@ -285,7 +284,6 @@
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
         "resource": "file",
         "operation": "edit",
         "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
@@ -294,7 +292,7 @@
         "fileContent": "={{$node[\"isDiffOrNew\"].json[\"n8n_data_stringy\"]}}",
         "commitMessage": "=[N8N Backup] {{$node[\"OneAtATime\"].json[\"name\"]}}.json ({{$json[\"github_status\"]}})"
       },
-      "id": "5c92f9f1-e1af-4e28-bfab-9951ba6cd70a",
+      "id": "44346bc3-1adf-463a-9cc5-a01f444a74e4",
       "name": "GitHub Edit",
       "type": "n8n-nodes-base.github",
       "position": [
@@ -303,15 +301,14 @@
       ],
       "typeVersion": 1,
       "credentials": {
-        "githubOAuth2Api": {
-          "id": "WxZJVGMwvjA3E4Pm",
-          "name": "GitHub - dysnomia-n8n-backup"
+        "githubApi": {
+          "id": "I4WxqKbPS67LQq6h",
+          "name": "GitHub account"
         }
       }
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
         "resource": "file",
         "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
         "repository": "={{$node[\"Globals\"].json[\"repo\"][\"name\"]}}",
@@ -319,7 +316,7 @@
         "fileContent": "={{$node[\"isDiffOrNew\"].json[\"n8n_data_stringy\"]}}",
         "commitMessage": "=[N8N Backup] {{$node[\"OneAtATime\"].json[\"name\"]}}.json ({{$json[\"github_status\"]}})"
       },
-      "id": "29016fb6-6883-4d8a-881e-fa529ecc3720",
+      "id": "ef76ac57-4af0-4192-b023-e6fe45718bd3",
       "name": "GitHub Create",
       "type": "n8n-nodes-base.github",
       "position": [
@@ -328,9 +325,9 @@
       ],
       "typeVersion": 1,
       "credentials": {
-        "githubOAuth2Api": {
-          "id": "WxZJVGMwvjA3E4Pm",
-          "name": "GitHub - dysnomia-n8n-backup"
+        "githubApi": {
+          "id": "I4WxqKbPS67LQq6h",
+          "name": "GitHub account"
         }
       }
     },
@@ -339,7 +336,7 @@
         "batchSize": 1,
         "options": {}
       },
-      "id": "b7fbc6d0-0e08-4f00-9d0c-a9f925a307b3",
+      "id": "2d66eac1-3f21-4ad0-8ddf-b3a61e7aa814",
       "name": "OneAtATime",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
@@ -368,7 +365,7 @@
         },
         "options": {}
       },
-      "id": "ed4533c0-c622-46da-8963-8b7190200a7d",
+      "id": "48feff0e-8d20-4cdc-9bab-62797b563169",
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
@@ -388,7 +385,7 @@
           ]
         }
       },
-      "id": "70d77566-2ad4-4f48-a9b0-4e0347731675",
+      "id": "82503bd9-b404-4064-b5f4-0d455c3ad36f",
       "name": "Every 12 hours",
       "type": "n8n-nodes-base.cron",
       "position": [
@@ -403,7 +400,7 @@
         "height": 464.79920462713443,
         "width": 389.78906250000017
       },
-      "id": "cd8c38c4-de7b-46bf-b47a-f67511173126",
+      "id": "eb2aa63f-cba5-4410-9cdd-e8e1137e2cfd",
       "name": "Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -418,7 +415,7 @@
         "height": 424.04333333333386,
         "width": 755.2349999999991
       },
-      "id": "15acec64-6d6a-4b6f-991b-56adf04b1ef6",
+      "id": "a68b3984-8ebb-4a21-815e-714af48f0e70",
       "name": "Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -433,7 +430,7 @@
         "height": 693.9283333333326,
         "width": 666.4416666666662
       },
-      "id": "39258ba8-8ee3-420d-90fa-78425e937907",
+      "id": "ce3a84c1-1e29-4571-bcbd-83fe9e9ca52a",
       "name": "Note3",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -447,7 +444,7 @@
         "filters": {},
         "requestOptions": {}
       },
-      "id": "9e1ad4c2-3e19-4fad-8657-0b82914393bd",
+      "id": "2302683c-73fe-4c6d-850b-a43bda1da3b6",
       "name": "n8n",
       "type": "n8n-nodes-base.n8n",
       "position": [
@@ -457,7 +454,7 @@
       "typeVersion": 1,
       "credentials": {
         "n8nApi": {
-          "id": "KVYl8kzKKqvyBiGs",
+          "id": "VLNUQTbfWY5Yhu0X",
           "name": "n8n account"
         }
       }
@@ -466,7 +463,7 @@
       "parameters": {
         "jsCode": "// File Returned with Content\nif (Object.keys($input.all()[0].json).includes(\"content\")) {\n  // Get JSON Objects\n  var origWorkflow = JSON.parse(Buffer.from($input.all()[0].json.content, 'base64'));\n  var n8nWorkflow = $input.all()[1].json;\n  \n  // Order JSON Objects\n  var orderedOriginal = {}\n  var orderedActual = {}\n  \n  Object.keys(origWorkflow).sort().forEach(function(key) {\n    orderedOriginal[key] = origWorkflow[key];\n  });\n  \n  Object.keys(n8nWorkflow).sort().forEach(function(key) {\n    orderedActual[key] = n8nWorkflow[key];\n  });\n\n  // Determine Difference\n  if ( JSON.stringify(orderedOriginal) === JSON.stringify(orderedActual) ) {\n    $input.all()[0].json.github_status = \"same\";\n    $input.all()[0].json.content_decoded = orderedOriginal;\n  } else {\n    $input.all()[0].json.github_status = \"different\";\n    $input.all()[0].json.content_decoded = orderedOriginal;\n    $input.all()[0].json.n8n_data_stringy = JSON.stringify(orderedActual, null, 2);\n  }\n// No File Returned / New Workflow\n} else {\n  // Order JSON Object\n  var n8nWorkflow = ($input.all()[1].json);\n  var orderedActual = {}\n  Object.keys(n8nWorkflow).sort().forEach(function(key) {\n    orderedActual[key] = n8nWorkflow[key];\n  });\n  \n  // Proper Formatting\n  $input.all()[0].json.github_status = \"new\";\n  $input.all()[0].json.n8n_data_stringy = JSON.stringify(orderedActual, null, 2);\n}\n\n// Return Items\nreturn $input.all();"
       },
-      "id": "140ac879-7954-4b74-b214-7b8f3b64eb1d",
+      "id": "24f0e58e-2c3c-41ff-8664-5c54c24ddb46",
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
@@ -477,7 +474,7 @@
     },
     {
       "parameters": {},
-      "id": "18668ae2-b585-4baf-b486-54ff586dac91",
+      "id": "8f309827-98ab-4c8d-b35f-d02c00b71d1e",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
       "position": [
@@ -494,13 +491,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2024-08-08T19:45:07.485Z",
-      "updatedAt": "2024-08-08T19:45:07.485Z",
-      "id": "Z00pmqqJ4dyoxwVY",
+      "createdAt": "2024-11-02T16:01:26.573Z",
+      "updatedAt": "2024-11-02T16:01:26.573Z",
+      "id": "zYFdeVg6RAsRrBUS",
       "name": "to-github"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-08-08T19:45:26.000Z",
-  "versionId": "5b632200-8d22-4a1c-abab-7d027575d763"
+  "updatedAt": "2024-11-02T17:26:09.000Z",
+  "versionId": "96bd6341-025d-43fd-ad77-308eb02e3de1"
 }
