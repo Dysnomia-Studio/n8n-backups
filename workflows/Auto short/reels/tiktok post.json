@@ -160,11 +160,9 @@
       ]
     }
   },
-  "createdAt": "2024-07-12T15:23:13.769Z",
-  "id": "SfnufjT2mormpeyV",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2024-11-02T17:25:35.512Z",
+  "id": "GsDgwegywpD4YBXv",
+  "meta": null,
   "name": "Auto short/reels/tiktok post",
   "nodes": [
     {
@@ -177,13 +175,13 @@
           ]
         }
       },
-      "id": "78418b5d-9718-49ec-8cd6-c7124c3fdbe3",
+      "id": "91bf9198-27ca-465f-8fd8-6061ab2d7aed",
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        60,
-        360
+        -140,
+        740
       ]
     },
     {
@@ -202,20 +200,14 @@
         },
         "options": {}
       },
-      "id": "b65b4bb1-2f1d-45ef-b817-decd96d54da3",
+      "id": "b0c5efeb-be47-46a9-8a49-2f198e8ec795",
       "name": "Get directories list",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        260,
-        360
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "KodqxzZ2skrtWGs1",
-          "name": "Seafile account"
-        }
-      }
+        60,
+        740
+      ]
     },
     {
       "parameters": {
@@ -233,20 +225,14 @@
         },
         "options": {}
       },
-      "id": "a9842883-7892-492c-8005-9a3625820f28",
+      "id": "f72c50bb-c9a3-4b20-891e-37b3f9e9e0a8",
       "name": "Get file Info",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        80
+        460,
+        460
       ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "KodqxzZ2skrtWGs1",
-          "name": "Seafile account"
-        }
-      },
       "disabled": true
     },
     {
@@ -272,20 +258,14 @@
           }
         }
       },
-      "id": "6b614399-0dd7-4a5c-a6eb-51b1f8c74b48",
+      "id": "a2c316c8-e62b-47e7-9375-1f9d770a5fb4",
       "name": "Get video download link",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        260
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "KodqxzZ2skrtWGs1",
-          "name": "Seafile account"
-        }
-      }
+        460,
+        640
+      ]
     },
     {
       "parameters": {
@@ -310,20 +290,14 @@
           }
         }
       },
-      "id": "056bff93-12b9-40db-bd9c-f25e9b85f3a6",
+      "id": "30d19251-406b-4061-8686-07af0018a236",
       "name": "Get metadata download link",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        460
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "KodqxzZ2skrtWGs1",
-          "name": "Seafile account"
-        }
-      }
+        460,
+        840
+      ]
     },
     {
       "parameters": {
@@ -331,13 +305,13 @@
         "combinationMode": "mergeByPosition",
         "options": {}
       },
-      "id": "aeef001d-6e7c-48c7-9637-fd0b97e8a68c",
+      "id": "2f7bef9a-9067-4f7d-af8b-09109376b973",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        1000,
-        320
+        800,
+        700
       ]
     },
     {
@@ -360,26 +334,26 @@
           }
         }
       },
-      "id": "f6466f1f-9199-4085-82ad-d25df5f34e28",
+      "id": "124b9c44-4915-4d20-b9f1-79f385130c9c",
       "name": "Get metadatas",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        860,
-        460
+        660,
+        840
       ]
     },
     {
       "parameters": {
         "jsCode": "return $input.first().json.dirent_list"
       },
-      "id": "857ab000-b5de-4c4a-8a5f-67632c5e25d1",
+      "id": "d8ad090c-6a4f-434e-9e53-d518fb678c84",
       "name": "Extract directory list",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        460,
-        360
+        260,
+        740
       ]
     },
     {
@@ -393,33 +367,27 @@
         "jsonBody": "={\n    \"post_info\": {\n    \t\"privacy_level\": \"{{ $json.privacy_level }}\",\n    \t\"title\": \"{{ $json.title }}\",\n    \t\"disable_duet\": {{ $json.disable_duet }},\n    \t\"disable_stitch\": {{ $json.disable_stitch }},\n    \t\"disable_comment\": {{ $json.disable_comment }},\n    \t\"video_cover_timestamp_ms\": {{ $json.video_cover_timestamp_ms }},\n    \t\"brand_content_toggle\": {{ $json.brand_content_toggle }},\n    \t\"brand_organic_toggle\": {{ $json.brand_organic_toggle }},\n    \t\"is_aigc\": {{ $json.is_aigc }}\n    },\n    \"source_info\": {\n        \"video_url\": \"{{ $('Get video download link').itemMatching($itemIndex).json.link }}\",\n    \t\"source\": \"{{ $json.source }}\"\n    }\n}",
         "options": {}
       },
-      "id": "b0534583-f262-4ccc-8935-3bc21e3ceb50",
+      "id": "5d592e13-1598-4207-ba0b-b8c4ce8e600e",
       "name": "Post on TikTok",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1740,
-        160
+        1540,
+        540
       ],
-      "credentials": {
-        "oAuth2Api": {
-          "id": "Wk56b9w0GdLzbzwM",
-          "name": "Tiktok authentication"
-        }
-      },
       "disabled": true
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "5cff99ac-1271-4903-8e77-25eadf53e1ec",
+      "id": "9bad87fc-bf5f-493a-9f6f-894848b69088",
       "name": "Post on instagram",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1740,
-        340
+        1540,
+        720
       ],
       "disabled": true
     },
@@ -428,85 +396,67 @@
         "authentication": "webhook",
         "options": {}
       },
-      "id": "1f80b77b-22ef-4946-b554-c64a4076c4ea",
+      "id": "7b5f5890-e49f-4dee-99bc-ed202f81cb8f",
       "name": "Share reel on Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        1900,
-        340
-      ],
-      "credentials": {
-        "discordWebhookApi": {
-          "id": "9CAghVgMOF7xXWoy",
-          "name": "Discord Webhook - social-networks"
-        }
-      }
+        1700,
+        720
+      ]
     },
     {
       "parameters": {
         "authentication": "webhook",
         "options": {}
       },
-      "id": "37eb4fad-a1f1-494f-996d-ba79e33621f0",
+      "id": "250100df-c925-4eac-bc8b-11cc7c0f6bb0",
       "name": "Share short on Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        1900,
-        520
-      ],
-      "credentials": {
-        "discordWebhookApi": {
-          "id": "9CAghVgMOF7xXWoy",
-          "name": "Discord Webhook - social-networks"
-        }
-      }
+        1700,
+        900
+      ]
     },
     {
       "parameters": {
         "authentication": "webhook",
         "options": {}
       },
-      "id": "d140d19d-d033-4b6f-9cac-29a32a2396e9",
+      "id": "0881d2c6-e68d-4f7f-ac17-187b27b675b9",
       "name": "Share Tiktok on Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        1900,
-        160
-      ],
-      "credentials": {
-        "discordWebhookApi": {
-          "id": "9CAghVgMOF7xXWoy",
-          "name": "Discord Webhook - social-networks"
-        }
-      }
+        1700,
+        540
+      ]
     },
     {
       "parameters": {
         "jsCode": "const data = JSON.parse($json.data);\n\nlet currDate = new Date();\ncurrDate = `${currDate.getFullYear()}-${(currDate.getMonth() + 1).toString().padStart(2, '0')}-${(currDate.getDate()).toString().padStart(2, '0')}`;\n\ndata.shouldPost = data.date === currDate;\ndata.videoUrl = $json.link;\n\nreturn data;"
       },
-      "id": "258380e8-cc4b-419e-887e-1ded05c6ac19",
+      "id": "97281e02-4bc0-4494-8e1e-6e79860eb6fb",
       "name": "Parse metadata1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1140,
-        320
+        940,
+        700
       ]
     },
     {
       "parameters": {
         "jsCode": "return $input.all();"
       },
-      "id": "bac2cc7b-d0f0-4026-b3cc-8b6d2217f465",
+      "id": "40c689e5-ed00-4ffa-b252-afd3b381f6be",
       "name": "Filter on date",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
-        320
+        1080,
+        700
       ]
     },
     {
@@ -518,20 +468,14 @@
         "categoryId": "20",
         "options": {}
       },
-      "id": "61461f1f-bce3-4996-a663-b6b7557c7d12",
+      "id": "82d200f8-8a85-44b9-8863-f0505efa2b86",
       "name": "YouTube",
       "type": "n8n-nodes-base.youTube",
       "typeVersion": 1,
       "position": [
-        1740,
-        520
-      ],
-      "credentials": {
-        "youTubeOAuth2Api": {
-          "id": "bYly4dT51CPdXsDY",
-          "name": "YouTube account: Dysnomia"
-        }
-      }
+        1540,
+        900
+      ]
     },
     {
       "parameters": {
@@ -544,13 +488,13 @@
           }
         }
       },
-      "id": "91ba3887-dae6-48eb-8618-930e5113ca2c",
+      "id": "569ec8ab-8dc5-457e-a891-b6bcb734b0b8",
       "name": "HTTP Request",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1560,
-        520
+        1360,
+        900
       ]
     }
   ],
@@ -561,6 +505,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-08-08T19:52:38.000Z",
-  "versionId": "8ef991b9-094a-41dd-b715-bc1c42d95b15"
+  "updatedAt": "2024-11-02T17:25:53.000Z",
+  "versionId": "25ffc633-aa52-459b-b13c-de3cfb964ee5"
 }
