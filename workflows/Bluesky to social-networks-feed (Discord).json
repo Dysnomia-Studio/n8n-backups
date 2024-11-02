@@ -90,8 +90,8 @@
       ]
     }
   },
-  "createdAt": "2024-04-28T16:48:47.306Z",
-  "id": "FQMEAi2jzfT2cMzk",
+  "createdAt": "2024-11-02T16:36:51.284Z",
+  "id": "01pINsrc2JF5NEyh",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -103,18 +103,18 @@
         "content": "={{ $json.uri }}",
         "options": {}
       },
-      "id": "ff03a047-51e7-4094-b3b5-f9b6d7284929",
+      "id": "d90eb673-53bc-4797-bf1c-726f1f29a00a",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        580,
-        420
+        640,
+        460
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "Z1uIAkjzjVDwhU8n",
-          "name": "Discord Webhook - social-networks-feed"
+          "id": "7GJE0UNQkqw0bawY",
+          "name": "social-networks-feed"
         }
       }
     },
@@ -122,13 +122,13 @@
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "534c5510-8850-4d88-9083-0f94716dbb85",
+      "id": "dd8dcaa5-20e7-445e-9db0-5791f46469e9",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
-        520
+        -480,
+        560
       ]
     },
     {
@@ -136,13 +136,13 @@
         "fieldToSplitOut": "posts",
         "options": {}
       },
-      "id": "4c170606-7c63-42a5-ae42-cf785ea6b1b4",
+      "id": "82bff57a-30e9-4814-978d-078128a153bb",
       "name": "Split Out",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        0,
-        520
+        60,
+        560
       ]
     },
     {
@@ -155,13 +155,13 @@
           ]
         }
       },
-      "id": "74172d04-20de-4035-a7a7-eb36a1927700",
+      "id": "a574693f-a8cb-450d-9173-358d3b0e7105",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        520
+        -680,
+        560
       ]
     },
     {
@@ -187,39 +187,39 @@
         },
         "options": {}
       },
-      "id": "341cf19c-2131-418e-bab1-dad58d5dae9f",
+      "id": "d11655ac-007c-49d7-8af7-18793ee78705",
       "name": "Filter to get recent posts",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        180,
-        520
+        240,
+        560
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "d96b854e-9499-4af6-9103-44a14646d71d",
+      "id": "84d73af0-83e0-49bc-824f-84a766ef3bb3",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        760,
-        420
+        820,
+        460
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
       },
-      "id": "0618f1e3-0222-44bb-90ad-7e7b60e50133",
+      "id": "c6971ea0-f632-4672-b74b-94150f8463fc",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -360,
-        520
+        -300,
+        560
       ]
     },
     {
@@ -227,13 +227,13 @@
         "mode": "runOnceForEachItem",
         "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/elanis.bsky.social/post/' + parts[parts.length - 1] };"
       },
-      "id": "adb7d2ee-fb99-40c0-a11e-4414361c7c7c",
+      "id": "4a568aba-5ff9-4780-9d29-4266e0092209",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        400,
-        420
+        460,
+        460
       ]
     },
     {
@@ -250,13 +250,13 @@
         },
         "options": {}
       },
-      "id": "37077ddf-b86b-4bfd-b46b-85c7a35059b9",
+      "id": "6c6abe7a-f8d3-4a15-8a65-648a418732a9",
       "name": "Get all posts for X on Bluesky",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -180,
-        520
+        -120,
+        560
       ]
     }
   ],
@@ -266,28 +266,27 @@
   },
   "staticData": {
     "node:Every X minutes": {
-      "recurrencyRules": [],
       "recurrenceRules": []
     },
     "global": {
-      "lastExecution": 1730397675105
+      "lastExecution": 1729962014068
     }
   },
   "tags": [
     {
-      "createdAt": "2024-08-08T19:41:09.423Z",
-      "updatedAt": "2024-08-08T19:41:09.423Z",
-      "id": "Z6eTqcJ0heLsAhux",
+      "createdAt": "2024-11-02T16:36:53.857Z",
+      "updatedAt": "2024-11-02T16:36:53.857Z",
+      "id": "9XaKO3szxYPXQNkk",
       "name": "to-discord-private"
     },
     {
-      "createdAt": "2024-08-08T19:42:06.238Z",
-      "updatedAt": "2024-08-08T19:42:06.238Z",
-      "id": "mRsLnOG6awlirS7k",
+      "createdAt": "2024-11-02T16:37:04.127Z",
+      "updatedAt": "2024-11-02T16:37:04.127Z",
+      "id": "zIqn6nUjzzCSAYTZ",
       "name": "from-bluesky"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-10-10T08:04:13.000Z",
-  "versionId": "b481b505-f485-4c93-96b1-630e53ace19a"
+  "updatedAt": "2024-11-02T16:40:54.000Z",
+  "versionId": "f5c0382e-913f-4934-aa64-6c5510a4fa2b"
 }
