@@ -112,8 +112,8 @@
       ]
     }
   },
-  "createdAt": "2024-08-08T19:47:12.482Z",
-  "id": "a8OkHZYr8ZnaaV7q",
+  "createdAt": "2024-11-02T17:22:24.467Z",
+  "id": "6RPX6jKTo6k1o75s",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -125,18 +125,18 @@
         "content": "=https://youtu.be/{{ $json.id.videoId }}",
         "options": {}
       },
-      "id": "f02dc917-85bb-4d90-ab4b-011e99b67049",
+      "id": "8ce8617b-55bf-4e4f-879c-d3ecb11f2a11",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        -860,
-        700
+        460,
+        920
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "Z1uIAkjzjVDwhU8n",
-          "name": "Discord Webhook - social-networks-feed"
+          "id": "7GJE0UNQkqw0bawY",
+          "name": "social-networks-feed"
         }
       }
     },
@@ -144,13 +144,13 @@
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "5347908d-c646-4a00-b07e-4f940d5fcafd",
+      "id": "07f6ab42-1d7f-4ea4-b195-9bfc15ddc029",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -660,
-        240
+        660,
+        460
       ]
     },
     {
@@ -164,26 +164,26 @@
           ]
         }
       },
-      "id": "4d2d2865-5add-4e0e-8c67-b63f06b66147",
+      "id": "d52b94d9-5a53-4658-9ece-c0340302c876",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -860,
-        240
+        460,
+        460
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "0767dcd1-8c37-4e8e-836a-5b7cf50929ed",
+      "id": "439ba86f-96c0-4602-adfd-a5dec13c2a6e",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -660,
-        700
+        660,
+        920
       ]
     },
     {
@@ -191,13 +191,13 @@
         "fieldToSplitOut": "items",
         "options": {}
       },
-      "id": "912e37dd-2c6f-431c-8c2e-499f2418263b",
+      "id": "093fafbd-b728-4c95-bc7a-d10eea7646f1",
       "name": "Split Out",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -20,
-        480
+        1300,
+        700
       ]
     },
     {
@@ -224,26 +224,26 @@
         },
         "options": {}
       },
-      "id": "4c907cb5-a1ec-462e-b4c2-5a318571c0a3",
+      "id": "63611ca8-b92e-4563-858b-a4024f2e0b21",
       "name": "Keep only videos",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2,
       "position": [
-        -660,
-        480
+        660,
+        700
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" },\n]"
       },
-      "id": "cac46621-c5e3-4d82-8f83-63db0fcf8806",
+      "id": "b27ef60a-582b-469b-a333-47e13cc8c1cb",
       "name": "Set games list",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -440,
-        240
+        880,
+        460
       ]
     },
     {
@@ -257,18 +257,18 @@
         },
         "options": {}
       },
-      "id": "6bfb93a3-fb30-49de-81ec-75be917c5f55",
+      "id": "bea1585b-89f4-4367-9f4e-b7c81bdfdee6",
       "name": "YouTube - Search",
       "type": "n8n-nodes-base.youTube",
       "typeVersion": 1,
       "position": [
-        -860,
-        480
+        460,
+        700
       ],
       "credentials": {
         "youTubeOAuth2Api": {
-          "id": "bYly4dT51CPdXsDY",
-          "name": "YouTube account: Dysnomia"
+          "id": "yAdyG0B0uEaLTAMd",
+          "name": "YouTube account"
         }
       }
     },
@@ -277,13 +277,13 @@
         "url": "=https://yt.lemnoslife.com/videos?part=activity&id={{ $json.ids }}",
         "options": {}
       },
-      "id": "ab3207e9-4431-4771-9848-6a97da2d9879",
+      "id": "184c6d52-750d-471f-b296-4ee61ea21b8c",
       "name": "Get activity",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -220,
-        480
+        1100,
+        700
       ],
       "executeOnce": false
     },
@@ -312,26 +312,26 @@
         },
         "options": {}
       },
-      "id": "82e4db97-b2a0-4494-b96a-9041568677f2",
+      "id": "e57e27b1-fc04-40ab-ace0-d3c327cf2805",
       "name": "Filter on activity name",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        200,
-        480
+        1520,
+        700
       ]
     },
     {
       "parameters": {
         "jsCode": "let cache = [];\nconst queries = [];\nfor (const item of $input.all()) {\n  if(cache.length === 50) {\n    queries.push({\n      ids: cache.join(',')\n    });\n    cache = [];\n  }\n\n  if(item?.json?.id?.videoId) {\n    cache.push(item.json.id.videoId);\n  }\n}\n\nqueries.push({\n  ids: cache.join(',')\n});\n\nreturn queries;"
       },
-      "id": "020ba742-8a15-4f69-9a61-3c4e360e22ac",
+      "id": "119cbec7-36e7-47ca-9390-e4e5d1a7163f",
       "name": "Group ids to reduce http requests amount",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -440,
-        480
+        880,
+        700
       ],
       "executeOnce": true
     }
@@ -353,19 +353,19 @@
   },
   "tags": [
     {
-      "createdAt": "2024-08-08T19:47:07.893Z",
-      "updatedAt": "2024-08-08T19:47:07.893Z",
-      "id": "SE4rD6o0zsFRWMRc",
-      "name": "from-youtube"
+      "createdAt": "2024-11-02T16:36:53.857Z",
+      "updatedAt": "2024-11-02T16:36:53.857Z",
+      "id": "9XaKO3szxYPXQNkk",
+      "name": "to-discord-private"
     },
     {
-      "createdAt": "2024-08-08T19:41:09.423Z",
-      "updatedAt": "2024-08-08T19:41:09.423Z",
-      "id": "Z6eTqcJ0heLsAhux",
-      "name": "to-discord-private"
+      "createdAt": "2024-11-02T17:22:32.935Z",
+      "updatedAt": "2024-11-02T17:22:32.935Z",
+      "id": "KJa9f8KVxcI9AfYx",
+      "name": "from-youtube"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-10-10T08:03:38.000Z",
-  "versionId": "ea241c4c-d22e-478f-a41e-f574ceed52f0"
+  "updatedAt": "2024-11-02T17:25:02.000Z",
+  "versionId": "ae822ea5-1d88-46af-bb39-6ad5d433e661"
 }
