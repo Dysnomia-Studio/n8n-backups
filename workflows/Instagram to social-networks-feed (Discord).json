@@ -68,11 +68,9 @@
       ]
     }
   },
-  "createdAt": "2024-08-08T20:04:59.990Z",
-  "id": "HjYun1vlGPn7ICUS",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2024-11-02T16:40:20.629Z",
+  "id": "sf9bq69ifixg6AD5",
+  "meta": null,
   "name": "Instagram to social-networks-feed (Discord)",
   "nodes": [
     {
@@ -81,32 +79,26 @@
         "content": "=https://youtu.be/{{ $json.id.videoId }}",
         "options": {}
       },
-      "id": "10867ce3-ea48-4537-b90e-f69a2792c1b3",
+      "id": "00892f4f-ad18-44d5-a69c-5a1b3db73d0b",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        340,
-        420
-      ],
-      "credentials": {
-        "discordWebhookApi": {
-          "id": "Z1uIAkjzjVDwhU8n",
-          "name": "Discord Webhook - social-networks-feed"
-        }
-      }
+        460,
+        460
+      ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "efca2361-ae08-4ed7-9651-8fa98543904b",
+      "id": "6b0c0c97-55fa-41ab-a0be-cd6416d4d91d",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
-        520
+        -420,
+        560
       ]
     },
     {
@@ -119,13 +111,13 @@
           ]
         }
       },
-      "id": "570542d4-d6c8-48d9-a9fa-4edd20a14766",
+      "id": "b5f6bedd-9b67-46d8-9764-9cf4fc1677a6",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        520
+        -620,
+        560
       ]
     },
     {
@@ -161,39 +153,39 @@
         },
         "options": {}
       },
-      "id": "f7b77bf8-cbad-4389-9489-a21ca771b227",
+      "id": "0a4f7b05-8f14-4f40-9b88-f94d01968961",
       "name": "Filter to get recent posts",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        80,
-        520
+        200,
+        560
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "40bd0b7c-f127-4bb6-9aef-7f307d6f9160",
+      "id": "80bfc5eb-ea74-448d-8f20-c80e8b368f54",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        580,
-        420
+        700,
+        460
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n]"
       },
-      "id": "b12f7372-5bf7-4b9a-9481-65397627abf7",
+      "id": "e5bdfd39-3671-4415-b76c-a7429a563483",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -360,
-        520
+        -240,
+        560
       ]
     },
     {
@@ -204,50 +196,36 @@
         },
         "options": {}
       },
-      "id": "1b99f5d3-837b-41cb-98a9-c543c22d8753",
+      "id": "512c81f1-f706-43f2-a7f8-93af9c664e86",
       "name": "YouTube",
       "type": "n8n-nodes-base.youTube",
       "typeVersion": 1,
       "position": [
-        -140,
-        520
-      ],
-      "credentials": {
-        "youTubeOAuth2Api": {
-          "id": "bYly4dT51CPdXsDY",
-          "name": "YouTube account: Dysnomia"
-        }
-      }
+        -20,
+        560
+      ]
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Every X minutes": {
-      "recurrencyRules": [],
-      "recurrenceRules": []
-    },
-    "global": {
-      "lastExecution": 1722924046436
-    }
-  },
+  "staticData": null,
   "tags": [
     {
-      "createdAt": "2024-08-08T20:18:14.662Z",
-      "updatedAt": "2024-08-08T20:18:14.662Z",
-      "id": "XbsgPRoOl0cAHeuA",
-      "name": "from-instagram"
+      "createdAt": "2024-11-02T16:36:53.857Z",
+      "updatedAt": "2024-11-02T16:36:53.857Z",
+      "id": "9XaKO3szxYPXQNkk",
+      "name": "to-discord-private"
     },
     {
-      "createdAt": "2024-08-08T19:41:09.423Z",
-      "updatedAt": "2024-08-08T19:41:09.423Z",
-      "id": "Z6eTqcJ0heLsAhux",
-      "name": "to-discord-private"
+      "createdAt": "2024-11-02T16:40:36.986Z",
+      "updatedAt": "2024-11-02T16:40:36.986Z",
+      "id": "bigaOyFjJwrMI2dl",
+      "name": "from-instagram"
     }
   ],
-  "triggerCount": 1,
-  "updatedAt": "2024-08-08T20:56:25.000Z",
-  "versionId": "484ba0c6-4bbd-4b74-82f0-19e418c9a701"
+  "triggerCount": 0,
+  "updatedAt": "2024-11-02T16:40:48.000Z",
+  "versionId": "113190b2-50bf-4623-9fb6-c4f2e46fd3d3"
 }
