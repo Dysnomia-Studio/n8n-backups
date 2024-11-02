@@ -68,8 +68,8 @@
       ]
     }
   },
-  "createdAt": "2024-04-29T11:47:58.297Z",
-  "id": "SYJgcVHzsKkRvNQp",
+  "createdAt": "2024-11-02T16:51:19.746Z",
+  "id": "Q679T5jfd8gpKs63",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -81,18 +81,18 @@
         "content": "={{ $json.url }}",
         "options": {}
       },
-      "id": "9f2b53b7-a647-4ab8-8049-cdf06134171c",
+      "id": "f2e97853-1ab8-4569-bd0c-f23a84e62020",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        320,
-        420
+        460,
+        460
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "Z1uIAkjzjVDwhU8n",
-          "name": "Discord Webhook - social-networks-feed"
+          "id": "7GJE0UNQkqw0bawY",
+          "name": "social-networks-feed"
         }
       }
     },
@@ -100,13 +100,13 @@
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "532db7c9-0ea3-4c17-9968-399a0f2d4a06",
+      "id": "3a88a65e-e87b-4d56-818a-cc9cb248c0fb",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -540,
-        520
+        -400,
+        560
       ]
     },
     {
@@ -119,13 +119,13 @@
           ]
         }
       },
-      "id": "76a49830-da86-4131-8362-da2efc05ca4d",
+      "id": "f13fb465-787e-4164-a5d1-54d2ca07fce9",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        520
+        -600,
+        560
       ]
     },
     {
@@ -151,39 +151,39 @@
         },
         "options": {}
       },
-      "id": "c10862f8-788f-453f-beac-84d863adf0bd",
+      "id": "fecd9eb8-09ec-4165-b46d-760f3d5cded7",
       "name": "Filter to get recent posts",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        40,
-        520
+        180,
+        560
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "1e0ee1de-77e3-4cd1-b34b-32c72e4cd799",
+      "id": "f1cbe984-39bf-4ac7-8775-4c04fb209728",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        540,
-        420
+        680,
+        460
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
       },
-      "id": "dfe866db-9819-4455-afb5-443d4b82bc4e",
+      "id": "1cd4caa0-2707-4156-8236-161cd52915cf",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -360,
-        520
+        -220,
+        560
       ]
     },
     {
@@ -195,17 +195,17 @@
           "sort": "new"
         }
       },
-      "id": "69c8f94b-70a0-48d3-8476-9d02aaa524d6",
+      "id": "d8697d92-6478-4a60-bc0e-4ea3211e14c3",
       "name": "Reddit",
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -180,
-        520
+        -40,
+        560
       ],
       "credentials": {
         "redditOAuth2Api": {
-          "id": "uOYHAeKaCHXDPKoY",
+          "id": "V4pYccsF0EkPxx6b",
           "name": "Reddit account"
         }
       }
@@ -217,28 +217,27 @@
   },
   "staticData": {
     "node:Every X minutes": {
-      "recurrencyRules": [],
       "recurrenceRules": []
     },
     "global": {
-      "lastExecution": 1730487636039
+      "lastExecution": 1730566817196
     }
   },
   "tags": [
     {
-      "createdAt": "2024-08-08T19:41:09.423Z",
-      "updatedAt": "2024-08-08T19:41:09.423Z",
-      "id": "Z6eTqcJ0heLsAhux",
+      "createdAt": "2024-11-02T16:36:53.857Z",
+      "updatedAt": "2024-11-02T16:36:53.857Z",
+      "id": "9XaKO3szxYPXQNkk",
       "name": "to-discord-private"
     },
     {
-      "createdAt": "2024-08-08T19:44:18.099Z",
-      "updatedAt": "2024-08-08T19:44:18.099Z",
-      "id": "kUU4nhfgxvLeWtiz",
+      "createdAt": "2024-11-02T16:51:32.574Z",
+      "updatedAt": "2024-11-02T16:51:32.574Z",
+      "id": "aWc9hvN9GMiQQKsq",
       "name": "from-reddit"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-10-10T08:03:54.000Z",
-  "versionId": "8ed4239c-c6c0-49c2-8c7f-49e951a14797"
+  "updatedAt": "2024-11-02T16:54:41.000Z",
+  "versionId": "70c08532-854d-4103-9e85-9c9f93602080"
 }
