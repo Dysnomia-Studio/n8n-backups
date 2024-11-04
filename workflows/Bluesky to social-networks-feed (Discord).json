@@ -248,6 +248,15 @@
             }
           ]
         },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n-dysnomia-social-media-watcher"
+            }
+          ]
+        },
         "options": {}
       },
       "id": "6c6abe7a-f8d3-4a15-8a65-648a418732a9",
@@ -287,6 +296,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T16:40:54.000Z",
-  "versionId": "f5c0382e-913f-4934-aa64-6c5510a4fa2b"
+  "updatedAt": "2024-11-04T08:38:21.000Z",
+  "versionId": "6a4e40f0-5d80-4471-a0a8-802425a0dfcd"
 }
