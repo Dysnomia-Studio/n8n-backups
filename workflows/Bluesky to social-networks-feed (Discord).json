@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Discord": {
       "main": [
@@ -150,7 +150,8 @@
         "rule": {
           "interval": [
             {
-              "field": "hours"
+              "field": "hours",
+              "triggerAtMinute": 5
             }
           ]
         }
@@ -211,7 +212,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
+        "jsCode": "return [\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
       },
       "id": "c6971ea0-f632-4672-b74b-94150f8463fc",
       "name": "Set items",
@@ -257,7 +258,13 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1
+            }
+          }
+        }
       },
       "id": "6c6abe7a-f8d3-4a15-8a65-648a418732a9",
       "name": "Get all posts for X on Bluesky",
@@ -278,7 +285,7 @@
       "recurrenceRules": []
     },
     "global": {
-      "lastExecution": 1729962014068
+      "lastExecution": 1733079864142
     }
   },
   "tags": [
@@ -296,6 +303,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-05T10:29:46.000Z",
-  "versionId": "6a4e40f0-5d80-4471-a0a8-802425a0dfcd"
+  "updatedAt": "2024-12-01T19:38:06.000Z",
+  "versionId": "a39d9e83-0dcb-4f83-9d01-a6accaebb032"
 }
