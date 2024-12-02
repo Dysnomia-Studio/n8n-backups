@@ -343,7 +343,7 @@
   "staticData": {
     "node:Every X minutes": {
       "recurrenceRules": [
-        10
+        0
       ]
     },
     "global": {
