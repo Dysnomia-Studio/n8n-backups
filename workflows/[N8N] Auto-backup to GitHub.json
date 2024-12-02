@@ -152,7 +152,7 @@
         ]
       ]
     },
-    "Every 12 hours": {
+    "On clicking 'execute'": {
       "main": [
         [
           {
@@ -163,7 +163,7 @@
         ]
       ]
     },
-    "On clicking 'execute'": {
+    "Every Day": {
       "main": [
         [
           {
@@ -376,26 +376,6 @@
     },
     {
       "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 12
-            }
-          ]
-        }
-      },
-      "id": "82503bd9-b404-4064-b5f4-0d455c3ad36f",
-      "name": "Every 12 hours",
-      "type": "n8n-nodes-base.cron",
-      "position": [
-        -985,
-        935
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "content": "## Workflow Backups\nThis workflow will automatically backup your workflows to your Github account every 12 hours.\n\n### Setup\nOpen Globals and update the values below\n**repo.owner:** This is your Github username\n**repo.name:** This is the name of your repository\n**repo.path:** This is the folder to use within the repository, If it doesn't exist it will be created.\n\nIf your username was `n8n-io` and your repository was called `n8n-backups` and you wanted the workflows to go into a `workflows` folder you would set:\n\nrepo.owner - n8n-io\nrepo.name - n8n-backups\nrepo.path - workflows",
         "height": 464.79920462713443,
         "width": 389.78906250000017
@@ -482,6 +462,25 @@
         780
       ],
       "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 0
+            }
+          ]
+        }
+      },
+      "id": "82503bd9-b404-4064-b5f4-0d455c3ad36f",
+      "name": "Every Day",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        -985,
+        935
+      ],
+      "typeVersion": 1
     }
   ],
   "pinData": {},
@@ -498,6 +497,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T17:26:09.000Z",
-  "versionId": "96bd6341-025d-43fd-ad77-308eb02e3de1"
+  "updatedAt": "2024-12-02T08:36:40.000Z",
+  "versionId": "752b6daf-698b-44c2-820b-80fdbf92652a"
 }
