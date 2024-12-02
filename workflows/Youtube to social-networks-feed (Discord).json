@@ -342,13 +342,12 @@
   },
   "staticData": {
     "node:Every X minutes": {
-      "recurrencyRules": [],
       "recurrenceRules": [
-        12
+        10
       ]
     },
     "global": {
-      "lastExecution": 1723183245753
+      "lastExecution": 1729969232669
     }
   },
   "tags": [
