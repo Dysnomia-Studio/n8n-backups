@@ -340,16 +340,6 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Every X minutes": {
-      "recurrenceRules": [
-        0
-      ]
-    },
-    "global": {
-      "lastExecution": 1729969232669
-    }
-  },
   "tags": [
     {
       "createdAt": "2024-11-02T16:36:53.857Z",
@@ -365,6 +355,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T17:25:02.000Z",
-  "versionId": "ae822ea5-1d88-46af-bb39-6ad5d433e661"
+  "updatedAt": "2024-12-12T08:15:50.000Z",
+  "versionId": "13c75436-72d1-4a9c-9e38-9a0a4c8e3298"
 }
