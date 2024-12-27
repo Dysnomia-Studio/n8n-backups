@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Discord": {
       "main": [
@@ -355,6 +355,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-12-12T08:15:50.000Z",
+  "updatedAt": "2024-12-27T09:01:33.000Z",
   "versionId": "13c75436-72d1-4a9c-9e38-9a0a4c8e3298"
 }
