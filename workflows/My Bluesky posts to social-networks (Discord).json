@@ -79,11 +79,9 @@
       ]
     }
   },
-  "createdAt": "2024-11-02T16:47:32.512Z",
-  "id": "4wWeWInG4piKzegw",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2025-01-24T16:57:11.314Z",
+  "id": "Mr1gCZr0wtokofh3",
+  "meta": null,
   "name": "My Bluesky posts to social-networks (Discord)",
   "nodes": [
     {
@@ -92,32 +90,32 @@
         "content": "={{ $json.uri }}",
         "options": {}
       },
-      "id": "e1a682a2-7e99-47d8-a376-d45d5a6fdd83",
+      "id": "793e93f9-7a88-463f-867a-65e20391d96a",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        1380,
-        620
+        920,
+        160
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "F2jlVVALmGznxWXk",
+          "id": "4fTTpcIKo75E63pg",
           "name": "social-feed"
         }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2024-11-02').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2025-01-24').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
       },
-      "id": "6b68b556-cd2b-401d-a791-5146c8fffeee",
+      "id": "e1a07064-cc0f-47af-9d6d-238f9302113f",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
-        620
+        200,
+        160
       ]
     },
     {
@@ -131,26 +129,26 @@
           ]
         }
       },
-      "id": "e3b8948b-e827-4bed-92dc-9c49a344bd2f",
+      "id": "25509584-54bd-4dfb-a23e-e04e8793ecb4",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        460,
-        620
+        0,
+        160
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastUpdate = $now - 10000;\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
       },
-      "id": "efd26801-4f72-4f9b-86c2-26277b9308aa",
+      "id": "3ff4b778-68c2-4c85-bed8-6070952a6761",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1640,
-        620
+        1180,
+        160
       ]
     },
     {
@@ -167,26 +165,26 @@
         },
         "options": {}
       },
-      "id": "850e63ee-83ba-4854-b285-d68b704b6509",
+      "id": "a7a1aefb-0c55-46d2-8b18-f7c5077e334d",
       "name": "Get all posts from Elanis on Bluesky",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        900,
-        620
+        440,
+        160
       ]
     },
     {
       "parameters": {
         "jsCode": "const nodeStaticData = $getWorkflowStaticData('global');\nlet res = [];\n\nfor(const item of $input.all()[0].json.feed) {\n  if(!(item.post.record.reply && item.post.record.reply.parent) && new Date(item.post.record.createdAt).getTime() > nodeStaticData.lastUpdate) {\n    const parts = item.post.uri.split('/');\n    res.push({ rec: item.post.record.reply, date: new Date(item.post.record.createdAt).getTime(), uri: 'https://bsky.app/profile/elanis.eu/post/' + parts[parts.length - 1] });\n  }\n}\n\nreturn res;"
       },
-      "id": "cc1b0d58-e81f-4423-a467-504208f7a9a8",
+      "id": "f4c7b314-c9be-4d4b-840b-82cc4c456049",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1120,
-        620
+        660,
+        160
       ]
     },
     {
@@ -194,25 +192,25 @@
         "workflowId": "ejXq31uGCMn4jcTw",
         "options": {}
       },
-      "id": "d43b2c7a-0ec5-47b8-b3f4-bb2937db075a",
+      "id": "7e38bdd9-393a-44e6-8777-8a76bb75ec09",
       "name": "Execute Workflow",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1860,
-        620
+        1400,
+        160
       ],
       "disabled": true
     },
     {
       "parameters": {},
-      "id": "632d738a-0b96-4a1d-9488-e1efdb758301",
+      "id": "ff689a7b-87a7-419c-a2bd-228a19a2b6a9",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        460,
-        460
+        0,
+        0
       ]
     }
   ],
@@ -222,19 +220,19 @@
   },
   "tags": [
     {
-      "createdAt": "2024-11-02T16:49:15.645Z",
-      "updatedAt": "2024-11-02T16:49:15.645Z",
-      "id": "CyfgQn7wBVAWBlz9",
+      "createdAt": "2025-01-24T16:31:25.878Z",
+      "updatedAt": "2025-01-24T16:31:25.878Z",
+      "id": "Bz7qsxMwqIy496Xq",
       "name": "to-discord-public"
     },
     {
-      "createdAt": "2024-11-02T16:37:04.127Z",
-      "updatedAt": "2024-11-02T16:37:04.127Z",
-      "id": "zIqn6nUjzzCSAYTZ",
+      "createdAt": "2025-01-24T16:54:48.174Z",
+      "updatedAt": "2025-01-24T16:54:48.174Z",
+      "id": "gAxYvyidkeXeB0vH",
       "name": "from-bluesky"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-12-27T09:31:12.000Z",
-  "versionId": "8c8a6c82-5911-496a-a541-60d35d4dc768"
+  "updatedAt": "2025-01-24T16:57:53.000Z",
+  "versionId": "6a13dfdb-f49d-4fdb-8ea2-191349187d7e"
 }
