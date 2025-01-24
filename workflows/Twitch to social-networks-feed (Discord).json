@@ -90,11 +90,9 @@
       ]
     }
   },
-  "createdAt": "2024-11-02T16:55:17.741Z",
-  "id": "Uhz4ODM4utguCtJJ",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2025-01-24T16:37:42.845Z",
+  "id": "xlnbH70l1j5nqeDL",
+  "meta": null,
   "name": "Twitch to social-networks-feed (Discord)",
   "nodes": [
     {
@@ -103,17 +101,17 @@
         "content": "=Stream on {{ $('Twitch - Get category').item.json.data[0].name }}: https://twitch.tv/{{ $json.user_login }}",
         "options": {}
       },
-      "id": "8c758a1c-925d-4c5d-8163-ebb2fac52bff",
+      "id": "93a897d7-279b-4041-9399-94a8fe6663a4",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        460,
-        460
+        0,
+        0
       ],
       "credentials": {
         "discordWebhookApi": {
-          "id": "7GJE0UNQkqw0bawY",
+          "id": "1FNPFG982ecICkYg",
           "name": "social-networks-feed"
         }
       }
@@ -122,13 +120,13 @@
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "5ba51dbe-eafe-4067-be2b-ec6c0445111c",
+      "id": "42b69bc0-5882-4a2f-922c-4853a18f0e8d",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -800,
-        560
+        -1260,
+        100
       ]
     },
     {
@@ -142,39 +140,39 @@
           ]
         }
       },
-      "id": "2d896849-96d0-47f9-bc0a-98348d5265cf",
+      "id": "c8a5d392-79b1-4f8f-9349-39b9215ab456",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1000,
-        560
+        -1460,
+        100
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "1771192b-ba97-40e8-b31e-00f01dbb2363",
+      "id": "9cd7ea94-9df6-43fd-a613-2ab8ff6e8053",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
-        460
+        200,
+        0
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" }\n]"
       },
-      "id": "81916217-5a38-418b-8b4a-b72496c69ac2",
+      "id": "17f662e9-f46b-4882-a025-f8af9e28e068",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -620,
-        560
+        -1080,
+        100
       ]
     },
     {
@@ -187,23 +185,23 @@
           "parameters": [
             {
               "name": "Client-Id",
-              "value": "=evxh57y190gjm15ip8up7otgggu57w"
+              "value": "=vnp52v8jvy1myxkbunh3u3qhqobnrh"
             }
           ]
         },
         "options": {}
       },
-      "id": "05888a28-6440-4b26-9897-6c05742bbe73",
+      "id": "575c780d-4342-470d-93bc-1eaba215ad20",
       "name": "Twitch - Get category",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -420,
-        560
+        -880,
+        100
       ],
       "credentials": {
         "oAuth2Api": {
-          "id": "8MnkmjjbEltxY8H1",
+          "id": "8FTyUABMuyktrbt5",
           "name": "Twitch"
         }
       }
@@ -218,23 +216,23 @@
           "parameters": [
             {
               "name": "Client-Id",
-              "value": "=evxh57y190gjm15ip8up7otgggu57w"
+              "value": "=vnp52v8jvy1myxkbunh3u3qhqobnrh"
             }
           ]
         },
         "options": {}
       },
-      "id": "cbc061b6-833b-4064-bbcb-b9d99ad2b53f",
+      "id": "41cb895d-f29c-4399-9b62-d258bf636ee2",
       "name": "Twitch - Get streams",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -240,
-        560
+        -700,
+        100
       ],
       "credentials": {
         "oAuth2Api": {
-          "id": "8MnkmjjbEltxY8H1",
+          "id": "8FTyUABMuyktrbt5",
           "name": "Twitch"
         }
       }
@@ -244,13 +242,13 @@
         "fieldToSplitOut": "data",
         "options": {}
       },
-      "id": "3e5f9eaa-4e04-46b6-9c86-977b90145390",
+      "id": "8f784de9-a8ae-406f-a925-7caa452a5937",
       "name": "Split Out",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -40,
-        560
+        -500,
+        100
       ]
     },
     {
@@ -276,13 +274,13 @@
         },
         "options": {}
       },
-      "id": "df9244aa-7172-485d-9132-08c8276c7850",
+      "id": "2a3e780b-6ef2-436d-a870-a00a1075fd24",
       "name": "Filter to get recent streams",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        160,
-        560
+        -300,
+        100
       ]
     }
   ],
@@ -290,29 +288,21 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Every X minutes": {
-      "recurrenceRules": []
-    },
-    "global": {
-      "lastExecution": 1729963815626
-    }
-  },
   "tags": [
     {
-      "createdAt": "2024-11-02T16:55:41.470Z",
-      "updatedAt": "2024-11-02T16:55:41.470Z",
-      "id": "6gDkRa0dNZba6vYf",
+      "createdAt": "2025-01-24T16:37:48.153Z",
+      "updatedAt": "2025-01-24T16:37:48.153Z",
+      "id": "3HPqeV47t4GHgc86",
       "name": "from-twitch"
     },
     {
-      "createdAt": "2024-11-02T16:36:53.857Z",
-      "updatedAt": "2024-11-02T16:36:53.857Z",
-      "id": "9XaKO3szxYPXQNkk",
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z",
+      "id": "ieKlQBu6AZC4wykv",
       "name": "to-discord-private"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T17:21:45.000Z",
-  "versionId": "be5b2f92-5987-4f4a-bd4c-3d8c62083e02"
+  "updatedAt": "2025-01-24T16:41:09.000Z",
+  "versionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a"
 }
