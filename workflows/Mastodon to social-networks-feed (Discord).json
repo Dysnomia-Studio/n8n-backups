@@ -79,11 +79,9 @@
       ]
     }
   },
-  "createdAt": "2024-11-02T16:41:55.413Z",
-  "id": "uk2TETJEJpDg34RI",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2025-01-24T16:29:37.535Z",
+  "id": "rVmcI7VsH6EUmEEG",
+  "meta": null,
   "name": "Mastodon to social-networks-feed (Discord)",
   "nodes": [
     {
@@ -92,32 +90,26 @@
         "content": "={{ $json.url }}",
         "options": {}
       },
-      "id": "2348c05b-5f5e-457f-ad46-cd9f0a93faa9",
+      "id": "3fd8c14f-a70e-40ae-8dba-2a47d3edc2c9",
       "name": "Discord",
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        460,
-        460
-      ],
-      "credentials": {
-        "discordWebhookApi": {
-          "id": "7GJE0UNQkqw0bawY",
-          "name": "social-networks-feed"
-        }
-      }
+        0,
+        0
+      ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "e69b4578-ae64-416c-8ace-90f55032f28e",
+      "id": "2b3c2af0-0b04-42b9-a536-5cee250369c5",
       "name": "Set last update date if never done",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -480,
-        560
+        -940,
+        100
       ]
     },
     {
@@ -125,13 +117,13 @@
         "fieldToSplitOut": "statuses",
         "options": {}
       },
-      "id": "1a7899e8-b218-4e9a-9226-99d4614ff149",
+      "id": "69b936a4-db78-4a6f-8338-4e308c941c28",
       "name": "Split Out",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        60,
-        560
+        -400,
+        100
       ]
     },
     {
@@ -144,13 +136,13 @@
           ]
         }
       },
-      "id": "14e0f95b-36d1-4a94-816e-6306560ba64c",
+      "id": "6e75aa69-a752-43b8-b50a-bf3ae21091ba",
       "name": "Every X minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -680,
-        560
+        -1140,
+        100
       ]
     },
     {
@@ -176,39 +168,39 @@
         },
         "options": {}
       },
-      "id": "ad0af1f2-8985-491e-9796-a6c9d63e9607",
+      "id": "3f9dd9c3-c035-43f1-8349-fffb84f5e43d",
       "name": "Filter to get recent posts",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        240,
-        560
+        -220,
+        100
       ]
     },
     {
       "parameters": {
         "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
       },
-      "id": "8e1dac8f-27a0-46a3-8545-6987547c1f11",
+      "id": "7ffbe8f2-3495-4a88-9f21-3475335a4a5b",
       "name": "Set last update date for the next run",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        640,
-        460
+        180,
+        0
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
       },
-      "id": "5dca42df-f8e3-4690-ad0d-aaa64369c1c1",
+      "id": "ca9423cb-8c25-4ee0-88b3-eef244745c0a",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -300,
-        560
+        -760,
+        100
       ]
     },
     {
@@ -231,18 +223,18 @@
         },
         "options": {}
       },
-      "id": "a62eece0-d40c-4684-930c-6e0e61a5102d",
+      "id": "fb455f8d-a628-4a62-a849-1ec9112d49bd",
       "name": "Get all posts for X on Mastodon",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -120,
-        560
+        -580,
+        100
       ],
       "credentials": {
         "oAuth2Api": {
-          "id": "jdbCWDL35Ymek9Xr",
-          "name": "Mastodon"
+          "id": "sUfUszVT1DPIGkAS",
+          "name": "Unnamed credential"
         }
       }
     }
@@ -251,29 +243,21 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Every X minutes": {
-      "recurrenceRules": []
-    },
-    "global": {
-      "lastExecution": 1729962012632
-    }
-  },
   "tags": [
     {
-      "createdAt": "2024-11-02T16:36:53.857Z",
-      "updatedAt": "2024-11-02T16:36:53.857Z",
-      "id": "9XaKO3szxYPXQNkk",
-      "name": "to-discord-private"
+      "createdAt": "2025-01-24T16:28:37.368Z",
+      "updatedAt": "2025-01-24T16:28:37.368Z",
+      "id": "OfADQLq5vKWV1acj",
+      "name": "from-mastodon"
     },
     {
-      "createdAt": "2024-11-02T16:42:14.857Z",
-      "updatedAt": "2024-11-02T16:42:14.857Z",
-      "id": "aHZEkpnFEPFOs05Z",
-      "name": "from-mastodon"
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z",
+      "id": "ieKlQBu6AZC4wykv",
+      "name": "to-discord-private"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T16:46:19.000Z",
-  "versionId": "70b74a4d-423f-439d-8a5a-0192c6f58118"
+  "updatedAt": "2025-01-24T16:29:46.000Z",
+  "versionId": "b9ab3694-faff-41ef-8f9d-a350e7d74636"
 }
