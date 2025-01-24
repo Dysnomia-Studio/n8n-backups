@@ -68,22 +68,20 @@
       ]
     }
   },
-  "createdAt": "2024-11-02T16:11:06.781Z",
-  "id": "l88N0x0fIAusepmO",
-  "meta": {
-    "templateCredsSetupCompleted": true
-  },
+  "createdAt": "2025-01-24T16:27:08.102Z",
+  "id": "d0jcIzuI4EU8Yijd",
+  "meta": null,
   "name": "Automatically cleanup Github packages",
   "nodes": [
     {
       "parameters": {},
-      "id": "5c2e8cb0-7cff-4133-a5aa-4ce6980a9626",
+      "id": "45a2c4b6-9176-4139-98c0-46c882479a94",
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        460,
-        680
+        0,
+        220
       ]
     },
     {
@@ -99,26 +97,26 @@
           ]
         }
       },
-      "id": "a889c60e-2d75-4621-9a88-0d72150aee7a",
+      "id": "db35aaef-43e0-4a8f-b3f5-2377c79a39a4",
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        460,
-        460
+        0,
+        0
       ]
     },
     {
       "parameters": {
         "jsCode": "return [\n  { id: 'Dysnomia-Studio' },\n  { id: 'L-U-M-E-N' },\n];"
       },
-      "id": "7f7857a2-1c78-45ec-b602-7030ddbc12f9",
+      "id": "17206655-b46a-47c1-ba7a-c7250ae3d009",
       "name": "Set variable containing organizations",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        700,
-        560
+        240,
+        100
       ]
     },
     {
@@ -128,17 +126,17 @@
         "nodeCredentialType": "githubApi",
         "options": {}
       },
-      "id": "9c45b410-280e-48cc-8913-383a0ab3e059",
+      "id": "eb1231a0-b0ff-4fcb-a1fb-9ff9c87d97ca",
       "name": "Github - Get packages list in orgs",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        900,
-        560
+        440,
+        100
       ],
       "credentials": {
         "githubApi": {
-          "id": "I4WxqKbPS67LQq6h",
+          "id": "qdOpt2YER6NJZTn0",
           "name": "GitHub account"
         }
       }
@@ -150,17 +148,17 @@
         "nodeCredentialType": "githubApi",
         "options": {}
       },
-      "id": "a89eb828-3fa2-4968-ae9e-899921714b75",
+      "id": "8f5318c6-cd38-46b6-a080-3d332aa78cf8",
       "name": "Github - Get package versions list",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1120,
-        560
+        660,
+        100
       ],
       "credentials": {
         "githubApi": {
-          "id": "I4WxqKbPS67LQq6h",
+          "id": "qdOpt2YER6NJZTn0",
           "name": "GitHub account"
         }
       }
@@ -169,13 +167,13 @@
       "parameters": {
         "jsCode": "const packageVersions = await $input.all();\n\npackageVersions.sort((a, b) => (new Date(b.updated_at)).getTime() - (new Date(a.updated_at)).getTime());\n\nconst counter = {};\nconst ret = [];\nfor(let i = 0; i < packageVersions.length; i++) {\n  const json = packageVersions[i].json;\n  if(!counter[json.package_html_url]) {\n    counter[json.package_html_url] = 0;\n  }\n\n  if(counter[json.package_html_url] >= 5) { \n    ret.push(packageVersions[i]);\n    continue;\n  }\n\n  counter[json.package_html_url]++;\n}\n\nreturn ret;\nreturn [{ toDelete: ret, metaData: counter }];"
       },
-      "id": "938b5588-f9a5-4039-8955-cf42220104c4",
+      "id": "2fba511e-8b1a-43c0-91fa-f2937c83e1a8",
       "name": "Filter out recent versions",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1340,
-        560
+        880,
+        100
       ]
     },
     {
@@ -186,17 +184,17 @@
         "nodeCredentialType": "githubApi",
         "options": {}
       },
-      "id": "7a0cae22-802d-4e08-8674-8b698c68ce13",
+      "id": "8868e701-ba96-4a8f-9f69-7b370798b34c",
       "name": "Github - Delete outdated package versions",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1560,
-        560
+        1100,
+        100
       ],
       "credentials": {
         "githubApi": {
-          "id": "I4WxqKbPS67LQq6h",
+          "id": "qdOpt2YER6NJZTn0",
           "name": "GitHub account"
         }
       }
@@ -206,20 +204,15 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    }
-  },
   "tags": [
     {
-      "createdAt": "2024-11-02T16:01:26.573Z",
-      "updatedAt": "2024-11-02T16:01:26.573Z",
-      "id": "zYFdeVg6RAsRrBUS",
+      "createdAt": "2025-01-24T16:26:59.742Z",
+      "updatedAt": "2025-01-24T16:26:59.742Z",
+      "id": "BxJCJchTZD9gMIjE",
       "name": "to-github"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-02T16:11:29.000Z",
-  "versionId": "356e0f15-3a10-42a1-aa24-ced4951a2108"
+  "updatedAt": "2025-01-24T16:30:01.000Z",
+  "versionId": "cf098831-a2f3-425e-9157-6e5ecedf832b"
 }
