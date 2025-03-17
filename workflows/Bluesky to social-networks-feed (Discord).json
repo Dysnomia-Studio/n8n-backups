@@ -109,6 +109,7 @@
         180,
         0
       ],
+      "webhookId": "569aa1ff-8cb5-40ba-8c1a-bbd58026bc39",
       "credentials": {
         "discordWebhookApi": {
           "id": "1FNPFG982ecICkYg",
@@ -169,7 +170,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -224,7 +226,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/elanis.bsky.social/post/' + parts[parts.length - 1] };"
+        "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $json.author.handle + '/post/' + parts[parts.length - 1] };"
       },
       "id": "2c1fe8e5-cdca-453e-ad32-329fd3cf3429",
       "name": "Code",
@@ -293,6 +295,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-05T16:32:22.000Z",
-  "versionId": "67eeab41-4f3e-494a-b013-f0937d5cd9ca"
+  "updatedAt": "2025-03-17T18:11:39.000Z",
+  "versionId": "ad302236-eaa4-43b1-b18f-521a11f7ddcc"
 }
