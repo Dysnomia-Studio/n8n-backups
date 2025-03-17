@@ -97,7 +97,8 @@
       "position": [
         0,
         0
-      ]
+      ],
+      "webhookId": "363517a1-53f7-45b3-8a49-b6c19774694b"
     },
     {
       "parameters": {
@@ -234,7 +235,7 @@
       "credentials": {
         "oAuth2Api": {
           "id": "sUfUszVT1DPIGkAS",
-          "name": "Unnamed credential"
+          "name": "Mastodon"
         }
       }
     }
@@ -258,6 +259,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:29:46.000Z",
-  "versionId": "b9ab3694-faff-41ef-8f9d-a350e7d74636"
+  "updatedAt": "2025-03-17T18:21:10.000Z",
+  "versionId": "d1501326-3c0b-491f-ab13-b42240fe7a13"
 }
