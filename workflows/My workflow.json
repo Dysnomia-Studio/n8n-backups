@@ -1,0 +1,135 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Check if magick exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Write Template to Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        []
+      ]
+    },
+    "Check if magick exists": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Template to Disk": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-09T06:30:36.959Z",
+  "id": "pb6s0SSXxdCmJBxf",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        0
+      ],
+      "id": "fa29aef5-7c5d-4424-9088-370a8736a057",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://cloud.dysnomia.studio/f/5eeec95ca08c4830b9e4/?dl=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "f53e6b61-eb67-40c4-bccf-724bce961549",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "command": "/tmp/magick /tmp/template.jpg -font Candice -size 300x180 -gravity center label:Anthony /tmp/test.jpg"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8f301f8f-866e-471b-8c0b-84455167a40c",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "command": "=if [ -f /tmp/magick ]; then\n  echo \"File Found\"\nelse\n  echo \"File not Found\"\nfi\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        0
+      ],
+      "id": "8ce8ccde-da2e-42a7-8faf-b931f1c80453",
+      "name": "Check if magick exists"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/tmp/template.jpg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        0
+      ],
+      "id": "018b97eb-af30-4647-b301-330c7629e806",
+      "name": "Write Template to Disk"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-09T07:09:32.000Z",
+  "versionId": "95b70a4e-3876-456e-a931-57de17611eb8"
+}
