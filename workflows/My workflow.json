@@ -5,45 +5,62 @@
       "main": [
         [
           {
-            "node": "Check if magick exists",
+            "node": "Get Template",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request": {
+    "Set signature": {
       "main": [
         [
           {
-            "node": "Write Template to Disk",
+            "node": "Discord1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Execute Command": {
-      "main": [
-        []
-      ]
-    },
-    "Check if magick exists": {
+    "Set Text": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Set signature",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Write Template to Disk": {
+    "Get Template": {
       "main": [
         [
           {
-            "node": "Execute Command",
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Combine data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine data": {
+      "main": [
+        [
+          {
+            "node": "Set Text",
             "type": "main",
             "index": 0
           }
@@ -53,7 +70,9 @@
   },
   "createdAt": "2025-04-09T06:30:36.959Z",
   "id": "pb6s0SSXxdCmJBxf",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow",
   "nodes": [
     {
@@ -69,67 +88,140 @@
     },
     {
       "parameters": {
-        "url": "https://cloud.dysnomia.studio/f/5eeec95ca08c4830b9e4/?dl=1",
-        "options": {}
+        "authentication": "webhook",
+        "content": "Test",
+        "options": {},
+        "files": {
+          "values": [
+            {}
+          ]
+        }
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
       "position": [
-        -440,
+        440,
         0
       ],
-      "id": "f53e6b61-eb67-40c4-bccf-724bce961549",
-      "name": "HTTP Request"
+      "id": "4d39b416-6e9f-485a-9b10-ce5e18739fc6",
+      "name": "Discord1",
+      "webhookId": "239588ea-c811-4c65-9102-372a11b0d947",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "Q5W4oLqsFRCBCjfx",
+          "name": "Discord Webhook account"
+        }
+      }
     },
     {
       "parameters": {
-        "command": "/tmp/magick /tmp/template.jpg -font Candice -size 300x180 -gravity center label:Anthony /tmp/test.jpg"
+        "operation": "text",
+        "text": "@elanis.eu",
+        "fontSize": 35,
+        "fontColor": "#FFFFFF",
+        "positionX": 800,
+        "positionY": 1000,
+        "options": {
+          "font": "/usr/share/fonts/truetype/msttcorefonts/Andale_Mono.ttf"
+        }
       },
-      "type": "n8n-nodes-base.executeCommand",
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "9a0ab5fd-28f9-4d60-b65e-64bf88a1a6a9",
+      "name": "Set signature"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "text": "={{ $json.Title }}\n\n{{ $json.Text }}",
+        "fontSize": 72,
+        "fontColor": "#FFFFFF",
+        "positionY": 100,
+        "lineLength": 22,
+        "options": {
+          "font": "/usr/share/fonts/truetype/msttcorefonts/Andale_Mono.ttf"
+        }
+      },
+      "type": "n8n-nodes-base.editImage",
       "typeVersion": 1,
       "position": [
         0,
         0
       ],
-      "id": "8f301f8f-866e-471b-8c0b-84455167a40c",
-      "name": "Execute Command"
+      "id": "e91a63bc-771a-44ce-af66-8b66efbaabb9",
+      "name": "Set Text"
     },
     {
       "parameters": {
-        "command": "=if [ -f /tmp/magick ]; then\n  echo \"File Found\"\nelse\n  echo \"File not Found\"\nfi\n"
+        "url": "https://cloud.dysnomia.studio/f/cf77c17b39a04584905f/?dl=1",
+        "options": {}
       },
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [
         -660,
         0
       ],
-      "id": "8ce8ccde-da2e-42a7-8faf-b931f1c80453",
-      "name": "Check if magick exists"
+      "id": "f53e6b61-eb67-40c4-bccf-724bce961549",
+      "name": "Get Template",
+      "executeOnce": true
     },
     {
       "parameters": {
-        "operation": "write",
-        "fileName": "/tmp/template.jpg",
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1-kpu_IaQX-O2woYYIfbZOOYOFku0qmY1Br2RZ2KFl54/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "GameDev posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-kpu_IaQX-O2woYYIfbZOOYOFku0qmY1Br2RZ2KFl54/edit#gid=0"
+        },
         "options": {}
       },
-      "type": "n8n-nodes-base.readWriteFile",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "ed8986bf-23d9-4a88-82f7-2c62cbce90f0",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "wBhf6wSeRw2VDoWW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.binary = { ...item.binary };\n  item.binary.data = $(\"Get Template\").first().binary.data;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         -220,
         0
       ],
-      "id": "018b97eb-af30-4647-b301-330c7629e806",
-      "name": "Write Template to Disk"
+      "id": "140c4e35-4b39-433f-b267-315faac14079",
+      "name": "Combine data"
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-09T07:09:32.000Z",
-  "versionId": "95b70a4e-3876-456e-a931-57de17611eb8"
+  "updatedAt": "2025-04-10T16:20:19.000Z",
+  "versionId": "de2c5209-ec2e-47e8-9ab7-f7f1265c5e6f"
 }
