@@ -70,6 +70,7 @@
   },
   "createdAt": "2025-01-24T16:34:14.911Z",
   "id": "9YD4vxIuXwurqkk3",
+  "isArchived": false,
   "meta": null,
   "name": "Reddit to social-networks-feed (Discord)",
   "nodes": [
