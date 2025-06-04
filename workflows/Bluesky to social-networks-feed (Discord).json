@@ -92,6 +92,7 @@
   },
   "createdAt": "2025-01-24T16:54:45.447Z",
   "id": "XJIn9kDxBUdVq0nw",
+  "isArchived": false,
   "meta": null,
   "name": "Bluesky to social-networks-feed (Discord)",
   "nodes": [
