@@ -70,6 +70,7 @@
   },
   "createdAt": "2025-01-24T16:27:08.102Z",
   "id": "d0jcIzuI4EU8Yijd",
+  "isArchived": false,
   "meta": null,
   "name": "Automatically cleanup Github packages",
   "nodes": [
