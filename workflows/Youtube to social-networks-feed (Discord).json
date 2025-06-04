@@ -114,6 +114,7 @@
   },
   "createdAt": "2025-01-24T17:01:20.609Z",
   "id": "Iugtgf8ltqxW0Nln",
+  "isArchived": false,
   "meta": null,
   "name": "Youtube to social-networks-feed (Discord)",
   "nodes": [
