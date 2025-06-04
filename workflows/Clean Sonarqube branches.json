@@ -119,6 +119,7 @@
   },
   "createdAt": "2025-05-01T07:56:21.103Z",
   "id": "ZtPOXjys0QDue7JW",
+  "isArchived": false,
   "meta": null,
   "name": "Clean Sonarqube branches",
   "nodes": [
@@ -454,11 +455,6 @@
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
-  },
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    }
   },
   "tags": [],
   "triggerCount": 1,
