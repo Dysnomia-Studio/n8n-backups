@@ -81,6 +81,7 @@
   },
   "createdAt": "2025-01-24T16:31:17.631Z",
   "id": "hKhEkNfupVGQkZEN",
+  "isArchived": false,
   "meta": null,
   "name": "My Mastodon posts to social-networks (Discord)",
   "nodes": [
