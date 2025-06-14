@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Discord": {
       "main": [
@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Discord",
+            "node": "Filter out subreddits",
             "type": "main",
             "index": 0
           }
@@ -66,6 +66,17 @@
           }
         ]
       ]
+    },
+    "Filter out subreddits": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-24T16:34:14.911Z",
@@ -85,13 +96,14 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        0,
+        220,
         0
       ],
+      "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
       "credentials": {
         "discordWebhookApi": {
-          "id": "4fTTpcIKo75E63pg",
-          "name": "social-feed"
+          "id": "1FNPFG982ecICkYg",
+          "name": "social-networks-feed"
         }
       }
     },
@@ -168,7 +180,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        220,
+        440,
         0
       ]
     },
@@ -208,6 +220,40 @@
           "name": "Reddit account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
+              "leftValue": "={{['drumkitsleaks', 'allthemods']}}",
+              "rightValue": "={{ $json.subreddit }}",
+              "operator": {
+                "type": "array",
+                "operation": "notContains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -60,
+        0
+      ],
+      "id": "129f6893-04f9-4010-a1b2-69870b802f22",
+      "name": "Filter out subreddits"
     }
   ],
   "pinData": {},
@@ -228,7 +274,7 @@
       "name": "to-discord-private"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-01-24T16:37:15.000Z",
-  "versionId": "f77f086e-b3bd-42de-9d6d-eec33bfc5541"
+  "triggerCount": 1,
+  "updatedAt": "2025-06-14T10:01:10.000Z",
+  "versionId": "f9d4cc13-7954-4f78-80b6-a894f4fd419b"
 }
