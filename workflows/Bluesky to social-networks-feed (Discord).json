@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Discord": {
       "main": [
@@ -240,7 +240,7 @@
     },
     {
       "parameters": {
-        "url": "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts",
+        "url": "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -296,6 +296,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-13T10:57:02.000Z",
-  "versionId": "ad302236-eaa4-43b1-b18f-521a11f7ddcc"
+  "updatedAt": "2025-06-14T09:50:42.000Z",
+  "versionId": "5ea45884-50cb-4c61-a690-383f3df7aa23"
 }
