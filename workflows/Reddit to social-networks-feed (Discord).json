@@ -233,7 +233,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{['drumkitsleaks', 'allthemods']}}",
+              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade']}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -275,6 +275,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-14T10:01:10.000Z",
-  "versionId": "f9d4cc13-7954-4f78-80b6-a894f4fd419b"
+  "updatedAt": "2025-06-22T10:02:45.000Z",
+  "versionId": "d5a78811-36db-4efd-8dac-af90f8e70daa"
 }
