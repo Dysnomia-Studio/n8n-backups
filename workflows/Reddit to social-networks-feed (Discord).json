@@ -96,7 +96,7 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        220,
+        224,
         0
       ],
       "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
@@ -116,8 +116,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -860,
-        100
+        -864,
+        112
       ]
     },
     {
@@ -135,8 +135,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1060,
-        100
+        -1056,
+        112
       ]
     },
     {
@@ -167,8 +167,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -280,
-        100
+        -288,
+        112
       ]
     },
     {
@@ -180,7 +180,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        440,
+        448,
         0
       ]
     },
@@ -193,8 +193,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -680,
-        100
+        -688,
+        112
       ]
     },
     {
@@ -211,8 +211,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -500,
-        100
+        -496,
+        112
       ],
       "credentials": {
         "redditOAuth2Api": {
@@ -233,7 +233,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade']}}",
+              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade', 'lewdgames' , 'StardewValleyMods', 'StardewValley' ]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -249,7 +249,7 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -60,
+        -64,
         0
       ],
       "id": "129f6893-04f9-4010-a1b2-69870b802f22",
@@ -275,6 +275,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-22T10:02:45.000Z",
-  "versionId": "d5a78811-36db-4efd-8dac-af90f8e70daa"
+  "updatedAt": "2025-07-19T16:05:11.000Z",
+  "versionId": "8a9f1587-7e55-4901-8400-74cb9776e150"
 }
