@@ -145,7 +145,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -186,7 +187,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
+        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
       },
       "id": "c4b0adad-83af-405b-b488-bdd3d70da948",
       "name": "Set items",
@@ -233,7 +234,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade', 'lewdgames' , 'StardewValleyMods', 'StardewValley' ]}}",
+              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade', 'lewdgames' , 'StardewValleyMods', 'StardewValley', 'bundeswehr', 'remotivejobs' ]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -284,6 +285,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-07-19T16:05:11.000Z",
-  "versionId": "8a9f1587-7e55-4901-8400-74cb9776e150"
+  "updatedAt": "2025-10-01T16:20:16.000Z",
+  "versionId": "f87e3684-c2e2-4943-b815-2931a4afe530"
 }
