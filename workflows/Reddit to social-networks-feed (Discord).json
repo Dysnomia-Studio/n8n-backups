@@ -234,7 +234,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade', 'lewdgames' , 'StardewValleyMods', 'StardewValley', 'bundeswehr', 'remotivejobs' ]}}",
+              "leftValue": "={{['drumkitsleaks', 'allthemods', 'TheSerumPresetTrade', 'lewdgames' , 'StardewValleyMods', 'StardewValley', 'bundeswehr', 'remotivejobs', 'luftablassen' ]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -285,6 +285,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T16:20:16.000Z",
-  "versionId": "f87e3684-c2e2-4943-b815-2931a4afe530"
+  "updatedAt": "2025-10-01T19:25:04.000Z",
+  "versionId": "801232a9-c870-4540-b7ce-f20a90f07bb7"
 }
