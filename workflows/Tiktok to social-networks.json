@@ -1,0 +1,246 @@
+{
+  "active": true,
+  "connections": {
+    "Get Data": {
+      "main": [
+        [
+          {
+            "node": "Transform data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set last update date if never done": {
+      "main": [
+        [
+          {
+            "node": "Get Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform data": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord": {
+      "main": [
+        [
+          {
+            "node": "Set last update date for the next run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set last update date if never done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-01T16:25:39.557Z",
+  "id": "8YLqHUWug7rbYRut",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tiktok to social-networks",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://www.tiktok.com/api/post/item_list/?aid=1988&count=35&cursor=0&language=fr&odinId=7556289628390097942&region=FR&secUid=MS4wLjABAAAAm6F_Iuue7-TUTkdmuz5betUwrIuZKW0VoJpDulb8PfXELdef3c8QmFxy-5y0ZAaM",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        448,
+        -96
+      ],
+      "id": "64eb1dc3-efb4-4e1a-98d2-ab2dac352744",
+      "name": "Get Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.itemList.map((x) => ({ url: `https://www.tiktok.com/@${x.author.uniqueId}/video/${x.id}`, createTime: new Date(x.createTime * 1000) }))"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "939182da-e616-43c9-a879-7caf14715738",
+      "name": "Transform data"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        -96
+      ],
+      "id": "cb4ad734-7de7-402e-8b48-9434c1abbf7c",
+      "name": "Set last update date if never done"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "84152b9a-3e5c-4aeb-aa7a-7d871c67395b",
+              "leftValue": "={{ new Date($json.createTime).getTime() }}",
+              "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        -96
+      ],
+      "id": "72db4819-1cb6-4d75-b1ef-164d9a6c4d40",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "={{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        -96
+      ],
+      "id": "726eed44-93b0-4d73-a71a-91695a278c72",
+      "name": "Discord",
+      "webhookId": "c4383407-2f7b-4004-a4df-8fee9bc5c556",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "4fTTpcIKo75E63pg",
+          "name": "social-feed"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = Date.now() - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        -96
+      ],
+      "id": "65cfec5c-a554-4ca4-8b47-c80e53479534",
+      "name": "Set last update date for the next run"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "triggerAtMinute": 45
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -96
+      ],
+      "id": "9b049afa-deed-4439-bb48-1b3b04bddb1a",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-01T16:25:39.567Z",
+      "updatedAt": "2025-10-01T16:25:39.567Z",
+      "role": "workflow:owner",
+      "workflowId": "8YLqHUWug7rbYRut",
+      "projectId": "eAQxkiYNZBMLrPPR"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "global": {
+      "lastExecution": 1759337154927
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-01-24T16:31:25.878Z",
+      "updatedAt": "2025-01-24T16:31:25.878Z",
+      "id": "Bz7qsxMwqIy496Xq",
+      "name": "to-discord-public"
+    },
+    {
+      "createdAt": "2025-10-01T16:43:19.467Z",
+      "updatedAt": "2025-10-01T16:43:19.467Z",
+      "id": "iAvg8aXkPKx8RprG",
+      "name": "from-tiktok"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-01T16:43:53.000Z",
+  "versionId": "9de17786-f8be-4539-87e5-9075059b1d53"
+}
