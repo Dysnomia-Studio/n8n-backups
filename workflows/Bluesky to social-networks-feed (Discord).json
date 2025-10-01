@@ -107,7 +107,7 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        180,
+        192,
         0
       ],
       "webhookId": "569aa1ff-8cb5-40ba-8c1a-bbd58026bc39",
@@ -127,8 +127,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -940,
-        100
+        -944,
+        112
       ]
     },
     {
@@ -142,7 +142,7 @@
       "typeVersion": 1,
       "position": [
         -400,
-        100
+        112
       ]
     },
     {
@@ -161,8 +161,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1140,
-        100
+        -1136,
+        112
       ]
     },
     {
@@ -194,8 +194,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -220,
-        100
+        -224,
+        112
       ]
     },
     {
@@ -207,21 +207,21 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        360,
+        368,
         0
       ]
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n]"
+        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
       },
       "id": "a765dc01-6fcf-4208-8afd-89953536a8f5",
       "name": "Set items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -760,
-        100
+        -768,
+        112
       ]
     },
     {
@@ -272,8 +272,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -580,
-        100
+        -576,
+        112
       ]
     }
   ],
@@ -305,6 +305,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-14T11:08:53.000Z",
-  "versionId": "538d74bf-f59e-4bd3-9869-b529f708c43c"
+  "updatedAt": "2025-10-01T16:20:51.000Z",
+  "versionId": "61cc6aea-4d21-4343-84df-86f979906870"
 }
