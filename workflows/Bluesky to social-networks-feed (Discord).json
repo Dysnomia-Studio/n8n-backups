@@ -49,7 +49,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Filter",
             "type": "main",
             "index": 0
           }
@@ -88,6 +88,17 @@
           }
         ]
       ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-24T16:54:45.447Z",
@@ -107,7 +118,7 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        192,
+        400,
         0
       ],
       "webhookId": "569aa1ff-8cb5-40ba-8c1a-bbd58026bc39",
@@ -207,7 +218,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        368,
+        576,
         0
       ]
     },
@@ -234,7 +245,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        0,
+        208,
         0
       ]
     },
@@ -275,6 +286,48 @@
         -576,
         112
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0df86def-3f8f-4fad-82b1-1f9db7e3c2e4",
+              "leftValue": "={{ $json.author.handle }}",
+              "rightValue": "logistik",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "0a187330-ba1a-42bb-9d19-c6d9be63b815",
+              "leftValue": "={{ $json.record.text }}",
+              "rightValue": "die Logistik",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -16,
+        16
+      ],
+      "id": "a752fbe4-06f8-4dd1-9a99-66378fb4a270",
+      "name": "Filter"
     }
   ],
   "pinData": {},
@@ -305,6 +358,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T16:20:51.000Z",
-  "versionId": "61cc6aea-4d21-4343-84df-86f979906870"
+  "updatedAt": "2025-10-02T11:07:26.000Z",
+  "versionId": "893e274d-bb0a-4b20-ba4d-d4d98e118d74"
 }
