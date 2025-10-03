@@ -234,12 +234,21 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[ 'allthemods', 'bundeswehr', 'drumkitsleaks', 'LegaladviceGerman', 'lewdgames', 'luftablassen', 'remotivejobs', 'StardewValleyMods', 'StardewValley', 'TheSerumPresetTrade' ]}}",
+              "leftValue": "={{[ 'Aktien', 'Aktientool', 'allthemods', 'arbeitsleben', 'Azubis', 'beziehungen', 'bundeswehr', 'CanadianForces', 'dkkarriere', 'drumkitsleaks', 'Finanznachrichten', 'franchiseunternehmen', 'GeschichtsMaimais', 'indonesiabebas', 'LegaladviceGerman', 'lewdgames', 'luftablassen', 'mauerstrassenwetten', 'NewToDenmark', 'OnceUponAGalaxy', 'Pflege', 'RedditJobBoard', 'remotivejobs', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'TheSerumPresetTrade', 'wallstreetbetsGER' ]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
                 "operation": "notContains",
                 "rightType": "any"
+              }
+            },
+            {
+              "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
+              "leftValue": "={{ $json.subreddit }}",
+              "rightValue": "/^jobs[a-z]*$/i",
+              "operator": {
+                "type": "string",
+                "operation": "notRegex"
               }
             }
           ],
@@ -285,6 +294,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-02T08:06:44.000Z",
-  "versionId": "24ac3259-2235-4c43-8e34-eb4d88fb8b14"
+  "updatedAt": "2025-10-03T06:54:57.000Z",
+  "versionId": "a9de7697-5b2d-48ef-ab74-370b729c356d"
 }
