@@ -309,7 +309,7 @@
             {
               "id": "0a187330-ba1a-42bb-9d19-c6d9be63b815",
               "leftValue": "={{ $json.record.text }}",
-              "rightValue": "/(die logistik|logistik manager|unsere logistik|sandahls? logistik)/i",
+              "rightValue": "/(die logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik)/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -358,6 +358,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-03T06:44:30.000Z",
-  "versionId": "dad116d1-72f8-4f93-8eff-03c621380191"
+  "updatedAt": "2025-10-03T09:22:41.000Z",
+  "versionId": "f091c0d5-a63c-48f4-a640-769f50bb25db"
 }
