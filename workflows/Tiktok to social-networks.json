@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Get Data": {
       "main": [
@@ -218,14 +218,6 @@
       "projectId": "eAQxkiYNZBMLrPPR"
     }
   ],
-  "staticData": {
-    "node:Schedule Trigger": {
-      "recurrenceRules": []
-    },
-    "global": {
-      "lastExecution": 1759337154927
-    }
-  },
   "tags": [
     {
       "createdAt": "2025-01-24T16:31:25.878Z",
@@ -241,6 +233,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T16:43:53.000Z",
+  "updatedAt": "2025-10-07T06:22:34.000Z",
   "versionId": "9de17786-f8be-4539-87e5-9075059b1d53"
 }
