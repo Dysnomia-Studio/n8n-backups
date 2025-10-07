@@ -309,10 +309,20 @@
             {
               "id": "0a187330-ba1a-42bb-9d19-c6d9be63b815",
               "leftValue": "={{ $json.record.text }}",
-              "rightValue": "/(die logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik)/i",
+              "rightValue": "/((der|die|dem|den) logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik|mother dysnomia)/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
+              }
+            },
+            {
+              "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
+              "leftValue": "={{ [\"antara-poster.bsky.social\", \"republika-poster.bsky.social\", \"riaunews.bsky.social\", \"ruestungsexperte.bsky.social\"] }}",
+              "rightValue": "={{ $json.author.handle }}",
+              "operator": {
+                "type": "array",
+                "operation": "notContains",
+                "rightType": "any"
               }
             }
           ],
@@ -358,6 +368,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-03T09:22:41.000Z",
-  "versionId": "f091c0d5-a63c-48f4-a640-769f50bb25db"
+  "updatedAt": "2025-10-07T06:35:03.000Z",
+  "versionId": "0e9a6bb1-c273-49f4-bf0c-865c891b901b"
 }
