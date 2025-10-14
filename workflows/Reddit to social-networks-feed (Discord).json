@@ -234,7 +234,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[ '40kLore', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'arbeitsleben', 'Azubis', 'beziehungen', 'bundeswehr', 'CanadianForces', 'confect', 'de_EDV', 'dkkarriere', 'dkloenseddel', 'drumkitsleaks', 'fahrerjobs_', 'Finanznachrichten', 'franchiseunternehmen', 'GeschichtsMaimais', 'Gothenburg', 'Handwerker', 'indonesiabebas', 'LegaladviceGerman', 'lewdgames', 'Linz', 'luftablassen', 'mauerstrassenwetten', 'NewToDenmark', 'OnceUponAGalaxy', 'OnePieceSpoilers', 'Pflege', 'RedditJobBoard', 'remotivejobs', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'Sverigesforsvarsmakt', 'Switzerland', 'TheSerumPresetTrade', 'wallstreetbetsGER', 'WarhammerGermany' ]}}",
+              "leftValue": "={{[ '40kLore', 'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Azubis', 'beziehungen', 'bundeswehr', 'CanadianForces', 'confect', 'de_EDV', 'DeutschePhotovoltaik', 'dkkarriere', 'dkloenseddel', 'drumkitsleaks', 'ExeedLogistik', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'GeschichtsMaimais', 'Gothenburg', 'Handwerker', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'JobboerseBerlin', 'LegaladviceGerman', 'lewdgames', 'Linz', 'luftablassen', 'mauerstrassenwetten', 'NewToDenmark', 'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers', 'Pflege', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland', 'TheSerumPresetTrade', 'wallstreetbetsGER', 'WarhammerGermany' ]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -245,7 +245,7 @@
             {
               "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
               "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^jobs[a-z]*$/i",
+              "rightValue": "/^[a-z]*jobs[a-z]*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -294,6 +294,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-07T06:30:05.000Z",
-  "versionId": "cb271eac-dd0d-4437-a591-7b9d65ec3314"
+  "updatedAt": "2025-10-14T12:28:52.000Z",
+  "versionId": "11762b2e-820e-4679-a9fc-3c1334609dcb"
 }
