@@ -234,7 +234,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[ '40kLore', 'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Azubis', 'beziehungen', 'bundeswehr', 'CanadianForces', 'confect', 'de_EDV', 'DeutschePhotovoltaik', 'dkkarriere', 'dkloenseddel', 'drumkitsleaks', 'ExeedLogistik', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'GeschichtsMaimais', 'Gothenburg', 'Handwerker', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'JobboerseBerlin', 'LegaladviceGerman', 'lewdgames', 'Linz', 'luftablassen', 'mauerstrassenwetten', 'NewToDenmark', 'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers', 'Pflege', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland', 'TheSerumPresetTrade', 'wallstreetbetsGER', 'WarhammerGermany' ]}}",
+              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Azubis',\n'beziehungen', 'bundeswehr',\n'CanadianForces', 'caf', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'ExeedLogistik',\n'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'indonesia', 'indonesiabebas', 'InformatikKarriere',\n'JobboerseBerlin', 'JudiSaham',\n'LegaladviceGerman', 'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers',\n'Pflege',\n'RedditJobBoard', 'remotivejobs', 'repsdeutschland',\n'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'wallstreetbetsGER', 'wandern', 'WarhammerGermany'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -294,6 +294,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-14T12:28:52.000Z",
-  "versionId": "11762b2e-820e-4679-a9fc-3c1334609dcb"
+  "updatedAt": "2025-10-17T18:14:53.000Z",
+  "versionId": "af436752-541c-4ee2-a442-a9cafdc4e42b"
 }
