@@ -317,7 +317,7 @@
             },
             {
               "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
-              "leftValue": "={{ [\"antara-poster.bsky.social\", \"republika-poster.bsky.social\", \"riaunews.bsky.social\", \"ruestungsexperte.bsky.social\"] }}",
+              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"elanis.eu\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\"\n] }}",
               "rightValue": "={{ $json.author.handle }}",
               "operator": {
                 "type": "array",
@@ -368,6 +368,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-07T06:35:03.000Z",
-  "versionId": "0e9a6bb1-c273-49f4-bf0c-865c891b901b"
+  "updatedAt": "2025-10-17T18:17:23.000Z",
+  "versionId": "84b696ed-63c3-42df-8767-40bd2ea0203b"
 }
