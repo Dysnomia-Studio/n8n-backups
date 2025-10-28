@@ -118,8 +118,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        400,
-        0
+        656,
+        -112
       ],
       "webhookId": "569aa1ff-8cb5-40ba-8c1a-bbd58026bc39",
       "credentials": {
@@ -138,8 +138,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -944,
-        112
+        -912,
+        0
       ]
     },
     {
@@ -152,8 +152,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -400,
-        112
+        -240,
+        0
       ]
     },
     {
@@ -173,7 +173,7 @@
       "typeVersion": 1.2,
       "position": [
         -1136,
-        112
+        0
       ]
     },
     {
@@ -205,8 +205,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -224,
-        112
+        -16,
+        0
       ]
     },
     {
@@ -218,8 +218,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        576,
-        0
+        880,
+        -112
       ]
     },
     {
@@ -231,8 +231,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -768,
-        112
+        -688,
+        0
       ]
     },
     {
@@ -245,8 +245,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        208,
-        0
+        432,
+        -112
       ]
     },
     {
@@ -283,8 +283,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -576,
-        112
+        -464,
+        0
       ]
     },
     {
@@ -309,7 +309,7 @@
             {
               "id": "0a187330-ba1a-42bb-9d19-c6d9be63b815",
               "leftValue": "={{ $json.record.text }}",
-              "rightValue": "/((der|die|dem|den) logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik|mother dysnomia)/i",
+              "rightValue": "/((der|die|dem|den) logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik|mother dysnomia|github\\.com\\/alchemistry)/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -317,7 +317,7 @@
             },
             {
               "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
-              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"elanis.eu\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\"\n] }}",
+              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"transport-zeitung.bsky.social\"\n] }}",
               "rightValue": "={{ $json.author.handle }}",
               "operator": {
                 "type": "array",
@@ -333,8 +333,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -16,
-        16
+        208,
+        -112
       ],
       "id": "a752fbe4-06f8-4dd1-9a99-66378fb4a270",
       "name": "Filter"
@@ -346,8 +346,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-01-24T16:54:45.457Z",
       "updatedAt": "2025-01-24T16:54:45.457Z",
+      "createdAt": "2025-01-24T16:54:45.457Z",
       "role": "workflow:owner",
       "workflowId": "XJIn9kDxBUdVq0nw",
       "projectId": "eAQxkiYNZBMLrPPR"
@@ -355,19 +355,19 @@
   ],
   "tags": [
     {
-      "createdAt": "2025-01-24T16:54:48.174Z",
       "updatedAt": "2025-01-24T16:54:48.174Z",
+      "createdAt": "2025-01-24T16:54:48.174Z",
       "id": "gAxYvyidkeXeB0vH",
       "name": "from-bluesky"
     },
     {
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "updatedAt": "2025-01-24T16:28:37.143Z",
+      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
       "name": "to-discord-private"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-17T18:17:23.000Z",
-  "versionId": "84b696ed-63c3-42df-8767-40bd2ea0203b"
+  "updatedAt": "2025-10-28T18:44:20.000Z",
+  "versionId": "7a86bbf1-8075-4b97-8dd3-38a776206d7f"
 }
