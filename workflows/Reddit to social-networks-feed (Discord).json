@@ -42,7 +42,8 @@
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Set items": {
@@ -82,7 +83,9 @@
   "createdAt": "2025-01-24T16:34:14.911Z",
   "id": "9YD4vxIuXwurqkk3",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Reddit to social-networks-feed (Discord)",
   "nodes": [
     {
@@ -234,7 +237,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Azubis',\n'beziehungen', 'bundeswehr',\n'CanadianForces', 'caf', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'ExeedLogistik',\n'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'indonesia', 'indonesiabebas', 'InformatikKarriere',\n'JobboerseBerlin', 'JudiSaham',\n'LegaladviceGerman', 'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers',\n'Pflege',\n'RedditJobBoard', 'remotivejobs', 'repsdeutschland',\n'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Studium', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'wallstreetbetsGER', 'wandern', 'WarhammerGermany'\n]}}",
+              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'astrophotography', 'Azubis',\n'beziehungen', 'bundeswehr',\n'CanadianForces', 'caf', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers',\n'Pflege',\n'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'SuppressedVoices', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'wallstreetbetsGER', 'wandern', 'wargame',\n'ynvisible'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -245,10 +248,46 @@
             {
               "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
               "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^[a-z]*jobs[a-z]*$/i",
+              "rightValue": "/^[a-z\\_]*(jobs|german|crypto|investment)[a-z\\_]*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
+              }
+            },
+            {
+              "id": "68a57775-079a-424b-92ed-2aa2a3096c0b",
+              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
+              "rightValue": "=berlin",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "b8218fed-afbc-4c77-82b1-589039e29447",
+              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
+              "rightValue": "hamburg",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "84fef80e-5b1a-4294-83ac-9e26e549f311",
+              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
+              "rightValue": "dk",
+              "operator": {
+                "type": "string",
+                "operation": "notStartsWith"
+              }
+            },
+            {
+              "id": "ce7b7d8a-3a7f-42e9-bf7d-35069bf738d4",
+              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
+              "rightValue": "dk",
+              "operator": {
+                "type": "string",
+                "operation": "notEndsWith"
               }
             }
           ],
@@ -272,8 +311,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-01-24T16:34:14.918Z",
       "updatedAt": "2025-01-24T16:34:14.918Z",
+      "createdAt": "2025-01-24T16:34:14.918Z",
       "role": "workflow:owner",
       "workflowId": "9YD4vxIuXwurqkk3",
       "projectId": "eAQxkiYNZBMLrPPR"
@@ -281,19 +320,19 @@
   ],
   "tags": [
     {
-      "createdAt": "2025-01-24T16:34:19.370Z",
       "updatedAt": "2025-01-24T16:34:19.370Z",
+      "createdAt": "2025-01-24T16:34:19.370Z",
       "id": "d12Rbf3Ti1EZATuZ",
       "name": "from-reddit"
     },
     {
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "updatedAt": "2025-01-24T16:28:37.143Z",
+      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
       "name": "to-discord-private"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-17T18:14:53.000Z",
-  "versionId": "af436752-541c-4ee2-a442-a9cafdc4e42b"
+  "updatedAt": "2025-10-28T18:36:26.000Z",
+  "versionId": "41d8dbe3-f090-4a29-9882-11d0f080b89a"
 }
