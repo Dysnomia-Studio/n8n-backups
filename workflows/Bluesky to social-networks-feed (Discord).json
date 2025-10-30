@@ -96,6 +96,11 @@
             "node": "Code",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -338,6 +343,19 @@
       ],
       "id": "a752fbe4-06f8-4dd1-9a99-66378fb4a270",
       "name": "Filter"
+    },
+    {
+      "parameters": {
+        "jsCode": "return { handles: $input.all().map((x) => x.json.author.handle) }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        -304
+      ],
+      "id": "d27ddf29-ca13-4efd-ad57-51770cae6c65",
+      "name": "Code in JavaScript"
     }
   ],
   "pinData": {},
@@ -368,6 +386,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-28T18:44:20.000Z",
-  "versionId": "7a86bbf1-8075-4b97-8dd3-38a776206d7f"
+  "updatedAt": "2025-10-30T07:56:11.000Z",
+  "versionId": "e3ece6e1-8b03-402f-9b37-9b5f4c947d28"
 }
