@@ -322,7 +322,7 @@
             },
             {
               "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
-              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"transport-zeitung.bsky.social\"\n] }}",
+              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\"\n] }}",
               "rightValue": "={{ $json.author.handle }}",
               "operator": {
                 "type": "array",
@@ -386,6 +386,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T07:56:11.000Z",
-  "versionId": "e3ece6e1-8b03-402f-9b37-9b5f4c947d28"
+  "updatedAt": "2025-11-04T08:10:02.000Z",
+  "versionId": "281e01ed-4834-4c4c-991b-4bdbee584c45"
 }
