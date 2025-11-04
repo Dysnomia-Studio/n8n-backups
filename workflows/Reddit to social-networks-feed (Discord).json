@@ -237,7 +237,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'astrophotography', 'Azubis',\n'beziehungen', 'bundeswehr',\n'CanadianForces', 'caf', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers', 'OperationResearch',\n'Pflege',\n'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'SuppressedVoices', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'wallstreetbetsGER', 'wandern', 'wargame',\n'ynvisible'\n]}}",
+              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'astrophotography', 'Austria', 'Azubis',\n'beziehungen', 'bundeswehr',\n'CanadianForces', 'caf', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'OnePieceSpoilers', 'OperationResearch',\n'Pflege',\n'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'SuppressedVoices', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'wallstreetbetsGER', 'wandern', 'wargame',\n'ynvisible'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -362,6 +362,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T07:53:26.000Z",
-  "versionId": "7d3648ac-6877-4e89-abe2-72694fa46720"
+  "updatedAt": "2025-11-04T08:11:16.000Z",
+  "versionId": "92e3daeb-2cf2-43f3-86f1-3d77572f3814"
 }
