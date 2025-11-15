@@ -237,7 +237,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'astrophotography', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
+              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -371,6 +371,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-11T18:29:38.000Z",
-  "versionId": "b668e3ca-d66a-4989-8a97-b756bfe5b409"
+  "updatedAt": "2025-11-15T09:11:23.000Z",
+  "versionId": "c6500a3d-b48d-47d0-b576-f89e8a8f8c0b"
 }
