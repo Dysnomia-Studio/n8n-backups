@@ -237,7 +237,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'JobboerseBerlin', 'JudiSaham',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
+              "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'Aktien', 'Aktientool', 'Aktientrend', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -248,84 +248,20 @@
             {
               "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
               "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^[a-z\\_]*(job|german|crypto|investment)[a-z\\_]*$/i",
+              "rightValue": "/^(uk|u_|)[a-z\\_]*(job|german|crypto|investment|hamburg|berlin|aktien)[a-z\\_]*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
               }
             },
             {
-              "id": "68a57775-079a-424b-92ed-2aa2a3096c0b",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "=berlin",
-              "operator": {
-                "type": "string",
-                "operation": "notContains"
-              }
-            },
-            {
-              "id": "b8218fed-afbc-4c77-82b1-589039e29447",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "hamburg",
-              "operator": {
-                "type": "string",
-                "operation": "notContains"
-              }
-            },
-            {
-              "id": "84fef80e-5b1a-4294-83ac-9e26e549f311",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "dk",
-              "operator": {
-                "type": "string",
-                "operation": "notStartsWith"
-              }
-            },
-            {
-              "id": "ce7b7d8a-3a7f-42e9-bf7d-35069bf738d4",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "dk",
-              "operator": {
-                "type": "string",
-                "operation": "notEndsWith"
-              }
-            },
-            {
               "id": "ca5e1779-f9e4-446f-b13a-7541b79a51f6",
-              "leftValue": "={{ $json.quarantine }}",
+              "leftValue": "={{ $json.quarantine || $json.over_18 }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
                 "operation": "false",
                 "singleValue": true
-              }
-            },
-            {
-              "id": "372f3bdc-16de-4f06-879c-3541f07414e7",
-              "leftValue": "={{ $json.over_18 }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "false",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "d19e305f-44fc-4dd8-b0ba-aedd02587ec0",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "u_",
-              "operator": {
-                "type": "string",
-                "operation": "notStartsWith"
-              }
-            },
-            {
-              "id": "290f89ed-af58-479b-9226-7af2d080093e",
-              "leftValue": "={{ $json.subreddit.toLowerCase() }}",
-              "rightValue": "aktien",
-              "operator": {
-                "type": "string",
-                "operation": "notContains"
               }
             }
           ],
@@ -371,6 +307,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-15T09:11:23.000Z",
-  "versionId": "c6500a3d-b48d-47d0-b576-f89e8a8f8c0b"
+  "updatedAt": "2025-11-23T13:15:02.000Z",
+  "versionId": "f823e19a-9daa-46dd-997b-f56b911766aa"
 }
