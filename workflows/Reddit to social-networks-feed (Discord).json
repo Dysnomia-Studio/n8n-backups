@@ -248,7 +248,7 @@
             {
               "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
               "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt)[a-z\\_]*$/i",
+              "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|legal|finanz)[a-z\\_]*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -266,7 +266,7 @@
             {
               "id": "6da76a04-38b0-4f78-97de-17e406511ad2",
               "leftValue": "={{ $json.selftext }}",
-              "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon) .*$/i",
+              "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska) .*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -325,6 +325,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-24T16:14:17.000Z",
-  "versionId": "e879dc7d-c738-4ab9-b339-8113d954370e"
+  "updatedAt": "2025-12-03T09:25:40.000Z",
+  "versionId": "777c9070-57bd-4723-8ecd-14710ead2143"
 }
