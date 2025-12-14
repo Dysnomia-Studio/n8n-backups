@@ -1,5 +1,211 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
+    "workflowId": "d0jcIzuI4EU8Yijd",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "45a2c4b6-9176-4139-98c0-46c882479a94",
+        "name": "When clicking ‘Test workflow’",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          220
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "weeks",
+                "triggerAtDay": [
+                  1
+                ]
+              }
+            ]
+          }
+        },
+        "id": "db35aaef-43e0-4a8f-b3f5-2377c79a39a4",
+        "name": "Schedule Trigger",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  { id: 'Dysnomia-Studio' },\n  { id: 'L-U-M-E-N' },\n];"
+        },
+        "id": "17206655-b46a-47c1-ba7a-c7250ae3d009",
+        "name": "Set variable containing organizations",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          240,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "url": "=https://api.github.com/orgs/{{ $json.id }}/packages?package_type=container&per_page=100",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "githubApi",
+          "options": {}
+        },
+        "id": "eb1231a0-b0ff-4fcb-a1fb-9ff9c87d97ca",
+        "name": "Github - Get packages list in orgs",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          440,
+          100
+        ],
+        "credentials": {
+          "githubApi": {
+            "id": "qdOpt2YER6NJZTn0",
+            "name": "GitHub account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "=https://api.github.com/orgs/{{ $json.owner.login }}/packages/{{ $json.package_type }}/{{ $json.name }}/versions?per_page=100",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "githubApi",
+          "options": {}
+        },
+        "id": "8f5318c6-cd38-46b6-a080-3d332aa78cf8",
+        "name": "Github - Get package versions list",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          660,
+          100
+        ],
+        "credentials": {
+          "githubApi": {
+            "id": "qdOpt2YER6NJZTn0",
+            "name": "GitHub account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const packageVersions = await $input.all();\n\npackageVersions.sort((a, b) => (new Date(b.updated_at)).getTime() - (new Date(a.updated_at)).getTime());\n\nconst counter = {};\nconst ret = [];\nfor(let i = 0; i < packageVersions.length; i++) {\n  const json = packageVersions[i].json;\n  if(!counter[json.package_html_url]) {\n    counter[json.package_html_url] = 0;\n  }\n\n  if(counter[json.package_html_url] >= 5) { \n    ret.push(packageVersions[i]);\n    continue;\n  }\n\n  counter[json.package_html_url]++;\n}\n\nreturn ret;\nreturn [{ toDelete: ret, metaData: counter }];"
+        },
+        "id": "2fba511e-8b1a-43c0-91fa-f2937c83e1a8",
+        "name": "Filter out recent versions",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          880,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "method": "DELETE",
+          "url": "={{ $json.url }}",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "githubApi",
+          "options": {}
+        },
+        "id": "8868e701-ba96-4a8f-9f69-7b370798b34c",
+        "name": "Github - Delete outdated package versions",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1100,
+          100
+        ],
+        "credentials": {
+          "githubApi": {
+            "id": "qdOpt2YER6NJZTn0",
+            "name": "GitHub account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "When clicking ‘Test workflow’": {
+        "main": [
+          [
+            {
+              "node": "Set variable containing organizations",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set variable containing organizations",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set variable containing organizations": {
+        "main": [
+          [
+            {
+              "node": "Github - Get packages list in orgs",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Github - Get packages list in orgs": {
+        "main": [
+          [
+            {
+              "node": "Github - Get package versions list",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Github - Get package versions list": {
+        "main": [
+          [
+            {
+              "node": "Filter out recent versions",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter out recent versions": {
+        "main": [
+          [
+            {
+              "node": "Github - Delete outdated package versions",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
