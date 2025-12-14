@@ -1,5 +1,261 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0",
+    "workflowId": "hKhEkNfupVGQkZEN",
+    "nodes": [
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "={{ $json.url }}",
+          "options": {}
+        },
+        "id": "dcbfe6a9-417f-4629-807d-0c7617143c97",
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          900,
+          80
+        ],
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "4fTTpcIKo75E63pg",
+            "name": "social-feed"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastId) {\n  nodeStaticData.lastId = '113834402928179291';\n}\n\nreturn [{lastId: nodeStaticData.lastId }];"
+        },
+        "id": "11b99edc-82b6-432d-91e8-967fceb0e95a",
+        "name": "Set last update date if never done",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          200,
+          140
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "15,45 * * * *"
+              }
+            ]
+          }
+        },
+        "id": "b13b5931-c43d-4a00-af96-90ac4f71ab2e",
+        "name": "Every X minutes",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          140
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nvar list = $('Get all posts from Elanis on Mastodon').all();\nlist.sort((a, b) => {\n  new Date(b.json.createdOn).getTime() - new Date(b.json.createdOn).getTime()\n});\n\nnodeStaticData.lastId = list[0].json.id;\n\nreturn [{list, lastId: nodeStaticData.lastId }];"
+        },
+        "id": "6455c8de-3737-4ba8-b7ee-a59d23009d2b",
+        "name": "Set last update date for the next run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1120,
+          80
+        ]
+      },
+      {
+        "parameters": {
+          "url": "https://mastodon.gamedev.place/api/v1/accounts/109308194245709401/statuses",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "oAuth2Api",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "since_id",
+                "value": "={{ $json.lastId }}"
+              },
+              {
+                "name": "exclude_replies",
+                "value": "true"
+              },
+              {
+                "name": "exclude_reblogs",
+                "value": "true"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "aef93bce-de8f-4992-bdb1-1990288c914f",
+        "name": "Get all posts from Elanis on Mastodon",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          440,
+          140
+        ],
+        "credentials": {
+          "oAuth2Api": {
+            "id": "sUfUszVT1DPIGkAS",
+            "name": "Mastodon"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "3fda5c68-06c6-4763-9459-59260a6e5587",
+                "leftValue": "={{ $json.in_reply_to_id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notExists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "id": "47c19753-fa7c-4b56-9cd8-228b453f6e2c",
+        "name": "Filter out replies",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          660,
+          140
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "4b664406-5803-4b9e-bc54-e783e7bf5b11",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "workflowId": "RMUJd9Eo4VshlOfQ",
+          "options": {}
+        },
+        "id": "1044c605-6244-449b-b767-633316a7dea9",
+        "name": "Execute Workflow",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1,
+        "position": [
+          1340,
+          80
+        ],
+        "disabled": true
+      }
+    ],
+    "connections": {
+      "Discord": {
+        "main": [
+          [
+            {
+              "node": "Set last update date for the next run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date if never done": {
+        "main": [
+          [
+            {
+              "node": "Get all posts from Elanis on Mastodon",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Every X minutes": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get all posts from Elanis on Mastodon": {
+        "main": [
+          [
+            {
+              "node": "Filter out replies",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter out replies": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date for the next run": {
+        "main": [
+          [
+            {
+              "node": "Execute Workflow",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0",
   "connections": {
     "Discord": {
       "main": [
