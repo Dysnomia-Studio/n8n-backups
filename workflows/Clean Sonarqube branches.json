@@ -1,5 +1,462 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
+    "workflowId": "ZtPOXjys0QDue7JW",
+    "nodes": [
+      {
+        "parameters": {
+          "url": "={{ $json.rootUrl }}/api/projects/search",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "ps",
+                "value": "500"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -240,
+          -260
+        ],
+        "id": "51f35041-99ee-4f65-8d4c-502367d335ca",
+        "name": "Get All Projects",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "U7Kqknx3iOUJwLVE",
+            "name": "Sonarqube auth"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "={{ $('Set Constants').item.json.rootUrl }}/api/project_branches/list",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "project",
+                "value": "={{ $json.key }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          200,
+          -360
+        ],
+        "id": "1cc8be6b-0568-4f73-90fb-24d7615e1b30",
+        "name": "Get branches",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "U7Kqknx3iOUJwLVE",
+            "name": "Sonarqube auth"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "components",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          -20,
+          -260
+        ],
+        "id": "c0d6dd15-f572-497f-a316-f27fa9fe65b3",
+        "name": "Split Out Projects list"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "={{ $('Set Constants').first().json.rootUrl }}/api/project_branches/delete",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "project",
+                "value": "={{ $json.project.key }}"
+              },
+              {
+                "name": "branch",
+                "value": "={{ $json.name }}"
+              }
+            ]
+          },
+          "options": {
+            "batching": {
+              "batch": {
+                "batchSize": 1
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          860,
+          -360
+        ],
+        "id": "cb7c4e79-40db-4095-9dcb-3dcbeb30358f",
+        "name": "Delete branch",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "U7Kqknx3iOUJwLVE",
+            "name": "Sonarqube auth"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "weeks",
+                "triggerAtDay": [
+                  6
+                ],
+                "triggerAtHour": 4
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -680,
+          -260
+        ],
+        "id": "f85c6542-08e8-4de6-bf27-969ebc813481",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    rootUrl: \"https://sonar.dysnomia.studio\",\n    maxDate: (new Date(Date.now() - 31*24*3600*1000))\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -460,
+          -260
+        ],
+        "id": "08eed841-3421-4de9-a63d-9203812e8496",
+        "name": "Set Constants"
+      },
+      {
+        "parameters": {
+          "url": "={{ $('Set Constants').item.json.rootUrl }}/api/project_pull_requests/list",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "project",
+                "value": "={{ $json.key }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          200,
+          -160
+        ],
+        "id": "5b0bec7d-50b2-49b9-b1bc-3a04a4c7cd02",
+        "name": "Get Pull Requests",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "U7Kqknx3iOUJwLVE",
+            "name": "Sonarqube auth"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f0599333-e281-47a0-b538-944e219a8897",
+                "leftValue": "={{ $json.analysisDate }}",
+                "rightValue": "={{ $('Set Constants').first().json.maxDate }}",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "before"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          640,
+          -160
+        ],
+        "id": "a81c32fa-1810-49cb-877f-e611b64e62d2",
+        "name": "Filter by PR date"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a080034e-5454-403d-848f-d8563b993eb3",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "dependabot/",
+                "operator": {
+                  "type": "string",
+                  "operation": "startsWith"
+                }
+              },
+              {
+                "id": "122e2248-fc13-497e-9787-7d9b618293af",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "/merge",
+                "operator": {
+                  "type": "string",
+                  "operation": "endsWith"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          640,
+          -360
+        ],
+        "id": "dcce9b9a-a3a1-4536-b616-53e6a3df59e0",
+        "name": "Filter by branch name"
+      },
+      {
+        "parameters": {
+          "jsCode": "const output = [];\nconst allInputs = $input.all();\nconst projects = $(\"Split Out Projects list\").all();\nfor (let i = 0; i < allInputs.length; i++) {\n  const projectsPR = allInputs[i].json.pullRequests;\n  const selectedProject = projects[i];\n  for(const pr of projectsPR) {\n    output.push({\n      ...pr,\n      project: selectedProject.json\n    })\n  }\n}\n\nreturn output;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          420,
+          -160
+        ],
+        "id": "647d3c0c-0834-4f64-9f3c-9ddc39627688",
+        "name": "Rework PR list"
+      },
+      {
+        "parameters": {
+          "jsCode": "const output = [];\nconst allInputs = $input.all();\nconst projects = $(\"Split Out Projects list\").all();\nfor (let i = 0; i < allInputs.length; i++) {\n  const projectBranches = allInputs[i].json.branches;\n  const selectedProject = projects[i];\n  for(const branch of projectBranches) {\n    output.push({\n      ...branch,\n      project: selectedProject.json\n    })\n  }\n}\n\nreturn output;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          420,
+          -360
+        ],
+        "id": "b2320f07-32eb-4bf0-a9ea-d4c7c48c68fc",
+        "name": "Rework branch list"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "={{ $('Set Constants').first().json.rootUrl }}/api/project_pull_requests/delete",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "project",
+                "value": "={{ $json.project.key }}"
+              },
+              {
+                "name": "pullRequest",
+                "value": "={{ $json.key }}"
+              }
+            ]
+          },
+          "options": {
+            "batching": {
+              "batch": {
+                "batchSize": 1
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          860,
+          -160
+        ],
+        "id": "29991705-c95d-4ae6-a8f0-9a8f95c4277e",
+        "name": "Delete PR",
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "U7Kqknx3iOUJwLVE",
+            "name": "Sonarqube auth"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Get All Projects": {
+        "main": [
+          [
+            {
+              "node": "Split Out Projects list",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get branches": {
+        "main": [
+          [
+            {
+              "node": "Rework branch list",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out Projects list": {
+        "main": [
+          [
+            {
+              "node": "Get Pull Requests",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Get branches",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set Constants",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Constants": {
+        "main": [
+          [
+            {
+              "node": "Get All Projects",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Pull Requests": {
+        "main": [
+          [
+            {
+              "node": "Rework PR list",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter by branch name": {
+        "main": [
+          [
+            {
+              "node": "Delete branch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Rework PR list": {
+        "main": [
+          [
+            {
+              "node": "Filter by PR date",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Rework branch list": {
+        "main": [
+          [
+            {
+              "node": "Filter by branch name",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter by PR date": {
+        "main": [
+          [
+            {
+              "node": "Delete PR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
   "connections": {
     "Get All Projects": {
       "main": [
