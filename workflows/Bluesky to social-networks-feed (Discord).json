@@ -1,5 +1,377 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "13d5ccbe-4cc4-422e-b41c-a5100b01f826",
+    "workflowId": "XJIn9kDxBUdVq0nw",
+    "nodes": [
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "={{ $json.uri }}",
+          "options": {}
+        },
+        "id": "9b7e0d8c-1f1e-4562-a0e3-8da2b9073928",
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          656,
+          -112
+        ],
+        "webhookId": "569aa1ff-8cb5-40ba-8c1a-bbd58026bc39",
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "1FNPFG982ecICkYg",
+            "name": "social-networks-feed"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "b7f8cd53-4885-401b-8ec0-90644a24c3dd",
+        "name": "Set last update date if never done",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -912,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "posts",
+          "options": {}
+        },
+        "id": "f398337c-cd3a-4334-849b-b443cf1ddd33",
+        "name": "Split Out",
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours",
+                "triggerAtMinute": 5
+              }
+            ]
+          }
+        },
+        "id": "bd3f0814-931b-4893-8c6e-05d823cf42b4",
+        "name": "Every X minutes",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -1136,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 1
+            },
+            "conditions": [
+              {
+                "id": "07f23053-a317-4e1d-b88d-96df9449d146",
+                "leftValue": "={{ new Date($json.record.createdAt).getTime() }}",
+                "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "b99eb4ff-a6dc-4c4e-8a97-8f86f3002f43",
+        "name": "Filter to get recent posts",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          -16,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "b85f606c-ed42-4d2d-9a5d-c582fe8f2edf",
+        "name": "Set last update date for the next run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          880,
+          -112
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
+        },
+        "id": "a765dc01-6fcf-4208-8afd-89953536a8f5",
+        "name": "Set items",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -688,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $json.author.handle + '/post/' + parts[parts.length - 1] };"
+        },
+        "id": "2c1fe8e5-cdca-453e-ad32-329fd3cf3429",
+        "name": "Code",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          432,
+          -112
+        ]
+      },
+      {
+        "parameters": {
+          "url": "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "q",
+                "value": "={{ $json.value }}"
+              }
+            ]
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "User-Agent",
+                "value": "n8n-dysnomia-social-media-watcher"
+              }
+            ]
+          },
+          "options": {
+            "batching": {
+              "batch": {
+                "batchSize": 1
+              }
+            }
+          }
+        },
+        "id": "be9db9c7-64e0-45d2-b64f-189523c9d3a2",
+        "name": "Get all posts for X on Bluesky",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -464,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "0df86def-3f8f-4fad-82b1-1f9db7e3c2e4",
+                "leftValue": "={{ $json.author.handle }}",
+                "rightValue": "logistik",
+                "operator": {
+                  "type": "string",
+                  "operation": "notContains"
+                }
+              },
+              {
+                "id": "0a187330-ba1a-42bb-9d19-c6d9be63b815",
+                "leftValue": "={{ $json.record.text }}",
+                "rightValue": "/((der|die|dem|den) logistik|logistik( |\\-)manager|unsere logistik|sandahls? logistik|mother dysnomia|github\\.com\\/alchemistry)/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
+                "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"fuldainfo.bsky.social\",\n\"gnfi-poster.bsky.social\",\n\"goodnews.id\",\n\"heehoo.bsky.social\",\n\"hotzenwaldkurier.bsky.social\",\n\"idntimes.bsky.social\",\n\"infoacehnet.bsky.social\",\n\"katadata-poster.bsky.social\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"onlinemarktplatz.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"tempo-poster.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\",\n\"vcoe.bsky.social\",\n] }}",
+                "rightValue": "={{ $json.author.handle }}",
+                "operator": {
+                  "type": "array",
+                  "operation": "notContains",
+                  "rightType": "any"
+                }
+              },
+              {
+                "id": "494bd20d-ac66-47e0-bf6a-9892a14edf72",
+                "leftValue": "={{ $json.record.text }}",
+                "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska|ops|helikopter) .*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          208,
+          -112
+        ],
+        "id": "a752fbe4-06f8-4dd1-9a99-66378fb4a270",
+        "name": "Filter"
+      },
+      {
+        "parameters": {
+          "jsCode": "return { handles: $input.all().map((x) => x.json.author.handle) }"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          432,
+          -304
+        ],
+        "id": "d27ddf29-ca13-4efd-ad57-51770cae6c65",
+        "name": "Code in JavaScript"
+      }
+    ],
+    "connections": {
+      "Discord": {
+        "main": [
+          [
+            {
+              "node": "Set last update date for the next run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date if never done": {
+        "main": [
+          [
+            {
+              "node": "Set items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out": {
+        "main": [
+          [
+            {
+              "node": "Filter to get recent posts",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Every X minutes": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter to get recent posts": {
+        "main": [
+          [
+            {
+              "node": "Filter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set items": {
+        "main": [
+          [
+            {
+              "node": "Get all posts for X on Bluesky",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get all posts for X on Bluesky": {
+        "main": [
+          [
+            {
+              "node": "Split Out",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "13d5ccbe-4cc4-422e-b41c-a5100b01f826",
   "connections": {
     "Discord": {
       "main": [
