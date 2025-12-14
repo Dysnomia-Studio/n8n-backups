@@ -1,5 +1,305 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:13:58.766Z",
+    "createdAt": "2025-12-14T11:13:58.766Z",
+    "versionId": "e64d6369-74ea-4393-a710-0c32aeba94d7",
+    "workflowId": "9YD4vxIuXwurqkk3",
+    "nodes": [
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "={{ $json.url }}",
+          "options": {}
+        },
+        "id": "b333aea6-6f94-47c2-a291-5f4de519af1b",
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          224,
+          0
+        ],
+        "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "1FNPFG982ecICkYg",
+            "name": "social-networks-feed"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "1928c7b5-6597-45cb-bc86-54b643e5da6b",
+        "name": "Set last update date if never done",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -864,
+          112
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours"
+              }
+            ]
+          }
+        },
+        "id": "f11e961e-53e2-4fc4-af2a-8c35fe18ac85",
+        "name": "Every X minutes",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -1056,
+          112
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 1
+            },
+            "conditions": [
+              {
+                "id": "07f23053-a317-4e1d-b88d-96df9449d146",
+                "leftValue": "={{ $json.created * 1000 }}",
+                "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "7b61dd99-94ac-4bab-a418-d7331ab5f1ef",
+        "name": "Filter to get recent posts",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          -288,
+          112
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "6da0b627-e5fc-43b7-9cca-dc8146c33a32",
+        "name": "Set last update date for the next run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          448,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
+        },
+        "id": "c4b0adad-83af-405b-b488-bdd3d70da948",
+        "name": "Set items",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -688,
+          112
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "search",
+          "location": "allReddit",
+          "keyword": "={{ $json.value }}",
+          "additionalFields": {
+            "sort": "new"
+          }
+        },
+        "id": "a9ff84cd-8f00-44e6-ab7b-97b8b9df790b",
+        "name": "Reddit",
+        "type": "n8n-nodes-base.reddit",
+        "typeVersion": 1,
+        "position": [
+          -496,
+          112
+        ],
+        "credentials": {
+          "redditOAuth2Api": {
+            "id": "zLidLoVOx1Idfg5B",
+            "name": "Reddit account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
+                "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism', 'hoi4',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic', 'MortalKombat',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'teslore', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
+                "rightValue": "={{ $json.subreddit }}",
+                "operator": {
+                  "type": "array",
+                  "operation": "notContains",
+                  "rightType": "any"
+                }
+              },
+              {
+                "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
+                "leftValue": "={{ $json.subreddit }}",
+                "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|dresden|legal|finanz|financ)[a-z\\_]*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "dba766b7-f069-4991-b372-96678a805407",
+                "leftValue": "={{ $json.subreddit }}",
+                "rightValue": "/^(u_).*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "6da76a04-38b0-4f78-97de-17e406511ad2",
+                "leftValue": "={{ $json.selftext }}",
+                "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska) .*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "ca5e1779-f9e4-446f-b13a-7541b79a51f6",
+                "leftValue": "={{ $json.quarantine || $json.over_18 }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          -64,
+          0
+        ],
+        "id": "129f6893-04f9-4010-a1b2-69870b802f22",
+        "name": "Filter out subreddits"
+      }
+    ],
+    "connections": {
+      "Discord": {
+        "main": [
+          [
+            {
+              "node": "Set last update date for the next run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date if never done": {
+        "main": [
+          [
+            {
+              "node": "Set items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Every X minutes": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter to get recent posts": {
+        "main": [
+          [
+            {
+              "node": "Filter out subreddits",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "Set items": {
+        "main": [
+          [
+            {
+              "node": "Reddit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Reddit": {
+        "main": [
+          [
+            {
+              "node": "Filter to get recent posts",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter out subreddits": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Axel Soupé",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "e64d6369-74ea-4393-a710-0c32aeba94d7",
   "connections": {
     "Discord": {
       "main": [
@@ -237,7 +537,7 @@
           "conditions": [
             {
               "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'teslore', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
+              "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism', 'hoi4',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic', 'MortalKombat',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'teslore', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
               "rightValue": "={{ $json.subreddit }}",
               "operator": {
                 "type": "array",
@@ -248,7 +548,7 @@
             {
               "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
               "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|legal|finanz)[a-z\\_]*$/i",
+              "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|dresden|legal|finanz|financ)[a-z\\_]*$/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -325,6 +625,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-03T09:25:40.000Z",
-  "versionId": "777c9070-57bd-4723-8ecd-14710ead2143"
+  "updatedAt": "2025-12-14T11:13:58.763Z",
+  "versionId": "e64d6369-74ea-4393-a710-0c32aeba94d7"
 }
