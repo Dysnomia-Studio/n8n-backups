@@ -1,5 +1,295 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a",
+    "workflowId": "xlnbH70l1j5nqeDL",
+    "nodes": [
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "=Stream on {{ $('Twitch - Get category').item.json.data[0].name }}: https://twitch.tv/{{ $json.user_login }}",
+          "options": {}
+        },
+        "id": "93a897d7-279b-4041-9399-94a8fe6663a4",
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          0,
+          0
+        ],
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "1FNPFG982ecICkYg",
+            "name": "social-networks-feed"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastExecution) {\n  nodeStaticData.lastExecution = new Date().getTime() - 7*24*3600*1000;\n}\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "42b69bc0-5882-4a2f-922c-4853a18f0e8d",
+        "name": "Set last update date if never done",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1260,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes",
+                "minutesInterval": 30
+              }
+            ]
+          }
+        },
+        "id": "c8a5d392-79b1-4f8f-9349-39b9215ab456",
+        "name": "Every X minutes",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -1460,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastExecution = $now - 10000;\n\nreturn [{lastExecution: nodeStaticData.lastExecution }];"
+        },
+        "id": "9cd7ea94-9df6-43fd-a613-2ab8ff6e8053",
+        "name": "Set last update date for the next run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          200,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" }\n]"
+        },
+        "id": "17f662e9-f46b-4882-a025-f8af9e28e068",
+        "name": "Set items",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1080,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "url": "=https://api.twitch.tv/helix/games?name={{ $json.value }}",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "oAuth2Api",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Client-Id",
+                "value": "=vnp52v8jvy1myxkbunh3u3qhqobnrh"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "575c780d-4342-470d-93bc-1eaba215ad20",
+        "name": "Twitch - Get category",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -880,
+          100
+        ],
+        "credentials": {
+          "oAuth2Api": {
+            "id": "8FTyUABMuyktrbt5",
+            "name": "Twitch"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "=https://api.twitch.tv/helix/streams?game_id={{ $json.data[0].id }}",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "oAuth2Api",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Client-Id",
+                "value": "=vnp52v8jvy1myxkbunh3u3qhqobnrh"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "41cb895d-f29c-4399-9b62-d258bf636ee2",
+        "name": "Twitch - Get streams",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -700,
+          100
+        ],
+        "credentials": {
+          "oAuth2Api": {
+            "id": "8FTyUABMuyktrbt5",
+            "name": "Twitch"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "data",
+          "options": {}
+        },
+        "id": "8f784de9-a8ae-406f-a925-7caa452a5937",
+        "name": "Split Out",
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          -500,
+          100
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "07f23053-a317-4e1d-b88d-96df9449d146",
+                "leftValue": "={{ new Date($json.started_at).getTime() }}",
+                "rightValue": "={{ $('Set last update date if never done').item.json.lastExecution }}",
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "2a3e780b-6ef2-436d-a870-a00a1075fd24",
+        "name": "Filter to get recent streams",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          100
+        ]
+      }
+    ],
+    "connections": {
+      "Discord": {
+        "main": [
+          [
+            {
+              "node": "Set last update date for the next run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date if never done": {
+        "main": [
+          [
+            {
+              "node": "Set items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Every X minutes": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set items": {
+        "main": [
+          [
+            {
+              "node": "Twitch - Get category",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Twitch - Get category": {
+        "main": [
+          [
+            {
+              "node": "Twitch - Get streams",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Twitch - Get streams": {
+        "main": [
+          [
+            {
+              "node": "Split Out",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out": {
+        "main": [
+          [
+            {
+              "node": "Filter to get recent streams",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter to get recent streams": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a",
   "connections": {
     "Discord": {
       "main": [
