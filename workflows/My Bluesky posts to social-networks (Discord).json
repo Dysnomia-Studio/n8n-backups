@@ -1,5 +1,225 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-14T11:10:25.169Z",
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "versionId": "6a13dfdb-f49d-4fdb-8ea2-191349187d7e",
+    "workflowId": "Mr1gCZr0wtokofh3",
+    "nodes": [
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "content": "={{ $json.uri }}",
+          "options": {}
+        },
+        "id": "793e93f9-7a88-463f-867a-65e20391d96a",
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          920,
+          160
+        ],
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "4fTTpcIKo75E63pg",
+            "name": "social-feed"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nif(!nodeStaticData.lastUpdate) {\n  nodeStaticData.lastUpdate = new Date('2025-01-24').getTime();\n}\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
+        },
+        "id": "e1a07064-cc0f-47af-9d6d-238f9302113f",
+        "name": "Set last update date if never done",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          200,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0,30 * * * *"
+              }
+            ]
+          }
+        },
+        "id": "25509584-54bd-4dfb-a23e-e04e8793ecb4",
+        "name": "Every X minutes",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the static data of the node\nconst nodeStaticData = $getWorkflowStaticData('global');\n\n// Update its data\nnodeStaticData.lastUpdate = $now - 10000;\n\nreturn [{lastUpdate: nodeStaticData.lastUpdate }];"
+        },
+        "id": "3ff4b778-68c2-4c85-bed8-6070952a6761",
+        "name": "Set last update date for the next run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1180,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "url": "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "actor",
+                "value": "elanis.eu"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "a7a1aefb-0c55-46d2-8b18-f7c5077e334d",
+        "name": "Get all posts from Elanis on Bluesky",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          440,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const nodeStaticData = $getWorkflowStaticData('global');\nlet res = [];\n\nfor(const item of $input.all()[0].json.feed) {\n  if(!(item.post.record.reply && item.post.record.reply.parent) && new Date(item.post.record.createdAt).getTime() > nodeStaticData.lastUpdate) {\n    const parts = item.post.uri.split('/');\n    res.push({ rec: item.post.record.reply, date: new Date(item.post.record.createdAt).getTime(), uri: 'https://bsky.app/profile/elanis.eu/post/' + parts[parts.length - 1] });\n  }\n}\n\nreturn res;"
+        },
+        "id": "f4c7b314-c9be-4d4b-840b-82cc4c456049",
+        "name": "Code",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "workflowId": "ejXq31uGCMn4jcTw",
+          "options": {}
+        },
+        "id": "7e38bdd9-393a-44e6-8777-8a76bb75ec09",
+        "name": "Execute Workflow",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1,
+        "position": [
+          1400,
+          160
+        ],
+        "disabled": true
+      },
+      {
+        "parameters": {},
+        "id": "ff689a7b-87a7-419c-a2bd-228a19a2b6a9",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ]
+      }
+    ],
+    "connections": {
+      "Discord": {
+        "main": [
+          [
+            {
+              "node": "Set last update date for the next run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date if never done": {
+        "main": [
+          [
+            {
+              "node": "Get all posts from Elanis on Bluesky",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Every X minutes": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get all posts from Elanis on Bluesky": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set last update date for the next run": {
+        "main": [
+          [
+            {
+              "node": "Execute Workflow",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set last update date if never done",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "6a13dfdb-f49d-4fdb-8ea2-191349187d7e",
   "connections": {
     "Discord": {
       "main": [
