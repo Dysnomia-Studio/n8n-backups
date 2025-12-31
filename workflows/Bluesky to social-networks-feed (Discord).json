@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T11:10:25.169Z",
-    "createdAt": "2025-12-14T11:10:25.169Z",
-    "versionId": "13d5ccbe-4cc4-422e-b41c-a5100b01f826",
+    "updatedAt": "2025-12-31T14:11:35.183Z",
+    "createdAt": "2025-12-31T14:11:35.183Z",
+    "versionId": "d14d0467-996a-4ba4-b84e-1e9ea9cd8c99",
     "workflowId": "XJIn9kDxBUdVq0nw",
     "nodes": [
       {
@@ -216,7 +216,7 @@
               },
               {
                 "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
-                "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"fuldainfo.bsky.social\",\n\"gnfi-poster.bsky.social\",\n\"goodnews.id\",\n\"heehoo.bsky.social\",\n\"hotzenwaldkurier.bsky.social\",\n\"idntimes.bsky.social\",\n\"infoacehnet.bsky.social\",\n\"katadata-poster.bsky.social\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"onlinemarktplatz.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"tempo-poster.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\",\n\"vcoe.bsky.social\",\n] }}",
+                "leftValue": "={{ [\n\"aicommentaryonnews.bsky.social‬\",\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"fuldainfo.bsky.social\",\n\"gnfi-poster.bsky.social\",\n\"goodnews.id\",\n\"heehoo.bsky.social\",\n\"hotzenwaldkurier.bsky.social\",\n\"idntimes.bsky.social\",\n\"infoacehnet.bsky.social\",\n\"katadata-poster.bsky.social\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"onlinemarktplatz.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"tempo-poster.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\",\n\"vcoe.bsky.social\",\n] }}",
                 "rightValue": "={{ $json.author.handle }}",
                 "operator": {
                   "type": "array",
@@ -228,6 +228,15 @@
                 "id": "494bd20d-ac66-47e0-bf6a-9892a14edf72",
                 "leftValue": "={{ $json.record.text }}",
                 "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska|ops|helikopter) .*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "628e3e12-b2e2-40ae-acf6-c5d3d72fa7d0",
+                "leftValue": "={{ $json.record.text }}",
+                "rightValue": "/(ukrain/russland)/i",
                 "operator": {
                   "type": "string",
                   "operation": "notRegex"
@@ -367,11 +376,11 @@
         ]
       }
     },
-    "authors": "system migration",
+    "authors": "Axel Soupé",
     "name": null,
     "description": null
   },
-  "activeVersionId": "13d5ccbe-4cc4-422e-b41c-a5100b01f826",
+  "activeVersionId": "d14d0467-996a-4ba4-b84e-1e9ea9cd8c99",
   "connections": {
     "Discord": {
       "main": [
@@ -694,7 +703,7 @@
             },
             {
               "id": "5b761c35-686b-4e24-ab74-04272a8803c8",
-              "leftValue": "={{ [\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"fuldainfo.bsky.social\",\n\"gnfi-poster.bsky.social\",\n\"goodnews.id\",\n\"heehoo.bsky.social\",\n\"hotzenwaldkurier.bsky.social\",\n\"idntimes.bsky.social\",\n\"infoacehnet.bsky.social\",\n\"katadata-poster.bsky.social\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"onlinemarktplatz.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"tempo-poster.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\",\n\"vcoe.bsky.social\",\n] }}",
+              "leftValue": "={{ [\n\"aicommentaryonnews.bsky.social‬\",\n\"antara-poster.bsky.social\",\n\"bahnblogstelle.bsky.social\",\n\"buildinginspector.bsky.social\",\n\"domainjava.bsky.social\",\n\"elanis.eu\",\n\"fuldainfo.bsky.social\",\n\"gnfi-poster.bsky.social\",\n\"goodnews.id\",\n\"heehoo.bsky.social\",\n\"hotzenwaldkurier.bsky.social\",\n\"idntimes.bsky.social\",\n\"infoacehnet.bsky.social\",\n\"katadata-poster.bsky.social\",\n\"kumparan-poster.bsky.social\",\n\"logistra.bsky.social\",\n\"onlinemarktplatz.bsky.social\",\n\"pressewelle.de‬\",\n\"republika-poster.bsky.social\",\n\"riaunews.bsky.social\",\n\"ruestungsexperte.bsky.social\",\n\"tempo-poster.bsky.social\",\n\"transport-zeitung.bsky.social\",\n\"ukraineaktuell.bsky.social\",\n\"vcoe.bsky.social\",\n] }}",
               "rightValue": "={{ $json.author.handle }}",
               "operator": {
                 "type": "array",
@@ -706,6 +715,15 @@
               "id": "494bd20d-ac66-47e0-bf6a-9892a14edf72",
               "leftValue": "={{ $json.record.text }}",
               "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska|ops|helikopter) .*$/i",
+              "operator": {
+                "type": "string",
+                "operation": "notRegex"
+              }
+            },
+            {
+              "id": "628e3e12-b2e2-40ae-acf6-c5d3d72fa7d0",
+              "leftValue": "={{ $json.record.text }}",
+              "rightValue": "/(ukrain/russland)/i",
               "operator": {
                 "type": "string",
                 "operation": "notRegex"
@@ -767,6 +785,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-03T09:28:30.000Z",
-  "versionId": "13d5ccbe-4cc4-422e-b41c-a5100b01f826"
+  "updatedAt": "2025-12-31T14:11:35.180Z",
+  "versionId": "d14d0467-996a-4ba4-b84e-1e9ea9cd8c99"
 }
