@@ -297,7 +297,8 @@
     },
     "authors": "Axel Soupé",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "14a74037-75c2-4c43-8710-b01ce7194a1a",
   "connections": {
@@ -316,7 +317,7 @@
       "main": [
         [
           {
-            "node": "Set items",
+            "node": "Get row(s)",
             "type": "main",
             "index": 0
           }
@@ -346,17 +347,6 @@
         []
       ]
     },
-    "Set items": {
-      "main": [
-        [
-          {
-            "node": "Reddit",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Reddit": {
       "main": [
         [
@@ -373,6 +363,17 @@
         [
           {
             "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Reddit",
             "type": "main",
             "index": 0
           }
@@ -399,8 +400,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        224,
-        0
+        288,
+        -32
       ],
       "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
       "credentials": {
@@ -419,8 +420,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -864,
-        112
+        -832,
+        0
       ]
     },
     {
@@ -439,7 +440,7 @@
       "typeVersion": 1.2,
       "position": [
         -1056,
-        112
+        0
       ]
     },
     {
@@ -471,8 +472,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -288,
-        112
+        -160,
+        0
       ]
     },
     {
@@ -484,28 +485,15 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        448,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
-      },
-      "id": "c4b0adad-83af-405b-b488-bdd3d70da948",
-      "name": "Set items",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -688,
-        112
+        512,
+        -32
       ]
     },
     {
       "parameters": {
         "operation": "search",
         "location": "allReddit",
-        "keyword": "={{ $json.value }}",
+        "keyword": "={{ $json.term }}",
         "additionalFields": {
           "sort": "new"
         }
@@ -515,8 +503,8 @@
       "type": "n8n-nodes-base.reddit",
       "typeVersion": 1,
       "position": [
-        -496,
-        112
+        -384,
+        0
       ],
       "credentials": {
         "redditOAuth2Api": {
@@ -590,11 +578,31 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -64,
-        0
+        64,
+        -32
       ],
       "id": "129f6893-04f9-4010-a1b2-69870b802f22",
       "name": "Filter out subreddits"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "WtTJN7WeEvaJugD0",
+          "mode": "list",
+          "cachedResultName": "Relevant terms",
+          "cachedResultUrl": "/projects/eAQxkiYNZBMLrPPR/datatables/WtTJN7WeEvaJugD0"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -608,
+        0
+      ],
+      "id": "22e288e7-fad3-4591-aa2a-d9a08be67c78",
+      "name": "Get row(s)"
     }
   ],
   "pinData": {},
@@ -625,6 +633,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-31T14:07:42.619Z",
-  "versionId": "14a74037-75c2-4c43-8710-b01ce7194a1a"
+  "updatedAt": "2026-01-04T09:59:44.783Z",
+  "versionId": "fc647521-5e8e-42db-8d65-7dc22cd8e9fe"
 }
