@@ -287,7 +287,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a",
   "connections": {
@@ -306,7 +307,7 @@
       "main": [
         [
           {
-            "node": "Set items",
+            "node": "Get search terms",
             "type": "main",
             "index": 0
           }
@@ -318,17 +319,6 @@
         [
           {
             "node": "Set last update date if never done",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Set items": {
-      "main": [
-        [
-          {
-            "node": "Twitch - Get category",
             "type": "main",
             "index": 0
           }
@@ -378,6 +368,17 @@
           }
         ]
       ]
+    },
+    "Get search terms": {
+      "main": [
+        [
+          {
+            "node": "Twitch - Get category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-24T16:37:42.845Z",
@@ -397,9 +398,10 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        0,
-        0
+        112,
+        -48
       ],
+      "webhookId": "ea678846-aa14-49b5-8467-53724acc7874",
       "credentials": {
         "discordWebhookApi": {
           "id": "1FNPFG982ecICkYg",
@@ -416,8 +418,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1260,
-        100
+        -1232,
+        0
       ]
     },
     {
@@ -436,8 +438,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1460,
-        100
+        -1456,
+        0
       ]
     },
     {
@@ -449,26 +451,13 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        200,
-        0
+        336,
+        -48
       ]
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Extortion\" }\n]"
-      },
-      "id": "17f662e9-f46b-4882-a025-f8af9e28e068",
-      "name": "Set items",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1080,
-        100
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.twitch.tv/helix/games?name={{ $json.value }}",
+        "url": "=https://api.twitch.tv/helix/games?name={{ $json.term }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "oAuth2Api",
         "sendHeaders": true,
@@ -487,8 +476,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -880,
-        100
+        -784,
+        0
       ],
       "credentials": {
         "oAuth2Api": {
@@ -518,8 +507,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -700,
-        100
+        -560,
+        0
       ],
       "credentials": {
         "oAuth2Api": {
@@ -538,8 +527,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -500,
-        100
+        -336,
+        0
       ]
     },
     {
@@ -570,9 +559,29 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -300,
-        100
+        -112,
+        0
       ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "WtTJN7WeEvaJugD0",
+          "mode": "list",
+          "cachedResultName": "Relevant terms",
+          "cachedResultUrl": "/projects/eAQxkiYNZBMLrPPR/datatables/WtTJN7WeEvaJugD0"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -1008,
+        0
+      ],
+      "id": "84265ec1-dc2e-416e-9864-81937929b82d",
+      "name": "Get search terms"
     }
   ],
   "pinData": {},
@@ -603,6 +612,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:41:09.000Z",
-  "versionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a"
+  "updatedAt": "2026-01-04T09:57:35.973Z",
+  "versionId": "e8b9b65d-ffa0-4914-8b91-88482d4704de"
 }
