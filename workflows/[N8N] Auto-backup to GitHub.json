@@ -484,7 +484,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "cf6875e8-a56c-4e41-b98a-86c5dd0afc9a",
   "connections": {
@@ -639,17 +640,6 @@
         ]
       ]
     },
-    "On clicking 'execute'": {
-      "main": [
-        [
-          {
-            "node": "Globals",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Every Day": {
       "main": [
         [
@@ -669,17 +659,6 @@
   "name": "[N8N] Auto-backup to GitHub",
   "nodes": [
     {
-      "parameters": {},
-      "id": "e40ac297-2cdd-44d4-8422-f7a836f9576c",
-      "name": "On clicking 'execute'",
-      "type": "n8n-nodes-base.manualTrigger",
-      "position": [
-        -1440,
-        220
-      ],
-      "typeVersion": 1
-    },
-    {
       "parameters": {
         "resource": "file",
         "operation": "get",
@@ -693,11 +672,12 @@
       "name": "GitHub",
       "type": "n8n-nodes-base.github",
       "position": [
-        -600,
-        180
+        -608,
+        192
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
+      "webhookId": "a39c398e-8de0-4803-9f6e-3a4f20f29f0e",
       "credentials": {
         "githubApi": {
           "id": "qdOpt2YER6NJZTn0",
@@ -730,7 +710,7 @@
       "name": "github_status",
       "type": "n8n-nodes-base.switch",
       "position": [
-        40,
+        48,
         320
       ],
       "typeVersion": 1
@@ -741,8 +721,8 @@
       "name": "same",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        280,
-        120
+        288,
+        128
       ],
       "typeVersion": 1
     },
@@ -752,7 +732,7 @@
       "name": "different",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        280,
+        288,
         320
       ],
       "typeVersion": 1
@@ -763,8 +743,8 @@
       "name": "new",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        280,
-        500
+        288,
+        512
       ],
       "typeVersion": 1
     },
@@ -782,10 +762,11 @@
       "name": "GitHub Edit",
       "type": "n8n-nodes-base.github",
       "position": [
-        460,
+        464,
         320
       ],
       "typeVersion": 1,
+      "webhookId": "f29ba5ae-fed3-4cfa-954e-8700e6806ec1",
       "credentials": {
         "githubApi": {
           "id": "qdOpt2YER6NJZTn0",
@@ -806,10 +787,11 @@
       "name": "GitHub Create",
       "type": "n8n-nodes-base.github",
       "position": [
-        460,
-        500
+        464,
+        512
       ],
       "typeVersion": 1,
+      "webhookId": "3655a465-3157-463f-b4cf-e186d2fe3ea4",
       "credentials": {
         "githubApi": {
           "id": "qdOpt2YER6NJZTn0",
@@ -826,8 +808,8 @@
       "name": "OneAtATime",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
-        -820,
-        340
+        -816,
+        352
       ],
       "typeVersion": 1
     },
@@ -855,8 +837,8 @@
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
-        -1260,
-        340
+        -1264,
+        352
       ],
       "typeVersion": 1
     },
@@ -870,8 +852,8 @@
       "name": "Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -1900,
-        120
+        -1904,
+        128
       ],
       "typeVersion": 1
     },
@@ -885,8 +867,8 @@
       "name": "Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -840,
-        60
+        -848,
+        64
       ],
       "typeVersion": 1
     },
@@ -914,8 +896,8 @@
       "name": "n8n",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        -1060,
-        340
+        -1056,
+        352
       ],
       "typeVersion": 1,
       "credentials": {
@@ -933,7 +915,7 @@
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
-        -200,
+        -208,
         320
       ],
       "typeVersion": 1
@@ -944,7 +926,7 @@
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
       "position": [
-        -380,
+        -384,
         320
       ],
       "typeVersion": 2
@@ -964,7 +946,7 @@
       "type": "n8n-nodes-base.cron",
       "position": [
         -1440,
-        480
+        352
       ],
       "typeVersion": 1
     }
@@ -991,6 +973,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:59:54.000Z",
-  "versionId": "cf6875e8-a56c-4e41-b98a-86c5dd0afc9a"
+  "updatedAt": "2026-01-04T10:05:15.374Z",
+  "versionId": "0a3c1805-e7ce-4ab6-b2d3-16110714f78c"
 }
