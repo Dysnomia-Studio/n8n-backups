@@ -253,7 +253,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0",
   "connections": {
@@ -312,26 +313,9 @@
         ]
       ]
     },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "Set last update date if never done",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Set last update date for the next run": {
       "main": [
-        [
-          {
-            "node": "Execute Workflow",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -352,9 +336,10 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        900,
-        80
+        896,
+        0
       ],
+      "webhookId": "d6373c23-6427-4450-bdd9-9dc97918a650",
       "credentials": {
         "discordWebhookApi": {
           "id": "4fTTpcIKo75E63pg",
@@ -371,8 +356,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        200,
-        140
+        224,
+        64
       ]
     },
     {
@@ -392,7 +377,7 @@
       "typeVersion": 1.2,
       "position": [
         0,
-        140
+        64
       ]
     },
     {
@@ -405,7 +390,7 @@
       "typeVersion": 2,
       "position": [
         1120,
-        80
+        0
       ]
     },
     {
@@ -437,8 +422,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        440,
-        140
+        448,
+        64
       ],
       "credentials": {
         "oAuth2Api": {
@@ -453,7 +438,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -476,35 +462,9 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        660,
-        140
+        672,
+        64
       ]
-    },
-    {
-      "parameters": {},
-      "id": "4b664406-5803-4b9e-bc54-e783e7bf5b11",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ]
-    },
-    {
-      "parameters": {
-        "workflowId": "RMUJd9Eo4VshlOfQ",
-        "options": {}
-      },
-      "id": "1044c605-6244-449b-b767-633316a7dea9",
-      "name": "Execute Workflow",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1340,
-        80
-      ],
-      "disabled": true
     }
   ],
   "pinData": {},
@@ -535,6 +495,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:33:28.000Z",
-  "versionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0"
+  "updatedAt": "2026-01-04T09:57:49.734Z",
+  "versionId": "d6d0db60-8a7b-41e7-8a73-66a47bbc4698"
 }
