@@ -203,21 +203,11 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
   "connections": {
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Set variable containing organizations",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Schedule Trigger": {
       "main": [
         [
@@ -281,17 +271,6 @@
   "name": "Automatically cleanup Github packages",
   "nodes": [
     {
-      "parameters": {},
-      "id": "45a2c4b6-9176-4139-98c0-46c882479a94",
-      "name": "When clicking ‘Test workflow’",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        220
-      ]
-    },
-    {
       "parameters": {
         "rule": {
           "interval": [
@@ -309,8 +288,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        0,
-        0
+        16,
+        112
       ]
     },
     {
@@ -323,7 +302,7 @@
       "typeVersion": 2,
       "position": [
         240,
-        100
+        112
       ]
     },
     {
@@ -338,8 +317,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        440,
-        100
+        464,
+        112
       ],
       "credentials": {
         "githubApi": {
@@ -360,8 +339,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
-        100
+        688,
+        112
       ],
       "credentials": {
         "githubApi": {
@@ -379,8 +358,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        880,
-        100
+        912,
+        112
       ]
     },
     {
@@ -396,8 +375,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1100,
-        100
+        1136,
+        112
       ],
       "credentials": {
         "githubApi": {
@@ -429,6 +408,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:30:01.000Z",
-  "versionId": "cf098831-a2f3-425e-9157-6e5ecedf832b"
+  "updatedAt": "2026-01-04T10:06:01.982Z",
+  "versionId": "14708137-a577-45e0-96ad-e2569076a1c3"
 }
