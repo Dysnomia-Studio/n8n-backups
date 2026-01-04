@@ -378,7 +378,8 @@
     },
     "authors": "Axel Soupé",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "d14d0467-996a-4ba4-b84e-1e9ea9cd8c99",
   "connections": {
@@ -479,7 +480,7 @@
             "index": 0
           },
           {
-            "node": "Code in JavaScript",
+            "node": "Get all handles",
             "type": "main",
             "index": 0
           }
@@ -754,7 +755,7 @@
         -304
       ],
       "id": "d27ddf29-ca13-4efd-ad57-51770cae6c65",
-      "name": "Code in JavaScript"
+      "name": "Get all handles"
     }
   ],
   "pinData": {},
@@ -785,6 +786,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-31T14:11:35.180Z",
-  "versionId": "d14d0467-996a-4ba4-b84e-1e9ea9cd8c99"
+  "updatedAt": "2026-01-04T09:58:16.546Z",
+  "versionId": "c635f33d-5f91-4101-bb06-953dd6852fe8"
 }
