@@ -217,7 +217,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "6a13dfdb-f49d-4fdb-8ea2-191349187d7e",
   "connections": {
@@ -286,17 +287,6 @@
           }
         ]
       ]
-    },
-    "Execute Workflow Trigger": {
-      "main": [
-        [
-          {
-            "node": "Set last update date if never done",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2025-01-24T16:57:11.314Z",
@@ -316,9 +306,10 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        920,
+        896,
         160
       ],
+      "webhookId": "d120224c-b257-4cc9-8fe5-f613370f993f",
       "credentials": {
         "discordWebhookApi": {
           "id": "4fTTpcIKo75E63pg",
@@ -335,7 +326,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        200,
+        224,
         160
       ]
     },
@@ -368,7 +359,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1180,
+        1120,
         160
       ]
     },
@@ -391,7 +382,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        440,
+        448,
         160
       ]
     },
@@ -404,7 +395,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
+        672,
         160
       ]
     },
@@ -418,21 +409,10 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        1400,
+        1344,
         160
       ],
       "disabled": true
-    },
-    {
-      "parameters": {},
-      "id": "ff689a7b-87a7-419c-a2bd-228a19a2b6a9",
-      "name": "Execute Workflow Trigger",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ]
     }
   ],
   "pinData": {},
@@ -463,6 +443,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-01-24T16:57:53.000Z",
-  "versionId": "6a13dfdb-f49d-4fdb-8ea2-191349187d7e"
+  "updatedAt": "2026-01-04T10:05:31.171Z",
+  "versionId": "d95270a6-4aae-4e3f-95e5-dca15d8a6b46"
 }
