@@ -243,7 +243,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "5d1682cc-f0d2-4338-918a-2f71488fb6fb",
   "connections": {
@@ -262,7 +263,7 @@
       "main": [
         [
           {
-            "node": "Set items",
+            "node": "Get row(s)",
             "type": "main",
             "index": 0
           }
@@ -302,18 +303,18 @@
         ]
       ]
     },
-    "Set items": {
+    "Get row(s)": {
       "main": [
         [
           {
-            "node": "Get all posts for X on Mastodon",
+            "node": "Get all posts for X on Mastodon GameDev",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get all posts for X on Mastodon": {
+    "Get all posts for X on Mastodon GameDev": {
       "main": [
         [
           {
@@ -342,8 +343,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        0,
-        0
+        208,
+        -64
       ],
       "webhookId": "363517a1-53f7-45b3-8a49-b6c19774694b"
     },
@@ -356,8 +357,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -944,
-        112
+        -912,
+        0
       ]
     },
     {
@@ -370,8 +371,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -400,
-        112
+        -240,
+        0
       ]
     },
     {
@@ -390,7 +391,7 @@
       "typeVersion": 1.2,
       "position": [
         -1136,
-        112
+        0
       ]
     },
     {
@@ -421,8 +422,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -224,
-        112
+        -16,
+        0
       ]
     },
     {
@@ -434,22 +435,29 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        192,
-        0
+        432,
+        -64
       ]
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { value: \"Manufactur'inc\" },\n  { value: \"Manufacturinc\" },\n  { value: \"Alchemistry\" },\n  { value: \"Dysnomia\" },\n  { value: \"Logistik\" }\n]"
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "WtTJN7WeEvaJugD0",
+          "mode": "list",
+          "cachedResultName": "Relevant terms",
+          "cachedResultUrl": "/projects/eAQxkiYNZBMLrPPR/datatables/WtTJN7WeEvaJugD0"
+        }
       },
-      "id": "ca9423cb-8c25-4ee0-88b3-eef244745c0a",
-      "name": "Set items",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
       "position": [
-        -768,
-        112
-      ]
+        -688,
+        0
+      ],
+      "id": "1a430661-4818-49e9-85cc-a9db02df909f",
+      "name": "Get row(s)"
     },
     {
       "parameters": {
@@ -461,7 +469,7 @@
           "parameters": [
             {
               "name": "q",
-              "value": "={{ $json.value }}"
+              "value": "={{ $json.term }}"
             },
             {
               "name": "type",
@@ -472,12 +480,12 @@
         "options": {}
       },
       "id": "fb455f8d-a628-4a62-a849-1ec9112d49bd",
-      "name": "Get all posts for X on Mastodon",
+      "name": "Get all posts for X on Mastodon GameDev",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -576,
-        112
+        -464,
+        0
       ],
       "credentials": {
         "oAuth2Api": {
@@ -515,6 +523,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T16:21:27.000Z",
-  "versionId": "5d1682cc-f0d2-4338-918a-2f71488fb6fb"
+  "updatedAt": "2026-01-04T10:03:08.010Z",
+  "versionId": "e171e945-6528-4a7c-8f73-87229e39f2b7"
 }
