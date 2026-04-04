@@ -1,15 +1,15 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-23T15:05:06.000Z",
-    "createdAt": "2026-01-23T15:04:07.263Z",
-    "versionId": "16f9acef-0e06-4792-b191-a0d6afc1d85f",
+    "updatedAt": "2026-04-04T11:54:52.000Z",
+    "createdAt": "2026-04-04T11:54:45.582Z",
+    "versionId": "ea0f3e3a-584c-4b9e-9a0e-894c2d9f0019",
     "workflowId": "9YD4vxIuXwurqkk3",
     "nodes": [
       {
         "parameters": {
           "authentication": "webhook",
-          "content": "={{ $json.url }}",
+          "content": "={{ $('Filter to get recent posts').item.json.url }}",
           "options": {}
         },
         "id": "b333aea6-6f94-47c2-a291-5f4de519af1b",
@@ -17,8 +17,8 @@
         "type": "n8n-nodes-base.discord",
         "typeVersion": 2,
         "position": [
-          288,
-          -32
+          720,
+          -272
         ],
         "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
         "credentials": {
@@ -38,7 +38,7 @@
         "typeVersion": 2,
         "position": [
           -832,
-          0
+          -112
         ]
       },
       {
@@ -57,7 +57,7 @@
         "typeVersion": 1.2,
         "position": [
           -1056,
-          0
+          -112
         ]
       },
       {
@@ -80,7 +80,7 @@
                 }
               }
             ],
-            "combinator": "and"
+            "combinator": "or"
           },
           "options": {}
         },
@@ -90,7 +90,7 @@
         "typeVersion": 2,
         "position": [
           -160,
-          0
+          -112
         ]
       },
       {
@@ -102,8 +102,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          512,
-          -32
+          944,
+          -272
         ]
       },
       {
@@ -121,7 +121,7 @@
         "typeVersion": 1,
         "position": [
           -384,
-          0
+          -112
         ],
         "credentials": {
           "redditOAuth2Api": {
@@ -129,77 +129,6 @@
             "name": "Reddit account"
           }
         }
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 2
-            },
-            "conditions": [
-              {
-                "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-                "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'CNFansSub', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism', 'hoi4',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic', 'MortalKombat',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'teslore', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
-                "rightValue": "={{ $json.subreddit }}",
-                "operator": {
-                  "type": "array",
-                  "operation": "notContains",
-                  "rightType": "any"
-                }
-              },
-              {
-                "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
-                "leftValue": "={{ $json.subreddit }}",
-                "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|dresden|legal|finanz|financ|minecraft)[a-z\\_]*$/i",
-                "operator": {
-                  "type": "string",
-                  "operation": "notRegex"
-                }
-              },
-              {
-                "id": "dba766b7-f069-4991-b372-96678a805407",
-                "leftValue": "={{ $json.subreddit }}",
-                "rightValue": "/^(u_).*$/i",
-                "operator": {
-                  "type": "string",
-                  "operation": "notRegex"
-                }
-              },
-              {
-                "id": "6da76a04-38b0-4f78-97de-17e406511ad2",
-                "leftValue": "={{ $json.selftext }}",
-                "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska) .*$/i",
-                "operator": {
-                  "type": "string",
-                  "operation": "notRegex"
-                }
-              },
-              {
-                "id": "ca5e1779-f9e4-446f-b13a-7541b79a51f6",
-                "leftValue": "={{ $json.quarantine || $json.over_18 }}",
-                "rightValue": "",
-                "operator": {
-                  "type": "boolean",
-                  "operation": "false",
-                  "singleValue": true
-                }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.filter",
-        "typeVersion": 2.2,
-        "position": [
-          64,
-          -32
-        ],
-        "id": "129f6893-04f9-4010-a1b2-69870b802f22",
-        "name": "Filter out subreddits"
       },
       {
         "parameters": {
@@ -216,10 +145,95 @@
         "typeVersion": 1.1,
         "position": [
           -608,
-          0
+          -112
         ],
         "id": "22e288e7-fad3-4591-aa2a-d9a08be67c78",
         "name": "Get row(s)"
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.subreddit + \" \" + $input.item.json.selftext + \" \" + $input.item.json.title \n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          48,
+          -272
+        ],
+        "id": "40fd173b-bf1e-4012-8e6e-ad3df75dc65f",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "9xBZjNJbxXDjOYHT",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/9xBZjNJbxXDjOYHT",
+            "cachedResultName": "Filter-out social posts"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          272,
+          -272
+        ],
+        "name": "Call Filter-out social posts",
+        "id": "e3c7d970-c7f8-4f59-a7ab-ee7db9f263f6"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "dba766b7-f069-4991-b372-96678a805407",
+                "leftValue": "={{ $('Filter to get recent posts').item.json.subreddit }}",
+                "rightValue": "/^(u_).*$/i",
+                "operator": {
+                  "type": "string",
+                  "operation": "notRegex"
+                }
+              },
+              {
+                "id": "a2ef0335-d6a7-4f27-8acc-7c8e51b95216",
+                "leftValue": "={{ $json.valid }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.2,
+        "position": [
+          496,
+          -272
+        ],
+        "id": "129f6893-04f9-4010-a1b2-69870b802f22",
+        "name": "Filter out content"
       }
     ],
     "connections": {
@@ -260,7 +274,7 @@
         "main": [
           [
             {
-              "node": "Filter out subreddits",
+              "node": "Code in JavaScript",
               "type": "main",
               "index": 0
             }
@@ -279,17 +293,6 @@
           ]
         ]
       },
-      "Filter out subreddits": {
-        "main": [
-          [
-            {
-              "node": "Discord",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "Get row(s)": {
         "main": [
           [
@@ -300,14 +303,47 @@
             }
           ]
         ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Call Filter-out social posts",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call Filter-out social posts": {
+        "main": [
+          [
+            {
+              "node": "Filter out content",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter out content": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Axel Soupé",
-    "name": "Version 16f9acef",
+    "name": "Version ea0f3e3a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "16f9acef-0e06-4792-b191-a0d6afc1d85f",
+  "activeVersionId": "ea0f3e3a-584c-4b9e-9a0e-894c2d9f0019",
   "connections": {
     "Discord": {
       "main": [
@@ -346,7 +382,7 @@
       "main": [
         [
           {
-            "node": "Filter out subreddits",
+            "node": "Code in JavaScript",
             "type": "main",
             "index": 0
           }
@@ -365,22 +401,44 @@
         ]
       ]
     },
-    "Filter out subreddits": {
+    "Get row(s)": {
       "main": [
         [
           {
-            "node": "Discord",
+            "node": "Reddit",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get row(s)": {
+    "Code in JavaScript": {
       "main": [
         [
           {
-            "node": "Reddit",
+            "node": "Call Filter-out social posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Filter-out social posts": {
+      "main": [
+        [
+          {
+            "node": "Filter out content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter out content": {
+      "main": [
+        [
+          {
+            "node": "Discord",
             "type": "main",
             "index": 0
           }
@@ -399,7 +457,7 @@
     {
       "parameters": {
         "authentication": "webhook",
-        "content": "={{ $json.url }}",
+        "content": "={{ $('Filter to get recent posts').item.json.url }}",
         "options": {}
       },
       "id": "b333aea6-6f94-47c2-a291-5f4de519af1b",
@@ -407,8 +465,8 @@
       "type": "n8n-nodes-base.discord",
       "typeVersion": 2,
       "position": [
-        288,
-        -32
+        720,
+        -272
       ],
       "webhookId": "71745d20-e604-4e69-aa54-4de8d5a118f6",
       "credentials": {
@@ -428,7 +486,7 @@
       "typeVersion": 2,
       "position": [
         -832,
-        0
+        -112
       ]
     },
     {
@@ -447,7 +505,7 @@
       "typeVersion": 1.2,
       "position": [
         -1056,
-        0
+        -112
       ]
     },
     {
@@ -470,7 +528,7 @@
               }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
@@ -480,7 +538,7 @@
       "typeVersion": 2,
       "position": [
         -160,
-        0
+        -112
       ]
     },
     {
@@ -492,8 +550,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        512,
-        -32
+        944,
+        -272
       ]
     },
     {
@@ -511,7 +569,7 @@
       "typeVersion": 1,
       "position": [
         -384,
-        0
+        -112
       ],
       "credentials": {
         "redditOAuth2Api": {
@@ -519,77 +577,6 @@
           "name": "Reddit account"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "1e64fe27-824d-4285-b4b6-502c5e62baf3",
-              "leftValue": "={{[\n'100_years_ago', '7kRebirth', '40kLore',\n'ADHS', 'allthemods', 'AquaristikDE', 'arbeitsleben', 'Asksweddit', 'askswitzerland', 'astrophotography', 'Ausbildung', 'augsburg', 'Austria', 'Azubis',\n'beziehungen', 'Bolehland', 'bundeswehr',\n'CanadianForces', 'caf', 'CellToSingularity', 'CNFanshelp', 'CNfans', 'CNFansSub', 'confect',\n'de_EDV', 'DeutscheFinanzen', 'DeutschePhotovoltaik', 'dhl_deutsche_post', 'dkkarriere', 'dkloenseddel', 'DKstudie', 'discordian', 'drumkitsleaks',\n'EuroTruck2', 'ETS2', 'ExeedLogistik',\n'factorio', 'fahrerjobs_', 'feedthebeast', 'Finanznachrichten', 'franchiseunternehmen', 'FrontStatus',\n'GeschichtsMaimais', 'Gothenburg',\n'Handwerker', 'Hellenism', 'hoi4',\n'IHKWeiterbildung', 'indonesia', 'indonesiabebas', 'InformatikKarriere', 'InternPlug',\n'Jazz', 'JobboerseBerlin', 'JudiSaham',\n'Kommunismus',\n'lewdgames', 'Linz', 'logistik', 'LoveCymatics', 'luftablassen',\n'mauerstrassenwetten', 'Messen', 'MindOverMagic', 'MortalKombat',\n'NewToDenmark',\n'OeffentlicherDienst', 'OnceUponAGalaxy', 'ONDS', 'OnePieceSpoilers', 'oopbuy', 'OperationResearch',\n'Pflege', 'PilzDACH', 'PolenSBlog',\n'Ratschlag', 'RedditJobBoard', 'remotivejobs', 'repsdeutschland', 'robotics',\n'satisfactory', 'seestar', 'selbststaendig', 'slovenia', 'spitzenverdiener', 'SprocketTankDesign', 'StardewValleyMods', 'StardewValley', 'Stellaris', 'Studium', 'stuttgart', 'SuppressedVoices', 'Sverige', 'Sverigesforsvarsmakt', 'sweden', 'Switzerland',\n'TagesFakten', 'teslore', 'TheSerumPresetTrade',\n'umea',\n'Veranstaltungstechnik',\n'wallstreetbetsGER', 'wandern', 'wargame', 'wien', 'winxclub',\n'xsr900',\n'ynvisible',\n'zipmend'\n]}}",
-              "rightValue": "={{ $json.subreddit }}",
-              "operator": {
-                "type": "array",
-                "operation": "notContains",
-                "rightType": "any"
-              }
-            },
-            {
-              "id": "ba29686b-38b9-443f-a24a-b0412f40d48b",
-              "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^[a-z\\_]*(job|crypto|investment|hamburg|berlin|aktien|politik|frankfurt|dresden|legal|finanz|financ|minecraft)[a-z\\_]*$/i",
-              "operator": {
-                "type": "string",
-                "operation": "notRegex"
-              }
-            },
-            {
-              "id": "dba766b7-f069-4991-b372-96678a805407",
-              "leftValue": "={{ $json.subreddit }}",
-              "rightValue": "/^(u_).*$/i",
-              "operator": {
-                "type": "string",
-                "operation": "notRegex"
-              }
-            },
-            {
-              "id": "6da76a04-38b0-4f78-97de-17e406511ad2",
-              "leftValue": "={{ $json.selftext }}",
-              "rightValue": "/^.* (war|millitary|militärisch|militär|dhl|helikoptere|amazon|ukraine|ukrainska) .*$/i",
-              "operator": {
-                "type": "string",
-                "operation": "notRegex"
-              }
-            },
-            {
-              "id": "ca5e1779-f9e4-446f-b13a-7541b79a51f6",
-              "leftValue": "={{ $json.quarantine || $json.over_18 }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "false",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.filter",
-      "typeVersion": 2.2,
-      "position": [
-        64,
-        -32
-      ],
-      "id": "129f6893-04f9-4010-a1b2-69870b802f22",
-      "name": "Filter out subreddits"
     },
     {
       "parameters": {
@@ -606,15 +593,101 @@
       "typeVersion": 1.1,
       "position": [
         -608,
-        0
+        -112
       ],
       "id": "22e288e7-fad3-4591-aa2a-d9a08be67c78",
       "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.subreddit + \" \" + $input.item.json.selftext + \" \" + $input.item.json.title \n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        48,
+        -272
+      ],
+      "id": "40fd173b-bf1e-4012-8e6e-ad3df75dc65f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "9xBZjNJbxXDjOYHT",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/9xBZjNJbxXDjOYHT",
+          "cachedResultName": "Filter-out social posts"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        272,
+        -272
+      ],
+      "name": "Call Filter-out social posts",
+      "id": "e3c7d970-c7f8-4f59-a7ab-ee7db9f263f6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dba766b7-f069-4991-b372-96678a805407",
+              "leftValue": "={{ $('Filter to get recent posts').item.json.subreddit }}",
+              "rightValue": "/^(u_).*$/i",
+              "operator": {
+                "type": "string",
+                "operation": "notRegex"
+              }
+            },
+            {
+              "id": "a2ef0335-d6a7-4f27-8acc-7c8e51b95216",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        -272
+      ],
+      "id": "129f6893-04f9-4010-a1b2-69870b802f22",
+      "name": "Filter out content"
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -640,6 +713,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-01-23T15:04:07.262Z",
-  "versionId": "16f9acef-0e06-4792-b191-a0d6afc1d85f"
+  "updatedAt": "2026-04-04T11:54:45.581Z",
+  "versionId": "ea0f3e3a-584c-4b9e-9a0e-894c2d9f0019"
 }
