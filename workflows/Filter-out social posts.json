@@ -1,0 +1,299 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-04T11:44:38.000Z",
+    "createdAt": "2026-04-04T11:43:59.848Z",
+    "versionId": "6ceb63f0-ad91-4197-b970-48fb538ee0cb",
+    "workflowId": "9xBZjNJbxXDjOYHT",
+    "nodes": [
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "edebbb30-adb2-4953-a5ae-8f7ddaf0eaae",
+                "leftValue": "",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.3,
+        "position": [
+          480,
+          -272
+        ],
+        "id": "5298c974-4050-44db-8820-41d4b5ecbce1",
+        "name": "Filter out topics"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "5c95b134-6620-4a80-96b5-c829d12af072",
+                "name": "subreddit",
+                "value": "={{ $json.subreddit }}",
+                "type": "string"
+              },
+              {
+                "id": "77e4b61a-07eb-4b82-a628-7e77de37074e",
+                "name": "selftext",
+                "value": "={{ $json.selftext }}",
+                "type": "string"
+              },
+              {
+                "id": "913bb942-bb95-427a-9ce6-6a6a4ba94a00",
+                "name": "quarantine",
+                "value": "={{ $json.quarantine }}",
+                "type": "string"
+              },
+              {
+                "id": "41605f21-ddd3-45b3-9fba-b9a3e2b0cdf2",
+                "name": "over_18",
+                "value": "={{ $json.over_18 }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          688,
+          -272
+        ],
+        "id": "6f5a4a88-bffd-4dda-9fcc-fd491f099196",
+        "name": "Return"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "id": "1a845a32-3044-4317-96ed-3e1533754547",
+        "typeVersion": 1.1,
+        "name": "Start",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "position": [
+          64,
+          -272
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"ops\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          272,
+          -272
+        ],
+        "id": "b6edfb2c-280a-4a7c-ba1d-fa87219f28e5",
+        "name": "Code in JavaScript"
+      }
+    ],
+    "connections": {
+      "Start": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter out topics": {
+        "main": [
+          [
+            {
+              "node": "Return",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Filter out topics",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Axel Soupé",
+    "name": "Version 6ceb63f0",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "6ceb63f0-ad91-4197-b970-48fb538ee0cb",
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter out topics": {
+      "main": [
+        [
+          {
+            "node": "Return",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Filter out topics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-04T11:28:32.932Z",
+  "id": "9xBZjNJbxXDjOYHT",
+  "isArchived": false,
+  "meta": null,
+  "name": "Filter-out social posts",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "edebbb30-adb2-4953-a5ae-8f7ddaf0eaae",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        -272
+      ],
+      "id": "5298c974-4050-44db-8820-41d4b5ecbce1",
+      "name": "Filter out topics"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b63e2b89-dd4b-4c2b-9771-d7fe5b4385ab",
+              "name": "valid",
+              "value": "={{ $json.valid }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        688,
+        -272
+      ],
+      "id": "6f5a4a88-bffd-4dda-9fcc-fd491f099196",
+      "name": "Return"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "1a845a32-3044-4317-96ed-3e1533754547",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        64,
+        -272
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"ops\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        -272
+      ],
+      "id": "b6edfb2c-280a-4a7c-ba1d-fa87219f28e5",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-04T11:28:32.936Z",
+      "createdAt": "2026-04-04T11:28:32.936Z",
+      "role": "workflow:owner",
+      "workflowId": "9xBZjNJbxXDjOYHT",
+      "projectId": "eAQxkiYNZBMLrPPR"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-04T11:46:29.890Z",
+  "versionId": "9177780f-289e-4fc0-8274-df24aca19a02"
+}
