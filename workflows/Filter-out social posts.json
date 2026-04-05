@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-04T11:44:38.000Z",
-    "createdAt": "2026-04-04T11:43:59.848Z",
-    "versionId": "6ceb63f0-ad91-4197-b970-48fb538ee0cb",
+    "updatedAt": "2026-04-05T19:28:31.000Z",
+    "createdAt": "2026-04-05T19:28:29.967Z",
+    "versionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8",
     "workflowId": "9xBZjNJbxXDjOYHT",
     "nodes": [
       {
@@ -45,28 +45,10 @@
           "assignments": {
             "assignments": [
               {
-                "id": "5c95b134-6620-4a80-96b5-c829d12af072",
-                "name": "subreddit",
-                "value": "={{ $json.subreddit }}",
-                "type": "string"
-              },
-              {
-                "id": "77e4b61a-07eb-4b82-a628-7e77de37074e",
-                "name": "selftext",
-                "value": "={{ $json.selftext }}",
-                "type": "string"
-              },
-              {
-                "id": "913bb942-bb95-427a-9ce6-6a6a4ba94a00",
-                "name": "quarantine",
-                "value": "={{ $json.quarantine }}",
-                "type": "string"
-              },
-              {
-                "id": "41605f21-ddd3-45b3-9fba-b9a3e2b0cdf2",
-                "name": "over_18",
-                "value": "={{ $json.over_18 }}",
-                "type": "string"
+                "id": "b63e2b89-dd4b-4c2b-9771-d7fe5b4385ab",
+                "name": "valid",
+                "value": "={{ $json.valid }}",
+                "type": "boolean"
               }
             ]
           },
@@ -97,7 +79,7 @@
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"ops\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -123,13 +105,7 @@
       },
       "Filter out topics": {
         "main": [
-          [
-            {
-              "node": "Return",
-              "type": "main",
-              "index": 0
-            }
-          ]
+          []
         ]
       },
       "Code in JavaScript": {
@@ -145,11 +121,11 @@
       }
     },
     "authors": "Axel Soupé",
-    "name": "Version 6ceb63f0",
+    "name": "Version be38d6c7",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "6ceb63f0-ad91-4197-b970-48fb538ee0cb",
+  "activeVersionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8",
   "connections": {
     "Start": {
       "main": [
@@ -164,13 +140,7 @@
     },
     "Filter out topics": {
       "main": [
-        [
-          {
-            "node": "Return",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Code in JavaScript": {
@@ -264,7 +234,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"ops\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -291,9 +261,8 @@
       "projectId": "eAQxkiYNZBMLrPPR"
     }
   ],
-  "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-04-04T11:46:29.890Z",
-  "versionId": "9177780f-289e-4fc0-8274-df24aca19a02"
+  "updatedAt": "2026-04-05T19:28:29.966Z",
+  "versionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8"
 }
