@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-04T11:59:29.000Z",
-    "createdAt": "2026-04-04T11:59:11.867Z",
-    "versionId": "68cfdfea-d8fb-4e66-9679-e8c75ebf8dac",
+    "updatedAt": "2026-04-04T14:56:46.000Z",
+    "createdAt": "2026-04-04T14:56:40.282Z",
+    "versionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f",
     "workflowId": "XJIn9kDxBUdVq0nw",
     "nodes": [
       {
@@ -137,7 +137,7 @@
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $json.author.handle + '/post/' + parts[parts.length - 1] };"
+          "jsCode": "const parts = $('Filter to get recent posts').item.json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $('Filter to get recent posts').item.json.author.handle + '/post/' + parts[parts.length - 1] };"
         },
         "id": "2c1fe8e5-cdca-453e-ad32-329fd3cf3429",
         "name": "Code",
@@ -198,7 +198,7 @@
             "conditions": [
               {
                 "id": "4fe2c81d-3060-43cb-bfd9-f93a56bb6e07",
-                "leftValue": "={{ $json.item.valid }}",
+                "leftValue": "={{ $json.valid }}",
                 "rightValue": "",
                 "operator": {
                   "type": "boolean",
@@ -251,7 +251,7 @@
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.author.handle + ' ' + $input.item.json.author.displayName + ' ' + $input.item.json.record.bridgyOriginalText + ' ' + $input.item.json.record.text + ' ' + $input.item.json.embed.external.title + ' ' + $input.item.json.embed.external.description  \n}"
+          "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.author.handle + ' ' + $input.item.json.author.displayName + ' ' + $input.item.json.record.bridgyOriginalText + ' ' + $input.item.json.record.text + ' ' + ($input.item.json.embed?.external?.title ?? '') + ' ' + ($input.item.json.embed?.external?.description ?? '')  \n}"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -261,6 +261,20 @@
         ],
         "id": "55f29293-5246-4c3a-a82a-404791a5fef7",
         "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "return {\n  valid: $input.item.json.valid,\n  ...$(\"Filter to get recent posts\").item,\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          864,
+          -624
+        ],
+        "id": "379cd846-627e-48a0-9695-6da4fda1198a",
+        "name": "Debug"
       }
     ],
     "connections": {
@@ -359,6 +373,11 @@
               "node": "Code",
               "type": "main",
               "index": 0
+            },
+            {
+              "node": "Debug",
+              "type": "main",
+              "index": 0
             }
           ]
         ]
@@ -387,11 +406,11 @@
       }
     },
     "authors": "Axel Soupé",
-    "name": "Version 68cfdfea",
+    "name": "Version 18c8e427",
     "description": "",
-    "autosaved": true
+    "autosaved": false
   },
-  "activeVersionId": "68cfdfea-d8fb-4e66-9679-e8c75ebf8dac",
+  "activeVersionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f",
   "connections": {
     "Discord": {
       "main": [
@@ -486,6 +505,11 @@
         [
           {
             "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Debug",
             "type": "main",
             "index": 0
           }
@@ -652,7 +676,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const parts = $json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $json.author.handle + '/post/' + parts[parts.length - 1] };"
+        "jsCode": "const parts = $('Filter to get recent posts').item.json.uri.split('/');\n\nreturn { uri: 'https://bsky.app/profile/' + $('Filter to get recent posts').item.json.author.handle + '/post/' + parts[parts.length - 1] };"
       },
       "id": "2c1fe8e5-cdca-453e-ad32-329fd3cf3429",
       "name": "Code",
@@ -713,7 +737,7 @@
           "conditions": [
             {
               "id": "4fe2c81d-3060-43cb-bfd9-f93a56bb6e07",
-              "leftValue": "={{ $json.item.valid }}",
+              "leftValue": "={{ $json.valid }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
@@ -766,7 +790,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.author.handle + ' ' + $input.item.json.author.displayName + ' ' + $input.item.json.record.bridgyOriginalText + ' ' + $input.item.json.record.text + ' ' + $input.item.json.embed.external.title + ' ' + $input.item.json.embed.external.description  \n}"
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn {\n  text: $input.item.json.author.handle + ' ' + $input.item.json.author.displayName + ' ' + $input.item.json.record.bridgyOriginalText + ' ' + $input.item.json.record.text + ' ' + ($input.item.json.embed?.external?.title ?? '') + ' ' + ($input.item.json.embed?.external?.description ?? '')  \n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -776,6 +800,20 @@
       ],
       "id": "55f29293-5246-4c3a-a82a-404791a5fef7",
       "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  valid: $input.item.json.valid,\n  ...$(\"Filter to get recent posts\").item,\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        864,
+        -624
+      ],
+      "id": "379cd846-627e-48a0-9695-6da4fda1198a",
+      "name": "Debug"
     }
   ],
   "pinData": {},
@@ -807,6 +845,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-04T11:59:11.867Z",
-  "versionId": "68cfdfea-d8fb-4e66-9679-e8c75ebf8dac"
+  "updatedAt": "2026-04-04T14:56:40.281Z",
+  "versionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f"
 }
