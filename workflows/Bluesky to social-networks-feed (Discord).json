@@ -632,9 +632,19 @@
                 "type": "number",
                 "operation": "gt"
               }
+            },
+            {
+              "id": "9f905d57-fe4a-4d40-b5d6-1b4605d36b30",
+              "leftValue": true,
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
@@ -845,6 +855,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-04T14:56:40.281Z",
-  "versionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f"
+  "updatedAt": "2026-04-06T07:43:26.461Z",
+  "versionId": "69673ca3-40c3-420e-8c30-0a94c97a185d"
 }
