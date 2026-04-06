@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-05T19:28:31.000Z",
-    "createdAt": "2026-04-05T19:28:29.967Z",
-    "versionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8",
+    "updatedAt": "2026-04-06T07:43:01.000Z",
+    "createdAt": "2026-04-06T07:43:00.168Z",
+    "versionId": "100e9500-ec88-4ea1-9583-e9b884d6195e",
     "workflowId": "9xBZjNJbxXDjOYHT",
     "nodes": [
       {
@@ -79,7 +79,7 @@
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -121,11 +121,11 @@
       }
     },
     "authors": "Axel Soupé",
-    "name": "Version be38d6c7",
+    "name": "Version 100e9500",
     "description": "",
-    "autosaved": true
+    "autosaved": false
   },
-  "activeVersionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8",
+  "activeVersionId": "100e9500-ec88-4ea1-9583-e9b884d6195e",
   "connections": {
     "Start": {
       "main": [
@@ -234,7 +234,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -10,\n  \"berlin\": -10,\n  \"denmark\": -10,\n  \"dresden\": -10,\n  \"hamburg\": -10,\n  \"frankfurt\": -10,\n  \"indonesia\": -10,\n  \"slovenia\": -10,\n  \"sverige\": -10,\n  \"sweden\": -10,\n  \"swiss\": -10,\n  \"switzerland\": -10,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"news\": -1,\n  \"politik\": -1,\n  \"stream\": 5,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -263,6 +263,6 @@
   ],
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-04-05T19:28:29.966Z",
-  "versionId": "be38d6c7-c4c7-4bc7-b770-13e3443370a8"
+  "updatedAt": "2026-04-06T07:45:16.652Z",
+  "versionId": "d84bbb19-a63e-42e2-8149-0be5af82c40d"
 }
