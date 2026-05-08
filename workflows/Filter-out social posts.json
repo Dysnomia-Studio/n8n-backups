@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-25T09:10:32.000Z",
-    "createdAt": "2026-04-25T09:09:48.399Z",
-    "versionId": "48facf7a-7255-4d16-8242-21acd8d32c80",
+    "updatedAt": "2026-05-08T08:14:16.000Z",
+    "createdAt": "2026-05-08T08:13:52.049Z",
+    "versionId": "7df0c070-6a4e-4634-a8cf-cc76f73c9145",
     "workflowId": "9xBZjNJbxXDjOYHT",
     "nodes": [
       {
@@ -79,7 +79,7 @@
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -1,\n  \"berlin\": -1,\n  \"denmark\": -1,\n  \"dresden\": -1,\n  \"hamburg\": -1,\n  \"frankfurt\": -1,\n  \"indonesia\": -1,\n  \"russia\": -1,\n  \"rusia\": -1,\n  \"slovak\": -1,\n  \"sloven\": -1,\n  \"sverige\": -1,\n  \"sweden\": -1,\n  \"serbia\": -1,\n  \"slovakia\": -1,\n  \"swiss\": -1,\n  \"switzerland\": -1,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"offensive\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"bahnhof\": 10,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"mature\": -100,\n  \"news\": -1,\n  \"nsfw\": -100,\n  \"politik\": -1,\n  \"presse\": -1,\n  \"stream\": 5,\n  \"schiffen\": -1,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n  \"logistik heute\": -10,\n  \"logistik-heute\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+          "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -1,\n  \"berlin\": -1,\n  \"denmark\": -1,\n  \"deutschland\": -1,\n  \"dresden\": -1,\n  \"hamburg\": -1,\n  \"frankfurt\": -1,\n  \"indonesia\": -1,\n  \"russia\": -1,\n  \"rusia\": -1,\n  \"slovak\": -1,\n  \"sloven\": -1,\n  \"sverige\": -1,\n  \"sweden\": -1,\n  \"serbia\": -1,\n  \"slovakia\": -1,\n  \"swiss\": -1,\n  \"switzerland\": -1,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  \"e-commerce\": -100,\n  // War-related topics\n  \"azov\": \"-100\",\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"helikoptrar\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"offensive\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 10,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"bahnhof\": 10,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"logistikbranche\": -2,\n  \"mature\": -100,\n  \"news\": -1,\n  \"nsfw\": -100,\n  \"politik\": -1,\n  \"presse\": -1,\n  \"stream\": 5,\n  \"schiffen\": -1,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  \"university\": -1,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n  \"logistik heute\": -10,\n  \"logistik-heute\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -121,11 +121,11 @@
       }
     },
     "authors": "Axel Soupé",
-    "name": "Version 48facf7a",
+    "name": "Version 7df0c070",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "48facf7a-7255-4d16-8242-21acd8d32c80",
+  "activeVersionId": "7df0c070-6a4e-4634-a8cf-cc76f73c9145",
   "connections": {
     "Start": {
       "main": [
@@ -234,7 +234,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -1,\n  \"berlin\": -1,\n  \"denmark\": -1,\n  \"dresden\": -1,\n  \"hamburg\": -1,\n  \"frankfurt\": -1,\n  \"indonesia\": -1,\n  \"russia\": -1,\n  \"rusia\": -1,\n  \"slovak\": -1,\n  \"sloven\": -1,\n  \"sverige\": -1,\n  \"sweden\": -1,\n  \"serbia\": -1,\n  \"slovakia\": -1,\n  \"swiss\": -1,\n  \"switzerland\": -1,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  // War-related topics\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"offensive\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 100,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"bahnhof\": 10,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"mature\": -100,\n  \"news\": -1,\n  \"nsfw\": -100,\n  \"politik\": -1,\n  \"presse\": -1,\n  \"stream\": 5,\n  \"schiffen\": -1,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n  \"logistik heute\": -10,\n  \"logistik-heute\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
+        "jsCode": "const scoreData = {\n  // Location-related topics\n  \"austria\": -1,\n  \"berlin\": -1,\n  \"denmark\": -1,\n  \"deutschland\": -1,\n  \"dresden\": -1,\n  \"hamburg\": -1,\n  \"frankfurt\": -1,\n  \"indonesia\": -1,\n  \"russia\": -1,\n  \"rusia\": -1,\n  \"slovak\": -1,\n  \"sloven\": -1,\n  \"sverige\": -1,\n  \"sweden\": -1,\n  \"serbia\": -1,\n  \"slovakia\": -1,\n  \"swiss\": -1,\n  \"switzerland\": -1,\n  // Delivery-related topics\n  \"amazon\": -10,\n  \"dhl\": -100,\n  \"e-commerce\": -100,\n  // War-related topics\n  \"azov\": \"-100\",\n  \"forces\": -1,\n  \"krieg\": -100,\n  \"helikopter\": -100,\n  \"helikoptrar\": -100,\n  \"militär\": -100,\n  \"millitär\": -100,\n  \"militar\": -100,\n  \"millitar\": -100,\n  \"offensive\": -10,\n  \"russland\": -100,\n  \"ukrain\": -100,\n  \"war\": -100,\n  // Game-related topic\n  \"game\": 100,\n  \"hacking\": \"5\",\n  \"merge\": 5,\n  \"mods\": -1,\n  \"minecraft\": -10,\n  \"stardew\": -10,\n  \"steam\": 100,\n  \"train\": 10,\n  // Other topics\n  \"aktien\": -1,\n  \" ai \": -100,\n  \" ai-\": -100,\n  \"bahnhof\": 10,\n  \"crypto\": -100,\n  \"financ\": -1,\n  \"finanz\": -1,\n  \"intern\": -1,\n  \"investment\": -100,\n  \"job\": -1,\n  \"karriere\": -1,\n  \"legal\": -1,\n  \"logistikbranche\": -2,\n  \"mature\": -100,\n  \"news\": -1,\n  \"nsfw\": -100,\n  \"politik\": -1,\n  \"presse\": -1,\n  \"stream\": 5,\n  \"schiffen\": -1,\n  \"truck\": -1,\n  \"lkw\": -1,\n  \"twitch\": 5,\n  \"university\": -1,\n  // Other \"brands\" with the same name\n  \"eris dysnomia\": -10,\n  \"mother dysnomia\": -10,\n  \"dawn of midi\": -10,\n  \"logistik heute\": -10,\n  \"logistik-heute\": -10,\n};\n\nlet score = 0;\nconst loweredText = $input.item.json.text.toLowerCase();\nfor(const scoreItemKey in scoreData) {\n  if(loweredText.includes(scoreItemKey)) {\n    score += scoreData[scoreItemKey];\n  }  \n}\n\nreturn {\n  valid: score > -1  \n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -263,6 +263,6 @@
   ],
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-04-25T09:09:48.398Z",
-  "versionId": "48facf7a-7255-4d16-8242-21acd8d32c80"
+  "updatedAt": "2026-05-08T08:13:52.048Z",
+  "versionId": "7df0c070-6a4e-4634-a8cf-cc76f73c9145"
 }
