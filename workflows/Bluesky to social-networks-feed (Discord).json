@@ -405,6 +405,7 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "Axel Soupé",
     "name": "Version 18c8e427",
     "description": "",
