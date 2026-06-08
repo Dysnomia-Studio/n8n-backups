@@ -120,6 +120,7 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "Axel Soupé",
     "name": "Version 262f138b",
     "description": "",
