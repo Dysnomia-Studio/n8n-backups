@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-04T14:56:46.000Z",
-    "createdAt": "2026-04-04T14:56:40.282Z",
-    "versionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f",
+    "updatedAt": "2026-07-15T16:12:43.000Z",
+    "createdAt": "2026-07-15T16:12:36.068Z",
+    "versionId": "45cca62e-a2b6-424b-bd93-1a0219a7fc0a",
     "workflowId": "XJIn9kDxBUdVq0nw",
     "nodes": [
       {
@@ -95,7 +95,7 @@
                 }
               }
             ],
-            "combinator": "and"
+            "combinator": "or"
           },
           "options": {}
         },
@@ -204,6 +204,15 @@
                   "type": "boolean",
                   "operation": "true",
                   "singleValue": true
+                }
+              },
+              {
+                "id": "def0946c-80f1-40d6-b0c6-1dd5db9b5a8e",
+                "leftValue": "={{ $('Filter to get recent posts').item.json.author.handle }}",
+                "rightValue": "elanis.eu",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
                 }
               }
             ],
@@ -407,11 +416,11 @@
     },
     "nodeGroups": [],
     "authors": "Axel Soupé",
-    "name": "Version 18c8e427",
+    "name": "Version 45cca62e",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "18c8e427-d9dc-4adb-afc7-245df4ad883f",
+  "activeVersionId": "45cca62e-a2b6-424b-bd93-1a0219a7fc0a",
   "connections": {
     "Discord": {
       "main": [
@@ -633,16 +642,6 @@
                 "type": "number",
                 "operation": "gt"
               }
-            },
-            {
-              "id": "9f905d57-fe4a-4d40-b5d6-1b4605d36b30",
-              "leftValue": true,
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
             }
           ],
           "combinator": "or"
@@ -755,6 +754,15 @@
                 "operation": "true",
                 "singleValue": true
               }
+            },
+            {
+              "id": "def0946c-80f1-40d6-b0c6-1dd5db9b5a8e",
+              "leftValue": "={{ $('Filter to get recent posts').item.json.author.handle }}",
+              "rightValue": "elanis.eu",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
             }
           ],
           "combinator": "and"
@@ -856,6 +864,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-04-06T07:43:26.461Z",
-  "versionId": "69673ca3-40c3-420e-8c30-0a94c97a185d"
+  "updatedAt": "2026-07-15T16:12:36.066Z",
+  "versionId": "45cca62e-a2b6-424b-bd93-1a0219a7fc0a"
 }
