@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T11:10:25.169Z",
-    "createdAt": "2025-12-14T11:10:25.169Z",
     "versionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
     "workflowId": "ZtPOXjys0QDue7JW",
     "nodes": [
@@ -456,7 +454,9 @@
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "updatedAt": "2025-12-14T11:10:25.169Z"
   },
   "activeVersionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
   "connections": {
@@ -581,6 +581,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Clean Sonarqube branches",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -917,11 +918,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-05-01T07:56:21.113Z",
-      "createdAt": "2025-05-01T07:56:21.113Z",
       "role": "workflow:owner",
       "workflowId": "ZtPOXjys0QDue7JW",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-05-01T07:56:21.113Z",
+      "updatedAt": "2025-05-01T07:56:21.113Z"
     }
   ],
   "tags": [],
