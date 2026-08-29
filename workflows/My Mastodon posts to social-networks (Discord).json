@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T11:10:25.169Z",
-    "createdAt": "2025-12-14T11:10:25.169Z",
     "versionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0",
     "workflowId": "hKhEkNfupVGQkZEN",
     "nodes": [
@@ -255,7 +253,9 @@
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "updatedAt": "2025-12-14T11:10:25.169Z"
   },
   "activeVersionId": "1b0ed9d8-3a98-45c3-be12-bd5fd40feaa0",
   "connections": {
@@ -325,6 +325,7 @@
   "isArchived": false,
   "meta": null,
   "name": "My Mastodon posts to social-networks (Discord)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -474,25 +475,25 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T16:31:17.643Z",
-      "createdAt": "2025-01-24T16:31:17.643Z",
       "role": "workflow:owner",
       "workflowId": "hKhEkNfupVGQkZEN",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T16:31:17.643Z",
+      "updatedAt": "2025-01-24T16:31:17.643Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T16:31:25.878Z",
-      "createdAt": "2025-01-24T16:31:25.878Z",
       "id": "Bz7qsxMwqIy496Xq",
-      "name": "to-discord-public"
+      "name": "to-discord-public",
+      "createdAt": "2025-01-24T16:31:25.878Z",
+      "updatedAt": "2025-01-24T16:31:25.878Z"
     },
     {
-      "updatedAt": "2025-01-24T16:28:37.368Z",
-      "createdAt": "2025-01-24T16:28:37.368Z",
       "id": "OfADQLq5vKWV1acj",
-      "name": "from-mastodon"
+      "name": "from-mastodon",
+      "createdAt": "2025-01-24T16:28:37.368Z",
+      "updatedAt": "2025-01-24T16:28:37.368Z"
     }
   ],
   "triggerCount": 1,
