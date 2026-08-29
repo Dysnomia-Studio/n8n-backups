@@ -8,6 +8,7 @@
   "isArchived": true,
   "meta": null,
   "name": "My workflow 2",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
@@ -28,14 +29,13 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-04-04T11:17:53.492Z",
-      "createdAt": "2026-04-04T11:17:53.492Z",
       "role": "workflow:owner",
       "workflowId": "Ag8esRPM4keqqXeJ",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2026-04-04T11:17:53.492Z",
+      "updatedAt": "2026-04-04T11:17:53.492Z"
     }
   ],
-  "staticData": null,
   "tags": [],
   "triggerCount": 0,
   "updatedAt": "2026-04-04T11:59:49.000Z",
