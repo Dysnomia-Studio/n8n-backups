@@ -119,6 +119,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Youtube to social-networks-feed (Discord)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -331,25 +332,25 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T17:01:20.613Z",
-      "createdAt": "2025-01-24T17:01:20.613Z",
       "role": "workflow:owner",
       "workflowId": "Iugtgf8ltqxW0Nln",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T17:01:20.613Z",
+      "updatedAt": "2025-01-24T17:01:20.613Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T17:01:23.992Z",
-      "createdAt": "2025-01-24T17:01:23.992Z",
       "id": "QBuennGlvlfn04eY",
-      "name": "from-youtube"
+      "name": "from-youtube",
+      "createdAt": "2025-01-24T17:01:23.992Z",
+      "updatedAt": "2025-01-24T17:01:23.992Z"
     },
     {
-      "updatedAt": "2025-01-24T16:28:37.143Z",
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
-      "name": "to-discord-private"
+      "name": "to-discord-private",
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z"
     }
   ],
   "triggerCount": 0,
