@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T11:10:25.169Z",
-    "createdAt": "2025-12-14T11:10:25.169Z",
     "versionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
     "workflowId": "d0jcIzuI4EU8Yijd",
     "nodes": [
@@ -205,7 +203,9 @@
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "updatedAt": "2025-12-14T11:10:25.169Z"
   },
   "activeVersionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
   "connections": {
@@ -270,6 +270,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Automatically cleanup Github packages",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -393,19 +394,19 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T16:27:08.114Z",
-      "createdAt": "2025-01-24T16:27:08.114Z",
       "role": "workflow:owner",
       "workflowId": "d0jcIzuI4EU8Yijd",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T16:27:08.114Z",
+      "updatedAt": "2025-01-24T16:27:08.114Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T16:26:59.742Z",
-      "createdAt": "2025-01-24T16:26:59.742Z",
       "id": "BxJCJchTZD9gMIjE",
-      "name": "to-github"
+      "name": "to-github",
+      "createdAt": "2025-01-24T16:26:59.742Z",
+      "updatedAt": "2025-01-24T16:26:59.742Z"
     }
   ],
   "triggerCount": 1,
