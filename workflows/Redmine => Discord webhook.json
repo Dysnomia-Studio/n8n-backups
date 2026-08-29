@@ -1,0 +1,172 @@
+{
+  "active": true,
+  "activeVersion": {
+    "versionId": "fa276d33-34f7-4afb-a1d4-8f8bccb297b7",
+    "workflowId": "LeDGnZzLdQhCZ2LA",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "8b0ec1a2-8865-4876-9153-402db93884ae",
+          "responseMode": "lastNode",
+          "responseData": "noData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "3e71d2b7-9811-4a59-b66c-a4fc47ae9b2a",
+        "name": "Webhook",
+        "webhookId": "8b0ec1a2-8865-4876-9153-402db93884ae"
+      },
+      {
+        "parameters": {
+          "authentication": "webhook",
+          "options": {},
+          "embeds": {
+            "values": [
+              {
+                "author": "Bug Tracker",
+                "color": "#C400F5",
+                "timestamp": "={{ $json.body.timestamp }}",
+                "title": "={{ `[${$json.body.data.issue.project.name}] ` + ($json.body.type == 'issue.updated' ? 'Issue Updated: #' : 'Issue created: #') + $json.body.data.issue.id + ' - ' + $json.body.data.issue.subject }}",
+                "url": "=https://bugs.dysnomia.studio/issues/{{ $json.body.data.issue.id }}"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 2,
+        "position": [
+          224,
+          0
+        ],
+        "id": "3b096dc9-df28-4bfc-80cd-b2822efd7013",
+        "name": "Discord",
+        "webhookId": "0cfa7e22-4eaa-4ae9-b15e-2b132297f5bd",
+        "credentials": {
+          "discordWebhookApi": {
+            "id": "jv5Oq6PtoU1AXBIg",
+            "name": "Discord Webhook - Redmine"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Axel Soupé",
+    "name": "Version fa276d33",
+    "description": "",
+    "autosaved": true,
+    "createdAt": "2026-08-29T11:03:54.268Z",
+    "updatedAt": "2026-08-29T11:03:57.000Z"
+  },
+  "activeVersionId": "fa276d33-34f7-4afb-a1d4-8f8bccb297b7",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-08-29T10:52:21.891Z",
+  "id": "LeDGnZzLdQhCZ2LA",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Redmine => Discord webhook",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8b0ec1a2-8865-4876-9153-402db93884ae",
+        "responseMode": "lastNode",
+        "responseData": "noData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3e71d2b7-9811-4a59-b66c-a4fc47ae9b2a",
+      "name": "Webhook",
+      "webhookId": "8b0ec1a2-8865-4876-9153-402db93884ae"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "author": "Bug Tracker",
+              "color": "#C400F5",
+              "timestamp": "={{ $json.body.timestamp }}",
+              "title": "={{ `[${$json.body.data.issue.project.name}] ` + ($json.body.type == 'issue.updated' ? 'Issue Updated: #' : 'Issue created: #') + $json.body.data.issue.id + ' - ' + $json.body.data.issue.subject }}",
+              "url": "=https://bugs.dysnomia.studio/issues/{{ $json.body.data.issue.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "3b096dc9-df28-4bfc-80cd-b2822efd7013",
+      "name": "Discord",
+      "webhookId": "0cfa7e22-4eaa-4ae9-b15e-2b132297f5bd",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "jv5Oq6PtoU1AXBIg",
+          "name": "Discord Webhook - Redmine"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "role": "workflow:owner",
+      "workflowId": "LeDGnZzLdQhCZ2LA",
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2026-08-29T10:52:21.902Z",
+      "updatedAt": "2026-08-29T10:52:21.902Z"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-08-29T11:03:54.266Z",
+  "versionId": "fa276d33-34f7-4afb-a1d4-8f8bccb297b7"
+}
