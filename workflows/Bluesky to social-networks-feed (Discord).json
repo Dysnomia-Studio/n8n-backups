@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-07-15T16:12:43.000Z",
-    "createdAt": "2026-07-15T16:12:36.068Z",
     "versionId": "45cca62e-a2b6-424b-bd93-1a0219a7fc0a",
     "workflowId": "XJIn9kDxBUdVq0nw",
     "nodes": [
@@ -418,7 +416,9 @@
     "authors": "Axel Soupé",
     "name": "Version 45cca62e",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-07-15T16:12:36.068Z",
+    "updatedAt": "2026-07-15T16:12:43.000Z"
   },
   "activeVersionId": "45cca62e-a2b6-424b-bd93-1a0219a7fc0a",
   "connections": {
@@ -554,6 +554,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Bluesky to social-networks-feed (Discord)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -842,25 +843,25 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T16:54:45.457Z",
-      "createdAt": "2025-01-24T16:54:45.457Z",
       "role": "workflow:owner",
       "workflowId": "XJIn9kDxBUdVq0nw",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T16:54:45.457Z",
+      "updatedAt": "2025-01-24T16:54:45.457Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T16:54:48.174Z",
-      "createdAt": "2025-01-24T16:54:48.174Z",
       "id": "gAxYvyidkeXeB0vH",
-      "name": "from-bluesky"
+      "name": "from-bluesky",
+      "createdAt": "2025-01-24T16:54:48.174Z",
+      "updatedAt": "2025-01-24T16:54:48.174Z"
     },
     {
-      "updatedAt": "2025-01-24T16:28:37.143Z",
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
-      "name": "to-discord-private"
+      "name": "to-discord-private",
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z"
     }
   ],
   "triggerCount": 1,
