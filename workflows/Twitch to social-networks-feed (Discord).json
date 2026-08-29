@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T11:10:25.169Z",
-    "createdAt": "2025-12-14T11:10:25.169Z",
     "versionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a",
     "workflowId": "xlnbH70l1j5nqeDL",
     "nodes": [
@@ -289,7 +287,9 @@
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-14T11:10:25.169Z",
+    "updatedAt": "2025-12-14T11:10:25.169Z"
   },
   "activeVersionId": "5bd8113f-9c8b-4950-bc03-b726b77f361a",
   "connections": {
@@ -387,6 +387,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Twitch to social-networks-feed (Discord)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -591,25 +592,25 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T16:37:42.849Z",
-      "createdAt": "2025-01-24T16:37:42.849Z",
       "role": "workflow:owner",
       "workflowId": "xlnbH70l1j5nqeDL",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T16:37:42.849Z",
+      "updatedAt": "2025-01-24T16:37:42.849Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T16:37:48.153Z",
-      "createdAt": "2025-01-24T16:37:48.153Z",
       "id": "3HPqeV47t4GHgc86",
-      "name": "from-twitch"
+      "name": "from-twitch",
+      "createdAt": "2025-01-24T16:37:48.153Z",
+      "updatedAt": "2025-01-24T16:37:48.153Z"
     },
     {
-      "updatedAt": "2025-01-24T16:28:37.143Z",
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
-      "name": "to-discord-private"
+      "name": "to-discord-private",
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z"
     }
   ],
   "triggerCount": 1,
