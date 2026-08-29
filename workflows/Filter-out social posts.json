@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-08-22T08:02:55.000Z",
-    "createdAt": "2026-08-22T08:02:38.006Z",
     "versionId": "0c856c5d-79ef-4dc1-91dc-a644ed734a9e",
     "workflowId": "9xBZjNJbxXDjOYHT",
     "nodes": [
@@ -124,7 +122,9 @@
     "authors": "Axel Soupé",
     "name": "Version 0c856c5d",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-08-22T08:02:38.006Z",
+    "updatedAt": "2026-08-22T08:02:55.000Z"
   },
   "activeVersionId": "0c856c5d-79ef-4dc1-91dc-a644ed734a9e",
   "connections": {
@@ -161,6 +161,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Filter-out social posts",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -255,11 +256,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-04-04T11:28:32.936Z",
-      "createdAt": "2026-04-04T11:28:32.936Z",
       "role": "workflow:owner",
       "workflowId": "9xBZjNJbxXDjOYHT",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2026-04-04T11:28:32.936Z",
+      "updatedAt": "2026-04-04T11:28:32.936Z"
     }
   ],
   "tags": [],
