@@ -111,6 +111,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Reddit to social-networks-feed (Discord)",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -349,25 +350,25 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-01-24T16:34:14.918Z",
-      "createdAt": "2025-01-24T16:34:14.918Z",
       "role": "workflow:owner",
       "workflowId": "9YD4vxIuXwurqkk3",
-      "projectId": "eAQxkiYNZBMLrPPR"
+      "projectId": "eAQxkiYNZBMLrPPR",
+      "createdAt": "2025-01-24T16:34:14.918Z",
+      "updatedAt": "2025-01-24T16:34:14.918Z"
     }
   ],
   "tags": [
     {
-      "updatedAt": "2025-01-24T16:34:19.370Z",
-      "createdAt": "2025-01-24T16:34:19.370Z",
       "id": "d12Rbf3Ti1EZATuZ",
-      "name": "from-reddit"
+      "name": "from-reddit",
+      "createdAt": "2025-01-24T16:34:19.370Z",
+      "updatedAt": "2025-01-24T16:34:19.370Z"
     },
     {
-      "updatedAt": "2025-01-24T16:28:37.143Z",
-      "createdAt": "2025-01-24T16:28:37.143Z",
       "id": "ieKlQBu6AZC4wykv",
-      "name": "to-discord-private"
+      "name": "to-discord-private",
+      "createdAt": "2025-01-24T16:28:37.143Z",
+      "updatedAt": "2025-01-24T16:28:37.143Z"
     }
   ],
   "triggerCount": 1,
