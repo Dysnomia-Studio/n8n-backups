@@ -1,20 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
+    "versionId": "14708137-a577-45e0-96ad-e2569076a1c3",
     "workflowId": "d0jcIzuI4EU8Yijd",
     "nodes": [
-      {
-        "parameters": {},
-        "id": "45a2c4b6-9176-4139-98c0-46c882479a94",
-        "name": "When clicking ‘Test workflow’",
-        "type": "n8n-nodes-base.manualTrigger",
-        "typeVersion": 1,
-        "position": [
-          0,
-          220
-        ]
-      },
       {
         "parameters": {
           "rule": {
@@ -33,8 +22,8 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          0,
-          0
+          16,
+          112
         ]
       },
       {
@@ -47,7 +36,7 @@
         "typeVersion": 2,
         "position": [
           240,
-          100
+          112
         ]
       },
       {
@@ -62,8 +51,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          440,
-          100
+          464,
+          112
         ],
         "credentials": {
           "githubApi": {
@@ -84,8 +73,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          660,
-          100
+          688,
+          112
         ],
         "credentials": {
           "githubApi": {
@@ -103,8 +92,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          880,
-          100
+          912,
+          112
         ]
       },
       {
@@ -120,8 +109,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          1100,
-          100
+          1136,
+          112
         ],
         "credentials": {
           "githubApi": {
@@ -132,17 +121,6 @@
       }
     ],
     "connections": {
-      "When clicking ‘Test workflow’": {
-        "main": [
-          [
-            {
-              "node": "Set variable containing organizations",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "Schedule Trigger": {
         "main": [
           [
@@ -200,14 +178,14 @@
       }
     },
     "nodeGroups": [],
-    "authors": "system migration",
-    "name": null,
-    "description": null,
+    "authors": "Axel Soupé",
+    "name": "Version 14708137",
+    "description": "",
     "autosaved": false,
-    "createdAt": "2025-12-14T11:10:25.169Z",
-    "updatedAt": "2025-12-14T11:10:25.169Z"
+    "createdAt": "2026-01-04T10:06:01.984Z",
+    "updatedAt": "2026-11-20T16:09:09.000Z"
   },
-  "activeVersionId": "cf098831-a2f3-425e-9157-6e5ecedf832b",
+  "activeVersionId": "14708137-a577-45e0-96ad-e2569076a1c3",
   "connections": {
     "Schedule Trigger": {
       "main": [
