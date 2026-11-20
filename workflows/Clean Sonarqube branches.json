@@ -1,7 +1,7 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
+    "versionId": "11f510a7-367a-4631-8af0-b5f01f93cce8",
     "workflowId": "ZtPOXjys0QDue7JW",
     "nodes": [
       {
@@ -24,7 +24,7 @@
         "typeVersion": 4.2,
         "position": [
           -240,
-          -260
+          -256
         ],
         "id": "51f35041-99ee-4f65-8d4c-502367d335ca",
         "name": "Get All Projects",
@@ -54,8 +54,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          200,
-          -360
+          208,
+          -368
         ],
         "id": "1cc8be6b-0568-4f73-90fb-24d7615e1b30",
         "name": "Get branches",
@@ -74,8 +74,8 @@
         "type": "n8n-nodes-base.splitOut",
         "typeVersion": 1,
         "position": [
-          -20,
-          -260
+          -16,
+          -256
         ],
         "id": "c0d6dd15-f572-497f-a316-f27fa9fe65b3",
         "name": "Split Out Projects list"
@@ -110,8 +110,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          860,
-          -360
+          864,
+          -368
         ],
         "id": "cb7c4e79-40db-4095-9dcb-3dcbeb30358f",
         "name": "Delete branch",
@@ -139,8 +139,8 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          -680,
-          -260
+          -688,
+          -256
         ],
         "id": "f85c6542-08e8-4de6-bf27-969ebc813481",
         "name": "Schedule Trigger"
@@ -152,8 +152,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -460,
-          -260
+          -464,
+          -256
         ],
         "id": "08eed841-3421-4de9-a63d-9203812e8496",
         "name": "Set Constants"
@@ -177,7 +177,7 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          200,
+          208,
           -160
         ],
         "id": "5b0bec7d-50b2-49b9-b1bc-3a04a4c7cd02",
@@ -235,7 +235,7 @@
               {
                 "id": "a080034e-5454-403d-848f-d8563b993eb3",
                 "leftValue": "={{ $json.name }}",
-                "rightValue": "dependabot/",
+                "rightValue": "dependabot",
                 "operator": {
                   "type": "string",
                   "operation": "startsWith"
@@ -249,6 +249,33 @@
                   "type": "string",
                   "operation": "endsWith"
                 }
+              },
+              {
+                "id": "4a9af9ba-3bdb-4523-b164-d6173286896b",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "\\d+\\.\\d+\\.\\d+",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              },
+              {
+                "id": "448acc34-0da5-41dd-ac7a-e7c49a57a012",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "\\d+",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              },
+              {
+                "id": "96e99d7a-d763-47bb-8632-573e2baba581",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "feature/",
+                "operator": {
+                  "type": "string",
+                  "operation": "startsWith"
+                }
               }
             ],
             "combinator": "or"
@@ -259,7 +286,7 @@
         "typeVersion": 2.2,
         "position": [
           640,
-          -360
+          -368
         ],
         "id": "dcce9b9a-a3a1-4536-b616-53e6a3df59e0",
         "name": "Filter by branch name"
@@ -271,7 +298,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          420,
+          432,
           -160
         ],
         "id": "647d3c0c-0834-4f64-9f3c-9ddc39627688",
@@ -284,8 +311,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          420,
-          -360
+          432,
+          -368
         ],
         "id": "b2320f07-32eb-4bf0-a9ea-d4c7c48c68fc",
         "name": "Rework branch list"
@@ -320,7 +347,7 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          860,
+          864,
           -160
         ],
         "id": "29991705-c95d-4ae6-a8f0-9a8f95c4277e",
@@ -451,14 +478,14 @@
       }
     },
     "nodeGroups": [],
-    "authors": "system migration",
-    "name": null,
-    "description": null,
+    "authors": "Axel Soupé",
+    "name": "Version 11f510a7",
+    "description": "",
     "autosaved": false,
-    "createdAt": "2025-12-14T11:10:25.169Z",
-    "updatedAt": "2025-12-14T11:10:25.169Z"
+    "createdAt": "2026-11-20T16:00:26.275Z",
+    "updatedAt": "2026-11-20T16:00:52.000Z"
   },
-  "activeVersionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028",
+  "activeVersionId": "11f510a7-367a-4631-8af0-b5f01f93cce8",
   "connections": {
     "Get All Projects": {
       "main": [
@@ -603,7 +630,7 @@
       "typeVersion": 4.2,
       "position": [
         -240,
-        -260
+        -256
       ],
       "id": "51f35041-99ee-4f65-8d4c-502367d335ca",
       "name": "Get All Projects",
@@ -633,8 +660,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        200,
-        -360
+        208,
+        -368
       ],
       "id": "1cc8be6b-0568-4f73-90fb-24d7615e1b30",
       "name": "Get branches",
@@ -653,8 +680,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -20,
-        -260
+        -16,
+        -256
       ],
       "id": "c0d6dd15-f572-497f-a316-f27fa9fe65b3",
       "name": "Split Out Projects list"
@@ -689,8 +716,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        860,
-        -360
+        864,
+        -368
       ],
       "id": "cb7c4e79-40db-4095-9dcb-3dcbeb30358f",
       "name": "Delete branch",
@@ -718,8 +745,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -680,
-        -260
+        -688,
+        -256
       ],
       "id": "f85c6542-08e8-4de6-bf27-969ebc813481",
       "name": "Schedule Trigger"
@@ -731,8 +758,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -460,
-        -260
+        -464,
+        -256
       ],
       "id": "08eed841-3421-4de9-a63d-9203812e8496",
       "name": "Set Constants"
@@ -756,7 +783,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        200,
+        208,
         -160
       ],
       "id": "5b0bec7d-50b2-49b9-b1bc-3a04a4c7cd02",
@@ -814,7 +841,7 @@
             {
               "id": "a080034e-5454-403d-848f-d8563b993eb3",
               "leftValue": "={{ $json.name }}",
-              "rightValue": "dependabot/",
+              "rightValue": "dependabot",
               "operator": {
                 "type": "string",
                 "operation": "startsWith"
@@ -828,6 +855,33 @@
                 "type": "string",
                 "operation": "endsWith"
               }
+            },
+            {
+              "id": "4a9af9ba-3bdb-4523-b164-d6173286896b",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "^v?\\d+\\.\\d+\\.\\d+$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            },
+            {
+              "id": "448acc34-0da5-41dd-ac7a-e7c49a57a012",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "^\\d+$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            },
+            {
+              "id": "96e99d7a-d763-47bb-8632-573e2baba581",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "feature/",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
             }
           ],
           "combinator": "or"
@@ -838,7 +892,7 @@
       "typeVersion": 2.2,
       "position": [
         640,
-        -360
+        -368
       ],
       "id": "dcce9b9a-a3a1-4536-b616-53e6a3df59e0",
       "name": "Filter by branch name"
@@ -850,7 +904,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        420,
+        432,
         -160
       ],
       "id": "647d3c0c-0834-4f64-9f3c-9ddc39627688",
@@ -863,8 +917,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        420,
-        -360
+        432,
+        -368
       ],
       "id": "b2320f07-32eb-4bf0-a9ea-d4c7c48c68fc",
       "name": "Rework branch list"
@@ -899,7 +953,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        860,
+        864,
         -160
       ],
       "id": "29991705-c95d-4ae6-a8f0-9a8f95c4277e",
@@ -914,7 +968,8 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -927,6 +982,6 @@
   ],
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-01T09:36:04.000Z",
-  "versionId": "2b667f6d-faf5-4b3f-b703-5f11b0193028"
+  "updatedAt": "2026-11-20T16:06:44.811Z",
+  "versionId": "14bfa4ab-660a-47cb-84ea-733ff9d1b4f6"
 }
